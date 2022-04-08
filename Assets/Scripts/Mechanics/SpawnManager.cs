@@ -16,12 +16,18 @@ public class SpawnManager : MonoBehaviour {
 
     public void RespawnEnemies(List<GameObject> enemies) {
         var availablePoints = getAvailablePoints();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 16; i++) {
             var randomPick = Random.Range(0, availablePoints.Count);
-            var nextEnemyPosition = enemySpawnPoints[randomPick].transform.position;
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
             var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
             Instantiate(enemies[0], nextEnemyPosition, nextEnemyRotation);
         }
+    }
+
+    private Vector3 GetRandomPositionAround(Vector3 position) {
+        var newX = Random.Range(position.x - 3, position.x + 3);
+        var newZ = Random.Range(position.z - 3, position.z + 3);
+        return new Vector3(newX, position.y, newZ);
     }
 
     private List<GameObject> getAvailablePoints() {
