@@ -14,7 +14,23 @@ public class SpawnManager : MonoBehaviour {
             playerSpawnPoint.y, playerSpawnPoint.z);
     }
 
-    internal void RespawnEnemies(List<GameObject> enemies) {
+    public void RespawnEnemies(List<GameObject> enemies) {
+        var availablePoints = getAvailablePoints();
+        for (int i = 0; i < 2; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = enemySpawnPoints[randomPick].transform.position;
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            Instantiate(enemies[0], nextEnemyPosition, nextEnemyRotation);
+        }
+    }
 
+    private List<GameObject> getAvailablePoints() {
+        List<GameObject> availablePoints = new List<GameObject>();
+        foreach (GameObject enemySpawnPoint in enemySpawnPoints) {
+            if (Vector3.Distance(enemySpawnPoint.transform.position, playerSpawnPoint) > 20f) {
+                availablePoints.Add(enemySpawnPoint);
+            }
+        }
+        return availablePoints;
     }
 }
