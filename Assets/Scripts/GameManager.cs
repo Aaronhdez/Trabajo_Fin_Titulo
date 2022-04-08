@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> spawnPoints;
     [SerializeField] public GameObject player;
+    [SerializeField] public List<GameObject> enemies;
+    [SerializeField] public GameObject spawnManager;
 
     void Start() {
-        RespawnPlayer();
+        spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
+        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        //spawnManager.GetComponent<SpawnManager>().RespawnProps(enemies);
     }
 
-    private void RespawnPlayer() {
-        var randomPick = Random.Range(0, spawnPoints.Count);
-        var spawnPoint = spawnPoints[randomPick].transform.position;
-        player.transform.position = new Vector3(spawnPoint.x,
-            spawnPoint.y, spawnPoint.z);
-    }
+    
 }
