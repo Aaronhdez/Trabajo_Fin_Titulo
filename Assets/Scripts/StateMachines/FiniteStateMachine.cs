@@ -11,13 +11,13 @@ public class FiniteStateMachine : MonoBehaviour
     [SerializeField] protected List<GameObject> patrolPath;
 
     //Machine Variables
-    protected enum State {
+    public enum State {
         None,
         Patrol,
         Chase,
         Dead
     }
-    protected State currentState;
+    public State currentState;
 
     protected virtual void Initialize() { }
     protected virtual void StateUpdate() { }

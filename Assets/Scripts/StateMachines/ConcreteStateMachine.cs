@@ -5,14 +5,14 @@ using UnityEngine;
 public class ConcreteStateMachine : FiniteStateMachine {
 
     public GameObject subject;
-    private Dictionary<State, Action> behaviours;
+    public Dictionary<State, MachineState> behaviours;
 
     protected override void Initialize() {
         LoadBehavioursDictionary();    
     }
 
     private void LoadBehavioursDictionary() {
-        behaviours = new Dictionary<State, Action>();
+        behaviours = new Dictionary<State, MachineState>();
     }
 
     protected override void StateUpdate() { 
@@ -21,6 +21,4 @@ public class ConcreteStateMachine : FiniteStateMachine {
     protected override void StateFixedUpdate() { 
     
     }
-
-
 }
