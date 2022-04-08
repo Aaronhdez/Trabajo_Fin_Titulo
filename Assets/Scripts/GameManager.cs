@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [SerializeField] public List<GameObject> spawnPoints;
+    [SerializeField] public GameObject player; 
+    void Start() {
+        var randomPick = Random.Range(0, spawnPoints.Count + 1);
+        var spawnPoint = spawnPoints[randomPick].transform;
+        Instantiate(player, spawnPoint.position, 
+            spawnPoint.rotation, spawnPoint);
+        player.SetActive(true);
     }
 }
