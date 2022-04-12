@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 250930524510070288}
   - component: {fileID: 2179778923170601024}
   - component: {fileID: 1304016662552968369}
+  - component: {fileID: 1501928667111037286}
   m_Layer: 0
   m_Name: CrateGroup1
   m_TagString: Obstacle
@@ -62,6 +63,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9456053, y: 9.160249, z: 6.007427}
   m_Center: {x: -2.2255225, y: 4.5128646, z: -15.300465}
+--- !u!114 &1501928667111037286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3573102300160927613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1112256337780150435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +137,18 @@ PrefabInstance:
     - target: {fileID: 4112915832270519431, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_Area
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_OverrideArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_IgnoreFromBuild
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
@@ -187,6 +216,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_Area
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_OverrideArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_IgnoreFromBuild
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
 --- !u!4 &910622450831615303 stripped
@@ -253,6 +294,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_Area
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_OverrideArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_IgnoreFromBuild
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
 --- !u!4 &910622451385212410 stripped
@@ -318,6 +371,18 @@ PrefabInstance:
     - target: {fileID: 4112915832270519431, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_Area
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_OverrideArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340427414394436834, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
+      propertyPath: m_IgnoreFromBuild
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54e793fa5dbbefe4499ae42fc55133ae, type: 3}
