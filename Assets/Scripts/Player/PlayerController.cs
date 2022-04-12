@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-
+    
+    [Header("Player elements")]
     [SerializeField] public float speed;
     [SerializeField] public float cameraRotationSpeed;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CharacterController playerCC;
     [SerializeField] public Transform groundCheck;
+    [SerializeField] private Dictionary<string, System.Action> aspects;
 
     public float mass;
     public float groundDistance = 0.4f;
@@ -18,11 +20,15 @@ public class PlayerController : MonoBehaviour {
     public float gravity = -9.81f;
     public Vector3 velocity;
     public float jumpHeight = 2f;
+ 
 
 
     void Start() {
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
+        aspects = new Dictionary<string, System.Action>();
+        aspects.Add("ammo", RestoreAmmo);
+        aspects.Add("health", RestoreHealth);
     }
 
     // Update is called once per frame
@@ -58,12 +64,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void RestoreAspect(string element) {
-        if (element.Equals("ammo")) {
-            RestoreAmmo();
-        } else {
-            RestoreHealth();
-        } 
+    public void RestoreAspect(string targetAspect) {
+        aspects[targetAspect]();
     }
 
     public void RestoreAmmo() {

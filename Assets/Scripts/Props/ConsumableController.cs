@@ -28,7 +28,6 @@ public class ConsumableController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             playerInArea = true;
-            Debug.Log("Player has entered the area");
         }
     }
 
