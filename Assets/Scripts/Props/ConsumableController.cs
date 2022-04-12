@@ -7,20 +7,38 @@ public class ConsumableController : MonoBehaviour
 {
 
     [SerializeField] private Animator animator;
-    [SerializeField] private float rotationSpeed = 250f;
+    [SerializeField] private bool playerInArea = false;
+    [SerializeField] private GameObject player;
+    [SerializeField] private string aspectToRestore;
+
+    private void Start() {
+        player = GameObject.Find("PlayerPrefab");
+    }
 
     public void Update() {
-        var rotation = Time.deltaTime * rotationSpeed * Vector3.up;
-        transform.Rotate(rotation);
+        if (playerInArea) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                animator.Play("opened_closed");
+                ApplyEffectOver();
+                playerInArea = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            ApplyEffectOver(other);
+            playerInArea = true;
+            Debug.Log("Player has entered the area");
         }
     }
 
-    private void ApplyEffectOver(Collider other) {
-        throw new NotImplementedException();
+    private void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Player")) {
+            playerInArea = false;
+        }
+    }
+
+    private void ApplyEffectOver() {
+        player.GetComponent<PlayerController>().RestoreAspect(aspectToRestore);
     }
 }

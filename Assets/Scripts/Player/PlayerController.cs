@@ -57,4 +57,20 @@ public class PlayerController : MonoBehaviour {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
     }
+
+    public void RestoreAspect(string element) {
+        if (element.Equals("ammo")) {
+            RestoreAmmo();
+        } else {
+            RestoreHealth();
+        } 
+    }
+
+    public void RestoreAmmo() {
+        Debug.Log("Ammo added to Gun");
+    }
+
+    public void RestoreHealth() {
+        Debug.Log("Health Restored");
+    }
 }
