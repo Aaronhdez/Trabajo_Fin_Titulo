@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8551154745082775922}
   - component: {fileID: 5970854978607155672}
-  - component: {fileID: 4848320895892694637}
-  - component: {fileID: 45795946}
+  - component: {fileID: 6894712823695271479}
   m_Layer: 0
   m_Name: AmmoProp
   m_TagString: Untagged
@@ -47,7 +46,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &4848320895892694637
+--- !u!114 &6894712823695271479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,29 +55,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6321715355434662835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b2ae4fa0613164b87a4a508e51431d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  playerInArea: 0
-  player: {fileID: 0}
-  aspectToRestore: 
---- !u!114 &45795946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6321715355434662835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b2ae4fa0613164b87a4a508e51431d, type: 3}
+  m_Script: {fileID: 11500000, guid: 04f0ef5f16870fe46b2376a4667dd270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1583204332193580887}
   playerInArea: 0
   player: {fileID: 0}
-  aspectToRestore: ammo
 --- !u!1001 &1583204332203092429
 PrefabInstance:
   m_ObjectHideFlags: 0

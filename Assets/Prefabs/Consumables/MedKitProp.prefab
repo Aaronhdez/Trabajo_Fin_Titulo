@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3882993280725783928}
-  - component: {fileID: 7854379376323238023}
   - component: {fileID: 816167765845484533}
+  - component: {fileID: 396526474740903202}
   m_Layer: 0
   m_Name: MedKitProp
   m_TagString: Untagged
@@ -33,22 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7854379376323238023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416163851047101381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b2ae4fa0613164b87a4a508e51431d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  playerInArea: 0
-  player: {fileID: 0}
-  aspectToRestore: health
 --- !u!135 &816167765845484533
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -57,11 +41,26 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8416163851047101381}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &396526474740903202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416163851047101381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e76662209c55b4397fdaede99c7edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7953625281443322287}
+  playerInArea: 0
+  player: {fileID: 0}
 --- !u!1001 &7953625281433761331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,5 +121,10 @@ PrefabInstance:
 --- !u!4 &7953625281433672605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486830, guid: 4cdcc6c16809ba5439c8798d9bb925f4, type: 3}
+  m_PrefabInstance: {fileID: 7953625281433761331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7953625281443322287 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9580444, guid: 4cdcc6c16809ba5439c8798d9bb925f4, type: 3}
   m_PrefabInstance: {fileID: 7953625281433761331}
   m_PrefabAsset: {fileID: 0}

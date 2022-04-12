@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour {
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
         aspects = new Dictionary<string, System.Action>();
-        aspects.Add("ammo", RestoreAmmo);
-        aspects.Add("health", RestoreHealth);
+        aspects.Add(PlayerAspects.AMMO_KEY, RestoreAmmo);
+        aspects.Add(PlayerAspects.HEALTH_KEY, RestoreHealth);
     }
 
     // Update is called once per frame
