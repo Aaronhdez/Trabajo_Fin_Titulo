@@ -24,35 +24,55 @@ public class HealthController : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.H)) {
-            if(currentHealth > 0) { 
-                currentHealth -= (currentHealth >= 25) ?
-                    25 :
-                    currentHealth;
-            }
+            DecreaseHealth();
         }
         if (Input.GetKeyDown(KeyCode.J)) {
-            if (currentHealth < maxHealth) {
-                currentHealth += (currentHealth <= maxHealth - 25) ?
-                    25 :
-                    (maxHealth - currentHealth);
-            }
+            IncreaseHealth();
         }
         UpdateHealthHud();
+    }
+
+    public void DecreaseHealth() {
+        if (currentHealth > 0) {
+            currentHealth -= (currentHealth >= 25) ?
+                25 :
+                currentHealth;
+        }
+    }
+
+    public void IncreaseHealth() {
+        if (currentHealth < maxHealth) {
+            currentHealth += (currentHealth <= maxHealth - 25) ?
+                25 :
+                (maxHealth - currentHealth);
+        }
     }
 
     private void UpdateHealthHud() {
         float percentage = (float) currentHealth / maxHealth;
         if (percentage > 0.66f) {
-            healthText.color = goodHeathColor;
-            healthImage.color = goodHeathColor;
+            SetHudInGreen();
         } else if (percentage < 0.33f) {
-            healthText.color = badHeathColor;
-            healthImage.color = badHeathColor;
+            SetHudInRed();
         } else {
-            healthText.color = normalHeathColor;
-            healthImage.color = normalHeathColor;
+            SetHudInYellow();
         }
         healthText.SetText((percentage * 100)+"%");
+    }
+
+    private void SetHudInGreen() {
+        healthText.color = goodHeathColor;
+        healthImage.color = goodHeathColor;
+    }
+
+    private void SetHudInRed() {
+        healthText.color = badHeathColor;
+        healthImage.color = badHeathColor;
+    }
+
+    private void SetHudInYellow() {
+        healthText.color = normalHeathColor;
+        healthImage.color = normalHeathColor;
     }
 
     internal void RestorePlayerHealth() {
