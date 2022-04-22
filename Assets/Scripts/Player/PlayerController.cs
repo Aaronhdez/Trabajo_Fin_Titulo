@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private List<GameObject> gunsAvailable;
     [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private GunController currentWeapon;
+    [SerializeField] private WeaponController currentWeapon;
 
     public float mass;
     public float groundDistance = 0.4f;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
         Jump();
         Shoot();
         Reload();
+        currentWeapon = weaponManager.CurrentWeapon;
     }
 
     private void Shoot() {

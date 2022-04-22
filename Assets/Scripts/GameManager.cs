@@ -14,16 +14,10 @@ public class GameManager : MonoBehaviour {
     void Start() {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
-        hudManager.GetComponent<HudController>().PresetHUD();
     }
 
     public void RestorePlayerHealth() {
         hudManager.GetComponent<HudController>().ReloadHealthHud();
         Debug.Log("Health Restored");
-    }
-
-    public void RestorePlayerAmmo() {
-        hudManager.GetComponent<HudController>().ReloadAmmoHuds();
-        Debug.Log("Ammo added to Gun");
     }
 }

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunController : MonoBehaviour {
+public class WeaponController : MonoBehaviour {
 
     public int maxAmountOfBullets;
     public int maxAmountInMagazine;
@@ -25,16 +25,6 @@ public class GunController : MonoBehaviour {
 
     private void LateUpdate() {
         UpdateGunHUD();
-    }
-
-    internal void SetInactive() {
-        hudElementAssociated.SetActive(false);
-        this.gameObject.SetActive(false);
-    }
-
-    internal void SetActive() {
-        hudElementAssociated.SetActive(true);
-        this.gameObject.SetActive(true);
     }
 
     private void UpdateGunHUD() {
@@ -88,11 +78,20 @@ public class GunController : MonoBehaviour {
         }
     }
 
+    internal void SetInactive() {
+        hudElementAssociated.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+
+    internal void SetActive() {
+        hudElementAssociated.SetActive(true);
+        this.gameObject.SetActive(true);
+    }
+
     public void ReplenishAmmo() {
         amountOfBullets = maxAmountOfBullets;
         amountInMagazine = maxAmountInMagazine;
         mustReplenish = false;
-        Debug.Log("Ammo replenished");
         UpdateGunHUD();
     }
 

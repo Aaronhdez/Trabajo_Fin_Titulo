@@ -7,46 +7,51 @@ public class WeaponManager : MonoBehaviour
 {
 
     [Header("Weapons Available")]
-    [SerializeField] public List<GunController> weaponsAssociated;
-    [SerializeField] private GunController currentWeapon;
+    [SerializeField] public List<WeaponController> weaponsAssociated;
+    [SerializeField] private WeaponController currentWeapon;
     [SerializeField] private int currentWeaponIndex;
 
-    public GunController CurrentWeapon { 
+    public WeaponController CurrentWeapon { 
         get => currentWeapon; 
         set => currentWeapon = value; 
     }
 
     void Start() {
-        weaponsAssociated = new List<GunController>(GetComponentsInChildren<GunController>());
+        weaponsAssociated = new List<WeaponController>(GetComponentsInChildren<WeaponController>());
         currentWeaponIndex = 0;
         DisactivateRestOfWeapons(currentWeaponIndex);
+        SetActiveWeapon(currentWeaponIndex);
     }
 
-    void LateUpdate() {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
-            currentWeaponIndex = (currentWeaponIndex + 1) % weaponsAssociated.Count;
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
-            currentWeaponIndex = (currentWeaponIndex - 1) % weaponsAssociated.Count;
-        }
+    private void SetActiveWeapon(int currentWeaponIndex) {
+        currentWeapon = weaponsAssociated[currentWeaponIndex];
+        currentWeapon.SetActive();
     }
 
     private void DisactivateRestOfWeapons(int currentWeaponIndex) {
         int weaponIndex = currentWeaponIndex;
         int index = 0;
-        foreach (GunController weaponController in weaponsAssociated) {
+        foreach (WeaponController weaponController in weaponsAssociated) {
             if (index != weaponIndex) {
                 weaponController.SetInactive();
             }
             index++;
         }
-        currentWeapon = weaponsAssociated[currentWeaponIndex];
-        currentWeapon.SetActive();
+    }
+    void LateUpdate() {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            currentWeaponIndex = Math.Abs((currentWeaponIndex + 1) % weaponsAssociated.Count);
+            SwitchWeapon();
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            currentWeaponIndex = Math.Abs((currentWeaponIndex - 1) % weaponsAssociated.Count);
+            SwitchWeapon();
+        }
     }
 
     public void SwitchWeapon() {
-
-
+        DisactivateRestOfWeapons(currentWeaponIndex);
+        SetActiveWeapon(currentWeaponIndex);
     }
 
 }
