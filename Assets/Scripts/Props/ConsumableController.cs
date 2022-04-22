@@ -14,7 +14,7 @@ public class ConsumableController : MonoBehaviour
         player = GameObject.Find("PlayerPrefab");
     }
 
-    public void Update() {
+    public void LateUpdate() {
         if (playerInArea) {
             if (Input.GetKeyDown(KeyCode.E)) {
                 animator.Play("opened_closed");
