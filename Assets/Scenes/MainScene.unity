@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   currentHealth: 500
-  isDead: 0
+  healthChange: 25
   hudElementAssociated: {fileID: 270355335}
   healthText: {fileID: 1118449177}
   healthImage: {fileID: 736387585}
@@ -27355,8 +27355,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -264, y: 180}
-  m_SizeDelta: {x: 100, y: 40}
+  m_AnchoredPosition: {x: -215, y: 180}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1118449177
 MonoBehaviour:
@@ -30859,6 +30859,10 @@ PrefabInstance:
       propertyPath: currentHealth
       value: 
       objectReference: {fileID: 184060862}
+    - target: {fileID: 2173718520094191834, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
+      propertyPath: healthController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab

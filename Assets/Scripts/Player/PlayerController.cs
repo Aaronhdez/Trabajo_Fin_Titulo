@@ -13,11 +13,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public Transform groundCheck;
     [SerializeField] private Dictionary<string, System.Action> actions;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private List<GameObject> gunsAvailable;
+
+    [Header("Player Props")]
     [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private WeaponController weaponController;
+    [SerializeField] private List<GameObject> weaponsAvailable;
+    [SerializeField] private WeaponController currentWeaponController;
     [SerializeField] private HealthController healthController;
 
+    [Header("Physical Properties")]
     public float mass;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -31,7 +34,8 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
-        weaponController = weaponManager.CurrentWeapon;
+        currentWeaponController = weaponManager.CurrentWeapon;
+        healthController = GetComponentInChildren<HealthController>();
         LoadActions();
     }
 
@@ -47,18 +51,18 @@ public class PlayerController : MonoBehaviour {
         Jump();
         Shoot();
         Reload();
-        weaponController = weaponManager.CurrentWeapon;
+        currentWeaponController = weaponManager.CurrentWeapon;
     }
 
     private void Shoot() {
         if (Input.GetMouseButton(0)) {
-            weaponController.Shoot();
+            currentWeaponController.Shoot();
         }
     }
 
     private void Reload() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            weaponController.Reload();
+            currentWeaponController.Reload();
         }
     }
 
@@ -93,7 +97,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void RestoreAmmo() {
-        weaponController.ReplenishAmmo();
+        currentWeaponController.ReplenishAmmo();
     }
 
     public void RestoreHealth() {

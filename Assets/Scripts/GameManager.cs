@@ -15,9 +15,4 @@ public class GameManager : MonoBehaviour {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
     }
-
-    public void RestorePlayerHealth() {
-        hudManager.GetComponent<HudController>().ReloadHealthHud();
-        Debug.Log("Health Restored");
-    }
 }
