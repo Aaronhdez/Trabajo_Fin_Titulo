@@ -5,15 +5,20 @@ using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour {
 
+    [Header("Weapon Presets")]
     public int maxAmountOfBullets;
     public int maxAmountInMagazine;
     public int amountInMagazine;
     public int amountOfBullets;
-    public bool mustReload = false;
-    public bool mustReplenish = false;
     public float fireRate = 0.01f;
     public float lastShot = 0.0f;
+
+    [Header("Weapon Status")]
+    public bool mustReload = false;
+    public bool mustReplenish = false;
     public int damage = 15;
+
+    [Header("Elements Associated")]
     public GameObject hudElementAssociated;
     public TextMeshProUGUI gunText;
     public Image gunImage;

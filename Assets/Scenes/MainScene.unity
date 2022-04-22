@@ -3576,6 +3576,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c774ccb36270434caf72b6a59424109, type: 3}
+--- !u!1 &184060860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7507258923077557793, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
+  m_PrefabInstance: {fileID: 1304592130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &184060862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184060860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8b8183a821d394ab18ad2cab13e60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  currentHealth: 500
+  isDead: 0
+  hudElementAssociated: {fileID: 270355335}
+  healthText: {fileID: 1118449177}
+  healthImage: {fileID: 736387585}
 --- !u!1 &184642767
 GameObject:
   m_ObjectHideFlags: 0
@@ -8056,7 +8079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &425693341
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24117,7 +24140,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18850
+  m_Name: pb_Mesh18860
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25967,11 +25990,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5046848546403227077, guid: 589f6cb4dfbeb4b49a340d9c25d63c17, type: 3}
   m_PrefabInstance: {fileID: 170386518}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1057993324 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2708946057218445649, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-  m_PrefabInstance: {fileID: 1304592130}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1058458137 stripped
 Transform:
@@ -30834,45 +30852,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1648438674}
     - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: HudElement
+      propertyPath: hudElementAssociated
       value: 
       objectReference: {fileID: 425693340}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: hudElement
-      value: 
-      objectReference: {fileID: 1184920592}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: hudController
-      value: 
-      objectReference: {fileID: 1184920592}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: amountOfBullets
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: amountInMagazine
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: maxAmountOfBullets
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764276985572920085, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: maxAmountInMagazine
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2173718520094191834, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: gunsAvailable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2173718520094191834, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: gunsAvailable.Array.data[0]
+      propertyPath: currentHealth
       value: 
-      objectReference: {fileID: 1933717742}
-    - target: {fileID: 2173718520094191834, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: gunsAvailable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1057993324}
+      objectReference: {fileID: 184060862}
     - target: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -30921,50 +30907,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2708946057218445649, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: gunText
       value: 
       objectReference: {fileID: 1416310919}
     - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: fireRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: gunImage
       value: 
       objectReference: {fileID: 184642769}
     - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: HudElement
+      propertyPath: hudElementAssociated
       value: 
       objectReference: {fileID: 992231184}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: hudElement
-      value: 
-      objectReference: {fileID: 1184920592}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: hudController
-      value: 
-      objectReference: {fileID: 1184920592}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: amountOfBullets
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: amountInMagazine
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: maxAmountOfBullets
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-      propertyPath: maxAmountInMagazine
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
 --- !u!1001 &1321696054
@@ -43008,11 +42962,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9436dabcb8b68164983120371aa286e9, type: 3}
---- !u!1 &1933717742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1264979880888850243, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-  m_PrefabInstance: {fileID: 1304592130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1952034036
 GameObject:
   m_ObjectHideFlags: 0
