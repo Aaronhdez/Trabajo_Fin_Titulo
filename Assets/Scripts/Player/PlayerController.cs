@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CharacterController playerCC;
     [SerializeField] public Transform groundCheck;
-    [SerializeField] private Dictionary<string, System.Action> aspects;
+    [SerializeField] private Dictionary<string, System.Action> actions;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private List<GameObject> gunsAvailable;
     [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private WeaponController currentWeapon;
+    [SerializeField] private WeaponController weaponController;
+    [SerializeField] private HealthController healthController;
 
     public float mass;
     public float groundDistance = 0.4f;
@@ -30,10 +31,14 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
-        aspects = new Dictionary<string, System.Action>();
-        aspects.Add(PlayerAspects.AMMO_KEY, RestoreAmmo);
-        aspects.Add(PlayerAspects.HEALTH_KEY, RestoreHealth);
-        currentWeapon = weaponManager.CurrentWeapon;
+        weaponController = weaponManager.CurrentWeapon;
+        LoadActions();
+    }
+
+    private void LoadActions() {
+        actions = new Dictionary<string, System.Action>();
+        actions.Add(PlayerAspects.AMMO_KEY, RestoreAmmo);
+        actions.Add(PlayerAspects.HEALTH_KEY, RestoreHealth);
     }
 
     void LateUpdate() {
@@ -42,18 +47,18 @@ public class PlayerController : MonoBehaviour {
         Jump();
         Shoot();
         Reload();
-        currentWeapon = weaponManager.CurrentWeapon;
+        weaponController = weaponManager.CurrentWeapon;
     }
 
     private void Shoot() {
         if (Input.GetMouseButton(0)) {
-            currentWeapon.Shoot();
+            weaponController.Shoot();
         }
     }
 
     private void Reload() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            currentWeapon.Reload();
+            weaponController.Reload();
         }
     }
 
@@ -84,14 +89,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void RestoreAspect(string targetAspect) {
-        aspects[targetAspect]();
+        actions[targetAspect]();
     }
 
     public void RestoreAmmo() {
-        currentWeapon.ReplenishAmmo();
+        weaponController.ReplenishAmmo();
     }
 
     public void RestoreHealth() {
-        gameManager.RestorePlayerHealth();
+        healthController.RestorePlayerHealth();
     }
 }
