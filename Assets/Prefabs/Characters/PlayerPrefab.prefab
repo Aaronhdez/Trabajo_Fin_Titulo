@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6884241015179147143}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3490401112985057541
 MonoBehaviour:
@@ -52,6 +52,7 @@ MonoBehaviour:
   fireRate: 0.1
   lastShot: 0
   damage: 15
+  hudElementAssociated: {fileID: 0}
   gunText: {fileID: 0}
   gunImage: {fileID: 0}
 --- !u!1 &1543781894082946696
@@ -81,8 +82,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1430705334840079236}
   - {fileID: 2670386237907402453}
+  - {fileID: 1430705334840079236}
   m_Father: {fileID: 2173718520730238822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -423,7 +424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6884241015179147143}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1764276985572920085
 MonoBehaviour:
@@ -446,5 +447,6 @@ MonoBehaviour:
   fireRate: 0.01
   lastShot: 0
   damage: 15
+  hudElementAssociated: {fileID: 0}
   gunText: {fileID: 0}
   gunImage: {fileID: 0}

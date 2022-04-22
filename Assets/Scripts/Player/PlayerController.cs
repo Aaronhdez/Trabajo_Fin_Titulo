@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Dictionary<string, System.Action> aspects;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private List<GameObject> gunsAvailable;
-    [SerializeField] private GunController activeGun;
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private GunController currentWeapon;
 
     public float mass;
     public float groundDistance = 0.4f;
@@ -32,14 +33,7 @@ public class PlayerController : MonoBehaviour {
         aspects = new Dictionary<string, System.Action>();
         aspects.Add(PlayerAspects.AMMO_KEY, RestoreAmmo);
         aspects.Add(PlayerAspects.HEALTH_KEY, RestoreHealth);
-        SetUpGuns();
-    }
-
-    private void SetUpGuns() {
-        for (int index = 1; index < gunsAvailable.Count; index++) {
-            gunsAvailable[index].SetActive(false);
-        }
-        activeGun = gunsAvailable[0].GetComponent<GunController>();
+        currentWeapon = weaponManager.CurrentWeapon;
     }
 
     // Update is called once per frame
@@ -53,13 +47,13 @@ public class PlayerController : MonoBehaviour {
 
     private void Shoot() {
         if (Input.GetMouseButton(0)) {
-            activeGun.Shoot();
+            currentWeapon.Shoot();
         }
     }
 
     private void Reload() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            activeGun.Reload();
+            currentWeapon.Reload();
         }
     }
 
@@ -95,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 
     public void RestoreAmmo() {
         //gameManager.RestorePlayerAmmo();
-        activeGun.ReplenishAmmo();
+        currentWeapon.ReplenishAmmo();
     }
 
     public void RestoreHealth() {

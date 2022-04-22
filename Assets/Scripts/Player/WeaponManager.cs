@@ -10,9 +10,16 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] public List<GunController> gunsAssociated;
     [SerializeField] private GunController currentWeapon;
 
+    public GunController CurrentWeapon { 
+        get => currentWeapon; 
+        set => currentWeapon = value; 
+    }
+
     private void Start() {
         SetUPWeapons();
     }
+
+
 
     private void SetUPWeapons() {
         gunsAssociated = new List<GunController>(GetComponentsInChildren<GunController>());
