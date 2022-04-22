@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour {
-    
     [Header("Health Presets")]
     public int maxHealth = 500;
     public int currentHealth = 500;
-    public bool isDead = false;
+    public int healthChange = 25;
+    private bool isDead = false;
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     [Header("Elements Associated")]
     public GameObject hudElementAssociated;
@@ -18,32 +19,40 @@ public class HealthController : MonoBehaviour {
     private static readonly Color normalHeathColor = new Color(1f, 0.6f, 0f, 0.6f);
     private static readonly Color badHeathColor = new Color(1f, 0f, 0f, 0.6f);
 
+
     void Start() {
         UpdateHealthHud();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.H)) {
-            DecreaseHealth();
-        }
-        if (Input.GetKeyDown(KeyCode.J)) {
-            IncreaseHealth();
+        if (!IsDead) { 
+            if (Input.GetKeyDown(KeyCode.H)) {
+                DecreaseHealth();
+            }
+            if (Input.GetKeyDown(KeyCode.J)) {
+                IncreaseHealth();
+            }
         }
         UpdateHealthHud();
+        CheckDeadStatus();
+    }
+
+    private void CheckDeadStatus() {
+        IsDead = (currentHealth == 0);
     }
 
     public void DecreaseHealth() {
         if (currentHealth > 0) {
-            currentHealth -= (currentHealth >= 25) ?
-                25 :
+            currentHealth -= (currentHealth >= healthChange) ?
+                healthChange :
                 currentHealth;
         }
     }
 
     public void IncreaseHealth() {
         if (currentHealth < maxHealth) {
-            currentHealth += (currentHealth <= maxHealth - 25) ?
-                25 :
+            currentHealth += (currentHealth <= maxHealth - healthChange) ?
+                healthChange :
                 (maxHealth - currentHealth);
         }
     }
@@ -57,7 +66,7 @@ public class HealthController : MonoBehaviour {
         } else {
             SetHudInYellow();
         }
-        healthText.SetText((percentage * 100)+"%");
+        healthText.SetText((int) (percentage * 100)+"%");
     }
 
     private void SetHudInGreen() {
