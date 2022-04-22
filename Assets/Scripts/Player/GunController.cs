@@ -23,7 +23,7 @@ public class GunController : MonoBehaviour {
         amountInMagazine = maxAmountInMagazine;
     }
 
-    private void Update() {
+    private void LateUpdate() {
         UpdateGunHUD();
     }
 

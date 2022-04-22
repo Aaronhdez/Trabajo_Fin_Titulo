@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour {
         currentWeapon = weaponManager.CurrentWeapon;
     }
 
-    // Update is called once per frame
     void LateUpdate() {
         ResetVelocityIfNeeded();
         Move();
@@ -60,10 +59,10 @@ public class PlayerController : MonoBehaviour {
     private void Move() {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        doMovement(x, z);
+        DoMovement(x, z);
     }
 
-    private void doMovement(float x, float z) {
+    private void DoMovement(float x, float z) {
         Vector3 moveVector = transform.right * x + transform.forward * z;
         velocity.y += gravity * Time.deltaTime;
         playerCC.Move(moveVector * speed * Time.deltaTime);
@@ -88,7 +87,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void RestoreAmmo() {
-        //gameManager.RestorePlayerAmmo();
         currentWeapon.ReplenishAmmo();
     }
 
