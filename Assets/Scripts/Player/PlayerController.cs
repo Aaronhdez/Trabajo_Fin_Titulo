@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private CharacterController playerCC;
     [SerializeField] public Transform groundCheck;
     [SerializeField] private Dictionary<string, System.Action> aspects;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private List<GameObject> gunsAvailable;
+    [SerializeField] private GunController activeGun;
 
     public float mass;
     public float groundDistance = 0.4f;
@@ -20,7 +24,6 @@ public class PlayerController : MonoBehaviour {
     public float gravity = -9.81f;
     public Vector3 velocity;
     public float jumpHeight = 2f;
- 
 
 
     void Start() {
@@ -29,6 +32,14 @@ public class PlayerController : MonoBehaviour {
         aspects = new Dictionary<string, System.Action>();
         aspects.Add(PlayerAspects.AMMO_KEY, RestoreAmmo);
         aspects.Add(PlayerAspects.HEALTH_KEY, RestoreHealth);
+        SetUpGuns();
+    }
+
+    private void SetUpGuns() {
+        for (int index = 1; index < gunsAvailable.Count; index++) {
+            gunsAvailable[index].SetActive(false);
+        }
+        activeGun = gunsAvailable[0].GetComponent<GunController>();
     }
 
     // Update is called once per frame
@@ -36,6 +47,20 @@ public class PlayerController : MonoBehaviour {
         ResetVelocityIfNeeded();
         Move();
         Jump();
+        Shoot();
+        Reload();
+    }
+
+    private void Shoot() {
+        if (Input.GetMouseButton(0)) {
+            activeGun.Shoot();
+        }
+    }
+
+    private void Reload() {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            activeGun.Reload();
+        }
     }
 
     private void Move() {
@@ -69,10 +94,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void RestoreAmmo() {
-        Debug.Log("Ammo added to Gun");
+        //gameManager.RestorePlayerAmmo();
+        activeGun.ReplenishAmmo();
     }
 
     public void RestoreHealth() {
-        Debug.Log("Health Restored");
+        gameManager.RestorePlayerHealth();
     }
 }
