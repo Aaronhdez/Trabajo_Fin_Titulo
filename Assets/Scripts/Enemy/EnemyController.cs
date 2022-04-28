@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private bool isDead;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private State defaultState = State.Wander;
+    public ParticleSystem deadEffect;
 
     public float TimeToDestroy { get => timeToDestroy; set => timeToDestroy = value; }
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour
         health -= (health - damagedReceived > 0) ? damagedReceived : health;
         Debug.Log("Damaged: health = "+health);
         if (health == 0) {
+            Instantiate(deadEffect, transform.position, Quaternion.LookRotation(Vector3.up));
             isDead = true;
         }
     }

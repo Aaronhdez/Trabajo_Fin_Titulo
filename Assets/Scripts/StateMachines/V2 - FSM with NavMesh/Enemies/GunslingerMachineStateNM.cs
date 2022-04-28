@@ -21,8 +21,6 @@ namespace FSM_NavMesh {
         private void LoadBehavioursDictionary() {
             currentState = State.Wander;
             behaviours = new Dictionary<State, MachineState>();
-
-            //Refactorización: Pasar a los constructores los parametros que necesiten desde el EC
             MachineState wanderState = new WanderStateNM(subject);
             MachineState chaseState = new ChaseStateNM(subject);
             MachineState deadState = new DeadState(subject);
@@ -34,14 +32,17 @@ namespace FSM_NavMesh {
         protected override void StateUpdate() {
             if (PlayerIsReachable()) {
                 currentState = State.Chase;
-            }  else if (!AgentIsDead()) {
+            } else if (!AgentIsDead()) {
                 currentState = State.Wander;
-            } 
+            }
+            if (AgentIsDead()) {
+                currentState = State.Dead;
+                Destroy(subject);
+            }
             behaviours[currentState].Enter();
         }
 
         private bool AgentIsDead() {
-            //Play animation in state
             return enemyController.IsDead;
         }
 

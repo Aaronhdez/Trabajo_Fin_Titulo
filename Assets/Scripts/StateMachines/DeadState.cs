@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class DeadState : MachineState
 {
-    private GameObject subject;
+    private GameObject agent;
+    private EnemyController enemyController;
 
-    public DeadState(GameObject subject) {
-        this.subject = subject;
+    public DeadState(GameObject agent) {
+        enemyController = agent.GetComponent<EnemyController>();
     }
 
     public void Enter() {
-        GameObject.Destroy(subject);
+        Exit();
     }
 
     public void Exit() {
-        throw new System.NotImplementedException();
     }
 }

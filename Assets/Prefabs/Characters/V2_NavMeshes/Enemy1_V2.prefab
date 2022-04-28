@@ -653,11 +653,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderSpeed: 0
   chaseSpeed: 0
-  timeToDestroy: 0
+  timeToDestroy: 3
   health: 500
   isDead: 0
   gameManager: {fileID: 0}
   defaultState: 4
+  deadEffect: {fileID: 19800008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
 --- !u!1 &2790009945089144484
 GameObject:
   m_ObjectHideFlags: 0
