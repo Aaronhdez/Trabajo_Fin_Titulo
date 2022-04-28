@@ -25,12 +25,14 @@ public class ChaseStateNM : MachineState {
     }
 
     private void ChaseTarget() {
-        Quaternion targetRotation =
+        navMeshAgent.SetDestination(target.transform.position);
+        /*Quaternion targetRotation =
             Quaternion.LookRotation(target.transform.position - agent.transform.position);
         agent.transform.rotation =
             Quaternion.Slerp(agent.transform.rotation, targetRotation,
             Time.deltaTime * rotationSpeed);
         agent.transform.Translate(Vector3.forward * Time.deltaTime * runSpeed);
+        */
     }
 
     public void Exit() {
