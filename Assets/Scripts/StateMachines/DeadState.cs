@@ -9,7 +9,7 @@ public class DeadState : MachineState
     }
 
     public void Enter() {
-        Destroy(subject);
+        GameObject.Destroy(subject);
     }
 
     public void Exit() {
