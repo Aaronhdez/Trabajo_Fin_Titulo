@@ -504,8 +504,9 @@ GameObject:
   - component: {fileID: 8922883469849630186}
   - component: {fileID: 3080152720599280395}
   - component: {fileID: 3080152720599280404}
-  - component: {fileID: 9195685593852777448}
   - component: {fileID: 2915001325508322953}
+  - component: {fileID: 423285053275912957}
+  - component: {fileID: -3666559464052027018}
   m_Layer: 0
   m_Name: Enemy1_V2
   m_TagString: Enemy
@@ -575,26 +576,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
-  m_Height: 2
+  m_Height: 1.85
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &9195685593852777448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2774093424538293546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375dea332ec76784b80d27c8e1b8e819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  patrolPath: []
-  currentState: 0
-  subject: {fileID: 2774093424538293546}
+  m_Center: {x: 0, y: 0.9231189, z: 0}
 --- !u!195 &2915001325508322953
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -604,19 +588,56 @@ NavMeshAgent:
   m_GameObject: {fileID: 2774093424538293546}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 0.75
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 180
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.85
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &423285053275912957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2774093424538293546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39061b9440d775546a55bf473ea30ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_JumpPower: 6
+  m_GravityMultiplier: 2
+  m_RunCycleLegOffset: 0.2
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1
+  m_GroundCheckDistance: 0.2
+--- !u!114 &-3666559464052027018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2774093424538293546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9488d8bc5ac90dd4d9f7d03a68606538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  patrolPath: []
+  currentState: 0
+  subject: {fileID: 2774093424538293546}
 --- !u!1 &2790009945089144484
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,13 @@ namespace FSM_NavMesh {
             LoadBehavioursDictionary();
         }
 
+
+        private void LoadEntities() {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         private void LoadBehavioursDictionary() {
-            currentState = State.None;
+            currentState = State.Chase;
             behaviours = new Dictionary<State, MachineState>();
             MachineState idleState = new IdleStateNM(subject);
             MachineState chaseState = new ChaseStateNM(subject);
@@ -22,16 +27,10 @@ namespace FSM_NavMesh {
             behaviours.Add(State.Dead, deadState);
         }
 
-        private void LoadEntities() {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-
         protected override void StateUpdate() {
-            if (playerIsReachable()) {
+            if (PlayerIsReachable()) {
                 currentState = State.Chase;
-            } else if (ThereAreWaypointsAvailable()) {
-                currentState = State.Patrol;
-            } else if (!AgentIsDead()) {
+            }  else if (!AgentIsDead()) {
                 currentState = State.None;
             } else {
                 currentState = State.Dead;
@@ -43,12 +42,8 @@ namespace FSM_NavMesh {
             return currentState == State.Dead;
         }
 
-        private bool ThereAreWaypointsAvailable() {
-            return GameObject.FindGameObjectsWithTag("PatrolPoint").Length > 0;
-        }
-
-        private bool playerIsReachable() {
-            return Vector3.Distance(subject.transform.position, target.position) < 10;
+        private bool PlayerIsReachable() {
+            return Vector3.Distance(subject.transform.position, target.position) < 10000;
         }
 
         protected override void StateFixedUpdate() {

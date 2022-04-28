@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class ChaseStateNM : MachineState {
     private GameObject agent;
@@ -10,14 +9,14 @@ public class ChaseStateNM : MachineState {
     private NavMeshAgent navMeshAgent;
     [SerializeField] private float rotationSpeed = 7f;
     [SerializeField] private float runSpeed = 7f;
+    [SerializeField] private ThirdPersonCharacter character;
 
     public ChaseStateNM(GameObject agent) {
         this.agent = agent;
         target = GameObject.FindGameObjectWithTag("Player");
         animator = agent.GetComponent<Animator>();
         navMeshAgent = agent.GetComponent<NavMeshAgent>();
-        animator.SetFloat("VelX", 0.5f);
-        animator.SetFloat("VelY", 0.5f);
+        navMeshAgent.updateRotation = false;
     }
 
     public void Enter() {
@@ -26,13 +25,12 @@ public class ChaseStateNM : MachineState {
 
     private void ChaseTarget() {
         navMeshAgent.SetDestination(target.transform.position);
-        /*Quaternion targetRotation =
-            Quaternion.LookRotation(target.transform.position - agent.transform.position);
-        agent.transform.rotation =
-            Quaternion.Slerp(agent.transform.rotation, targetRotation,
-            Time.deltaTime * rotationSpeed);
-        agent.transform.Translate(Vector3.forward * Time.deltaTime * runSpeed);
-        */
+        if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
+            character.Move(navMeshAgent.desiredVelocity, false, false);
+        } else {
+            character.Move(Vector3.zero, false, false);
+        }
+
     }
 
     public void Exit() {
