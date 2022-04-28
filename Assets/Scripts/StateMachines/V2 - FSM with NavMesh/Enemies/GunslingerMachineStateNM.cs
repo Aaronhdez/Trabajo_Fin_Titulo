@@ -11,7 +11,6 @@ namespace FSM_NavMesh {
             LoadBehavioursDictionary();
         }
 
-
         private void LoadEntities() {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -43,7 +42,7 @@ namespace FSM_NavMesh {
         }
 
         private bool PlayerIsReachable() {
-            return Vector3.Distance(subject.transform.position, target.position) < 15;
+            return Vector3.Distance(subject.transform.position, target.position) < 10;
         }
 
         protected override void StateFixedUpdate() {
