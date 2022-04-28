@@ -6,18 +6,23 @@ using UnityEngine;
 namespace FSM_NavMesh {
     public class GunslingerMachineStateNM : ConcreteStateMachine {
 
+        private EnemyController enemyController;
+
         protected override void Initialize() {
             LoadEntities();
             LoadBehavioursDictionary();
         }
 
         private void LoadEntities() {
+            enemyController = GetComponent<EnemyController>();
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         private void LoadBehavioursDictionary() {
             currentState = State.Wander;
             behaviours = new Dictionary<State, MachineState>();
+
+            //Refactorización: Pasar a los constructores los parametros que necesiten desde el EC
             MachineState wanderState = new WanderStateNM(subject);
             MachineState chaseState = new ChaseStateNM(subject);
             MachineState deadState = new DeadState(subject);
@@ -31,14 +36,13 @@ namespace FSM_NavMesh {
                 currentState = State.Chase;
             }  else if (!AgentIsDead()) {
                 currentState = State.Wander;
-            } else {
-                currentState = State.Dead;
-            }
+            } 
             behaviours[currentState].Enter();
         }
 
         private bool AgentIsDead() {
-            return currentState == State.Dead;
+            //Play animation in state
+            return enemyController.IsDead;
         }
 
         private bool PlayerIsReachable() {

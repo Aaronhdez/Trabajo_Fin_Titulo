@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 2915001325508322953}
   - component: {fileID: 423285053275912957}
   - component: {fileID: -3666559464052027018}
+  - component: {fileID: 5311975547323778572}
   m_Layer: 0
   m_Name: Enemy1_V2
   m_TagString: Enemy
@@ -575,7 +576,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Height: 1.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.9231189, z: 0}
@@ -588,7 +589,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2774093424538293546}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.75
+  m_Radius: 0.25
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
@@ -638,6 +639,25 @@ MonoBehaviour:
   patrolPath: []
   currentState: 0
   subject: {fileID: 2774093424538293546}
+--- !u!114 &5311975547323778572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2774093424538293546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fe35ea2a391d645a9ce4e2fdc1b351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderSpeed: 0
+  chaseSpeed: 0
+  timeToDestroy: 0
+  health: 500
+  isDead: 0
+  gameManager: {fileID: 0}
+  defaultState: 4
 --- !u!1 &2790009945089144484
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,8 +23,8 @@ public class WeaponController : MonoBehaviour {
     public GameObject hudElementAssociated;
     public TextMeshProUGUI gunText;
     public Image gunImage;
-    public ParticleSystem muzzleFlash;
-    public GameObject muzzleFlashObject;
+    //public ParticleSystem muzzleFlash;
+    //public GameObject muzzleFlashObject;
     public ParticleSystem impactEffect;
 
     [Header("Raycasting Elements")]
@@ -77,7 +77,7 @@ public class WeaponController : MonoBehaviour {
                         out impactInfo, weaponRange)) {
             PlayShootAnimation();
             //IF TARGET IS ENEMY, FIND PROPER SCRIPT AND PLAY GETDAMAGED()
-            ApplyDamageOnTarget();
+            ApplyDamageOnTarget(impactInfo);
             //ELSE PLAY IMPACT EFFECT ON IMPACT POSITION
             PlayImpactAnimation();
         }
@@ -87,8 +87,11 @@ public class WeaponController : MonoBehaviour {
         //muzzleFlash.Play();
     }
 
-    private void ApplyDamageOnTarget() {
-        //throw new NotImplementedException();
+    private void ApplyDamageOnTarget(RaycastHit impactInfo) {
+        Debug.Log(impactInfo.collider.tag);
+        if (impactInfo.collider.tag.Equals("Enemy")) {
+            impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
+        }
     }
 
     private void PlayImpactAnimation() {
