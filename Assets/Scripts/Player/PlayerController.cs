@@ -24,11 +24,15 @@ public class PlayerController : MonoBehaviour {
     public float mass;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
 
     public float gravity = -9.81f;
     public Vector3 velocity;
-    public float jumpHeight = 2f;
+    public float jumpHeight = 1.5f;
+
+
+    [Header("Player Audio")]
+    [SerializeField] private AudioSource footstep;
 
 
     void Start() {
@@ -87,7 +91,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Jump() {
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
     }

@@ -16,16 +16,25 @@ public class WeaponController : MonoBehaviour {
     [Header("Weapon Status")]
     public bool mustReload = false;
     public bool mustReplenish = false;
-    public int damage = 15;
+    public int weaponDamage = 15;
+    public int weaponRange = 15;
 
     [Header("Elements Associated")]
     public GameObject hudElementAssociated;
     public TextMeshProUGUI gunText;
     public Image gunImage;
+    public ParticleSystem muzzleFlash;
+    public GameObject muzzleFlashObject;
+    public ParticleSystem impactEffect;
 
-    private void Start() {
+    [Header("Raycasting Elements")]
+    public RaycastHit impactInfo;
+    public Transform pointingCamera;
+
+    void Start() {
         amountOfBullets = maxAmountOfBullets;
         amountInMagazine = maxAmountInMagazine;
+        //muzzleFlash.Stop();
     }
 
     private void LateUpdate() {
@@ -57,9 +66,33 @@ public class WeaponController : MonoBehaviour {
 
     private void Fire() {
         if(Time.time > fireRate + lastShot) {
+            RaycastShot();
             amountInMagazine -= 1;
             lastShot = Time.time;
         }
+    }
+
+    private void RaycastShot() {
+        if (Physics.Raycast(pointingCamera.position, pointingCamera.forward,
+                        out impactInfo, weaponRange)) {
+            PlayShootAnimation();
+            //IF TARGET IS ENEMY, FIND PROPER SCRIPT AND PLAY GETDAMAGED()
+            ApplyDamageOnTarget();
+            //ELSE PLAY IMPACT EFFECT ON IMPACT POSITION
+            PlayImpactAnimation();
+        }
+    }
+
+    private void PlayShootAnimation() {
+        //muzzleFlash.Play();
+    }
+
+    private void ApplyDamageOnTarget() {
+        //throw new NotImplementedException();
+    }
+
+    private void PlayImpactAnimation() {
+        Instantiate(impactEffect, impactInfo.point, Quaternion.LookRotation(impactInfo.normal));
     }
 
     public void Reload() {
