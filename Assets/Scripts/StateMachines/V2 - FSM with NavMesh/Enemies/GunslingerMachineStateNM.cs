@@ -17,12 +17,12 @@ namespace FSM_NavMesh {
         }
 
         private void LoadBehavioursDictionary() {
-            currentState = State.Chase;
+            currentState = State.Wander;
             behaviours = new Dictionary<State, MachineState>();
-            MachineState idleState = new IdleStateNM(subject);
+            MachineState wanderState = new WanderStateNM(subject);
             MachineState chaseState = new ChaseStateNM(subject);
             MachineState deadState = new DeadState(subject);
-            behaviours.Add(State.None, idleState);
+            behaviours.Add(State.Wander, wanderState);
             behaviours.Add(State.Chase, chaseState);
             behaviours.Add(State.Dead, deadState);
         }
@@ -31,7 +31,7 @@ namespace FSM_NavMesh {
             if (PlayerIsReachable()) {
                 currentState = State.Chase;
             }  else if (!AgentIsDead()) {
-                currentState = State.None;
+                currentState = State.Wander;
             } else {
                 currentState = State.Dead;
             }
@@ -43,7 +43,7 @@ namespace FSM_NavMesh {
         }
 
         private bool PlayerIsReachable() {
-            return Vector3.Distance(subject.transform.position, target.position) < 10000;
+            return Vector3.Distance(subject.transform.position, target.position) < 25;
         }
 
         protected override void StateFixedUpdate() {

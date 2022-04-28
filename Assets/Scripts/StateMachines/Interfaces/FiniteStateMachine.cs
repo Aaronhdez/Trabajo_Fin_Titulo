@@ -15,7 +15,8 @@ public class FiniteStateMachine : MonoBehaviour
         None,
         Patrol,
         Chase,
-        Dead
+        Dead,
+        Wander
     }
     public State currentState;
 

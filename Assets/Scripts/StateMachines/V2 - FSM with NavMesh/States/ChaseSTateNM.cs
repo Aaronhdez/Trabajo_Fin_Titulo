@@ -16,6 +16,7 @@ public class ChaseStateNM : MachineState {
         target = GameObject.FindGameObjectWithTag("Player");
         animator = agent.GetComponent<Animator>();
         navMeshAgent = agent.GetComponent<NavMeshAgent>();
+        character = agent.GetComponent<ThirdPersonCharacter>();
         navMeshAgent.updateRotation = false;
     }
 
@@ -24,6 +25,7 @@ public class ChaseStateNM : MachineState {
     }
 
     private void ChaseTarget() {
+        navMeshAgent.speed = 10f;
         navMeshAgent.SetDestination(target.transform.position);
         if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
             character.Move(navMeshAgent.desiredVelocity, false, false);
