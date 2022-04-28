@@ -26,6 +26,9 @@ public class WeaponController : MonoBehaviour {
     //public ParticleSystem muzzleFlash;
     //public GameObject muzzleFlashObject;
     public ParticleSystem impactEffect;
+    public SoundController soundController;
+    public AudioSource shotSound;
+    public AudioSource reloadSound;
 
     [Header("Raycasting Elements")]
     public RaycastHit impactInfo;
@@ -66,6 +69,7 @@ public class WeaponController : MonoBehaviour {
 
     private void Fire() {
         if(Time.time > fireRate + lastShot) {
+            shotSound.Play();
             RaycastShot();
             amountInMagazine -= 1;
             lastShot = Time.time;
@@ -99,7 +103,8 @@ public class WeaponController : MonoBehaviour {
     }
 
     public void Reload() {
-        if(amountInMagazine < maxAmountInMagazine) { 
+        reloadSound.Play();
+        if (amountInMagazine < maxAmountInMagazine) { 
             int amountToReload = maxAmountInMagazine - amountInMagazine;
             if(amountOfBullets > 0) {
                 UpdateGunQuantities(amountToReload);
@@ -130,6 +135,7 @@ public class WeaponController : MonoBehaviour {
     }
 
     public void ReplenishAmmo() {
+        reloadSound.Play();
         amountOfBullets = maxAmountOfBullets;
         amountInMagazine = maxAmountInMagazine;
         mustReplenish = false;

@@ -8,14 +8,13 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Properties")]
     [SerializeField] private float wanderSpeed;
     [SerializeField] private float chaseSpeed;
-    [SerializeField] private float timeToDestroy;
     [SerializeField] public int health;
     [SerializeField] private bool isDead;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private State defaultState = State.Wander;
+    [SerializeField] private SoundController soundController;
     public ParticleSystem deadEffect;
 
-    public float TimeToDestroy { get => timeToDestroy; set => timeToDestroy = value; }
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
