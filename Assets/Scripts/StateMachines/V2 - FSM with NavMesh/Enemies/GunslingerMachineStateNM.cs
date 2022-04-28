@@ -43,7 +43,7 @@ namespace FSM_NavMesh {
         }
 
         private bool PlayerIsReachable() {
-            return Vector3.Distance(subject.transform.position, target.position) < 25;
+            return Vector3.Distance(subject.transform.position, target.position) < 15;
         }
 
         protected override void StateFixedUpdate() {
