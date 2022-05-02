@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour {
         var randomPick = Random.Range(0, spawnPoints.Count);
         playerSpawnPoint = spawnPoints[randomPick].transform.position;
         player.transform.position = new Vector3(playerSpawnPoint.x,
-            playerSpawnPoint.y, playerSpawnPoint.z);
+            playerSpawnPoint.y+1, playerSpawnPoint.z);
     }
 
     public void RespawnEnemies(List<GameObject> enemies) {

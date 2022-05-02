@@ -6,11 +6,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     
     [Header("Player elements")]
-    [SerializeField] public float speed;
-    [SerializeField] public float cameraRotationSpeed;
+    [SerializeField] private bool isLocked;
+    [SerializeField] private float speed;
+    [SerializeField] private float cameraRotationSpeed;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CharacterController playerCC;
-    [SerializeField] public Transform groundCheck;
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private Dictionary<string, System.Action> actions;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Animator playerAnimator;
@@ -31,10 +32,8 @@ public class PlayerController : MonoBehaviour {
     public Vector3 velocity;
     public float jumpHeight = 1.5f;
 
-
     [Header("Player Audio")]
     [SerializeField] private AudioSource footstep;
-
 
     void Start() {
         mainCamera = GetComponentInChildren<Camera>();
@@ -54,11 +53,41 @@ public class PlayerController : MonoBehaviour {
 
     void LateUpdate() {
         ResetVelocityIfNeeded();
-        Move();
-        Jump();
-        Shoot();
-        Reload();
-        currentWeaponController = weaponManager.CurrentWeapon;
+        if (!isLocked) { 
+            Move();
+            Jump();
+            Shoot();
+            Reload();
+            currentWeaponController = weaponManager.CurrentWeapon;
+        }
+    }
+
+    private void ResetVelocityIfNeeded() {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded && velocity.y < 0) {
+            velocity.y = -2f;
+        }
+    }
+
+    private void Move() {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        playerAnimator.SetFloat("VelX", x);
+        playerAnimator.SetFloat("VelY", z);
+        ProcessMovement(x, z);
+    }
+
+    private void ProcessMovement(float x, float z) {
+        Vector3 moveVector = transform.right * x + transform.forward * z;
+        velocity.y += gravity * Time.deltaTime;
+        playerCC.Move(moveVector * speed * Time.deltaTime);
+        playerCC.Move(velocity * Time.deltaTime);
+    }
+
+    private void Jump() {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
     }
 
     private void Shoot() {
@@ -73,34 +102,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void Move() {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        playerAnimator.SetFloat("VelX", x);
-        playerAnimator.SetFloat("VelY", z);
-        DoMovement(x, z);
-    }
-
-    private void DoMovement(float x, float z) {
-        Vector3 moveVector = transform.right * x + transform.forward * z;
-        velocity.y += gravity * Time.deltaTime;
-        playerCC.Move(moveVector * speed * Time.deltaTime);
-        playerCC.Move(velocity * Time.deltaTime);
-    }
-
-    private void ResetVelocityIfNeeded() {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0) {
-            velocity.y = -2f;
-        }
-    }
-
-    private void Jump() {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-        }
-    }
-
     public void RestoreAspect(string targetAspect) {
         actions[targetAspect]();
     }
@@ -112,4 +113,13 @@ public class PlayerController : MonoBehaviour {
     public void RestoreHealth() {
         healthController.RestorePlayerHealth();
     }
+    
+    public void Lock() {
+        isLocked = true;
+    }
+
+    public void Unlock() {
+        isLocked = false;
+    }
+
 }

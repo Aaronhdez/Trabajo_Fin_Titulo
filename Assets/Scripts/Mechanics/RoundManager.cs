@@ -26,8 +26,10 @@ public class RoundManager : MonoBehaviour {
 
     void Update() {
         if (!roundStarted) {
+            player.GetComponent<PlayerController>().Lock();
             playerHUD.SetActive(false);
         } else {
+            player.GetComponent<PlayerController>().Unlock();
             playerHUD.SetActive(true);
             roundText.SetActive(false);
             var enemiesRemaining = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -41,16 +43,18 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void StartCountDown() {
-        if (roundText.GetComponentInChildren<TextMeshProUGUI>().text.Equals("Survive the horde!")) {
+        TextMeshProUGUI roundTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
+        if (roundTextValue.text.Equals("Survive the horde!")) {
             StartRound();
+            return;
         }
-        var value = int.Parse(roundText.GetComponentInChildren<TextMeshProUGUI>().text);
+        var value = int.Parse(roundTextValue.text);
         value -= 1;
         if (value > 0) {
-            roundText.GetComponentInChildren<TextMeshProUGUI>().SetText(value + "");
+            roundTextValue.SetText(value + "");
             Invoke(nameof(StartCountDown), 1);
         } else if (value == 0) {
-            roundText.GetComponentInChildren<TextMeshProUGUI>().SetText("Survive the horde!");
+            roundTextValue.SetText("Survive the horde!");
             Invoke(nameof(StartCountDown), 1);
         }
     }
