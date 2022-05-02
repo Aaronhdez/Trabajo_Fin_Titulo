@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public Transform groundCheck;
     [SerializeField] private Dictionary<string, System.Action> actions;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private Animator playerAnimator;
 
     [Header("Player Props")]
     [SerializeField] private WeaponManager weaponManager;
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour {
         playerCC = GetComponent<CharacterController>();
         currentWeaponController = weaponManager.CurrentWeapon;
         healthController = GetComponentInChildren<HealthController>();
+        playerAnimator = GetComponent<Animator>();
+        playerAnimator.SetBool("ArmaCogida", true);
         LoadActions();
     }
 
@@ -73,6 +76,8 @@ public class PlayerController : MonoBehaviour {
     private void Move() {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        playerAnimator.SetFloat("VelX", x);
+        playerAnimator.SetFloat("VelY", z);
         DoMovement(x, z);
     }
 

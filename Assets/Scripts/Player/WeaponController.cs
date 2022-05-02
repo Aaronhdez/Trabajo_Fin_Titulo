@@ -26,6 +26,9 @@ public class WeaponController : MonoBehaviour {
     //public ParticleSystem muzzleFlash;
     //public GameObject muzzleFlashObject;
     public ParticleSystem impactEffect;
+    public ParticleSystem bloodEffect;
+
+    [Header("Sounds Associated")]
     public SoundController soundController;
     public AudioSource shotSound;
     public AudioSource reloadSound;
@@ -79,11 +82,16 @@ public class WeaponController : MonoBehaviour {
     private void RaycastShot() {
         if (Physics.Raycast(pointingCamera.position, pointingCamera.forward,
                         out impactInfo, weaponRange)) {
-            PlayShootAnimation();
-            //IF TARGET IS ENEMY, FIND PROPER SCRIPT AND PLAY GETDAMAGED()
-            ApplyDamageOnTarget(impactInfo);
-            //ELSE PLAY IMPACT EFFECT ON IMPACT POSITION
-            PlayImpactAnimation();
+
+            Ray ray = new Ray(pointingCamera.position, pointingCamera.forward);
+            Debug.DrawLine(ray.origin, impactInfo.point, Color.red, 0.45f);
+
+            if (impactInfo.collider.tag.Equals("Enemy")) {
+                PlayShootAnimation();
+                ApplyDamageOnTarget(impactInfo);
+            } else {
+                PlayImpactAnimation();
+            }
         }
     }
 
@@ -92,10 +100,8 @@ public class WeaponController : MonoBehaviour {
     }
 
     private void ApplyDamageOnTarget(RaycastHit impactInfo) {
-        Debug.Log(impactInfo.collider.tag);
-        if (impactInfo.collider.tag.Equals("Enemy")) {
-            impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
-        }
+        Instantiate(bloodEffect, impactInfo.point, Quaternion.LookRotation(impactInfo.normal));
+        impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
     }
 
     private void PlayImpactAnimation() {
@@ -103,10 +109,10 @@ public class WeaponController : MonoBehaviour {
     }
 
     public void Reload() {
-        reloadSound.Play();
         if (amountInMagazine < maxAmountInMagazine) { 
             int amountToReload = maxAmountInMagazine - amountInMagazine;
             if(amountOfBullets > 0) {
+                reloadSound.Play();
                 UpdateGunQuantities(amountToReload);
             }
         }
