@@ -25,21 +25,33 @@ public class RoundManager : MonoBehaviour {
     }
 
     void Update() {
-        if (!roundStarted) {
-            player.GetComponent<PlayerController>().Lock();
-            playerHUD.SetActive(false);
-        } else {
-            player.GetComponent<PlayerController>().Unlock();
-            playerHUD.SetActive(true);
-            roundText.SetActive(false);
-            var enemiesRemaining = GameObject.FindGameObjectsWithTag("Enemy").Length;
-            enemiesText.SetText(enemiesRemaining.ToString());
-        }
-
         if (Input.GetKeyDown(KeyCode.F4)) {
             roundText.GetComponentInChildren<TextMeshProUGUI>().SetText("3");
             Invoke(nameof(StartCountDown), 1);
         }
+
+        ProcessRoundActions();
+    }
+
+    private void ProcessRoundActions() {
+        if (!roundStarted) {
+            player.GetComponent<PlayerController>().Lock();
+            playerHUD.SetActive(false);
+        } else {
+            ActivateRoundComponents();
+            UpdateEnemiesHUD();
+        }
+    }
+
+    private void ActivateRoundComponents() {
+        playerHUD.SetActive(true);
+        roundText.SetActive(false);
+        player.GetComponent<PlayerController>().Unlock();
+    }
+
+    private void UpdateEnemiesHUD() {
+        var enemiesRemaining = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemiesText.SetText(enemiesRemaining.ToString());
     }
 
     private void StartCountDown() {
@@ -47,9 +59,13 @@ public class RoundManager : MonoBehaviour {
         if (roundTextValue.text.Equals("Survive the horde!")) {
             StartRound();
             return;
+        } else {
+            UpdateRoundText(roundTextValue);
         }
-        var value = int.Parse(roundTextValue.text);
-        value -= 1;
+    }
+
+    private void UpdateRoundText(TextMeshProUGUI roundTextValue) {
+        var value = int.Parse(roundTextValue.text) - 1;
         if (value > 0) {
             roundTextValue.SetText(value + "");
             Invoke(nameof(StartCountDown), 1);
