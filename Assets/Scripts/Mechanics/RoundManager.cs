@@ -29,7 +29,6 @@ public class RoundManager : MonoBehaviour {
             roundText.GetComponentInChildren<TextMeshProUGUI>().SetText("3");
             Invoke(nameof(StartCountDown), 1);
         }
-
         ProcessRoundActions();
     }
 

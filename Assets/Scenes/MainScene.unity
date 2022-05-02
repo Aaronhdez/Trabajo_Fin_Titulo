@@ -28650,6 +28650,7 @@ MonoBehaviour:
   roundText: {fileID: 1919115283}
   enemiesText: {fileID: 374622693}
   roundStarted: 0
+  enemiesAlive: 0
   enemies:
   - {fileID: 2774093424538293546, guid: 4377e57600db6034d996fe61f3c031dc, type: 3}
 --- !u!4 &1156977377 stripped
@@ -30851,6 +30852,14 @@ PrefabInstance:
     - target: {fileID: 2173718520094191836, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173718520094191837, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173718520508437911, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3490401112985057541, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
       propertyPath: gunText
