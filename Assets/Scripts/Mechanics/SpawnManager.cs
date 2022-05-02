@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour {
     }
 
     public void RespawnEnemies(List<GameObject> enemies) {
-        var availablePoints = getAvailablePoints();
+        var availablePoints = GetAvailablePoints();
         for (int i = 0; i < 16; i++) {
             var randomPick = Random.Range(0, availablePoints.Count);
             var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour {
         return new Vector3(newX, position.y, newZ);
     }
 
-    private List<GameObject> getAvailablePoints() {
+    private List<GameObject> GetAvailablePoints() {
         List<GameObject> availablePoints = new List<GameObject>();
         foreach (GameObject enemySpawnPoint in enemySpawnPoints) {
             if (Vector3.Distance(enemySpawnPoint.transform.position, playerSpawnPoint) > 20f) {

@@ -1,18 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    [Header("Player")]
-    [SerializeField] public GameObject player;
-    [SerializeField] public List<GameObject> enemies;
-    [SerializeField] public GameObject spawnManager;
-    [SerializeField] public GameObject hudManager;
+    [SerializeField] private RoundManager roundManager;
 
     void Start() {
-        spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
-        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        roundManager = GetComponent<RoundManager>();
+    }
+
+    void Update() {
+        roundManager.StartRound();
     }
 }
