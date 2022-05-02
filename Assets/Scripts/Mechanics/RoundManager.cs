@@ -9,6 +9,7 @@ public class RoundManager : MonoBehaviour {
     [SerializeField] private GameObject spawnManager;
     [SerializeField] private GameObject player;
     [SerializeField] private TextMeshProUGUI enemiesText;
+
     [Header("Enemies Prefabs")]
     [SerializeField] private List<GameObject> enemies;
 
