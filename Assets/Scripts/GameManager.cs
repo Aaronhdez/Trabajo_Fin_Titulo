@@ -13,6 +13,5 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
-        roundManager.StartRound();
     }
 }
