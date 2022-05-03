@@ -16,8 +16,7 @@ public class RoundManagerTest
     }
 
     [Test]
-    public void RoundStatusIsChangedWhenRoundStarts() {
-        gameManager = Resources.Load<GameObject>("GameManager");
+    public void RoundStatus_is_changed_when_round_starts() {
         var roundManager = gameManager.GetComponent<RoundManager>();
         var status = roundManager.roundStarted;
 
