@@ -25,4 +25,12 @@ public class RoundManagerTest
         status = roundManager.roundStarted;
         Assert.IsTrue(status);
     }
+
+    [Test]
+    public void Enemies_are_spawned_when_round_starts() {
+        var roundManager = gameManager.GetComponent<RoundManager>();
+
+        var enemiesSpawned = roundManager.enemiesAlive;
+        Assert.AreNotEqual(enemiesSpawned, 0);
+    }
 }
