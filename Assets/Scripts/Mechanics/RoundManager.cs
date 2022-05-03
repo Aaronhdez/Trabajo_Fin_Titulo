@@ -24,6 +24,7 @@ public class RoundManager : MonoBehaviour {
 
     void Start() {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
+        roundStarted = false;
     }
 
     void Update() {

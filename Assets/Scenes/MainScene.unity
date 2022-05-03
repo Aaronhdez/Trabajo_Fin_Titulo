@@ -13788,7 +13788,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh254496
+  m_Name: pb_Mesh353790
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -45378,5 +45378,13 @@ PrefabInstance:
       propertyPath: enemiesText
       value: 
       objectReference: {fileID: 374622693}
+    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
+      propertyPath: enemiesAlive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
+      propertyPath: roundStarted
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
