@@ -35,4 +35,11 @@ public class RoundManagerTest
         var enemiesSpawned = roundManager.enemiesAlive;
         Assert.AreNotEqual(enemiesSpawned, 0);
     }
+
+    [Test]
+    public void Player_is_locked_before_round_starts() {
+        var playerStatus = player.GetComponent<PlayerController>().IsLocked;
+
+        Assert.IsFalse(playerStatus);
+    }
 }
