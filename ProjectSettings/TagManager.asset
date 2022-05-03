@@ -6,6 +6,11 @@ TagManager:
   tags:
   - PatrolPath
   - PatrolPoint
+  - SpawnPoint
+  - Obstacle
+  - HUDAmmoEntity
+  - Enemy
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -13,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - IgnoreNavMesh
+  - Enemies
   - 
   - 
   - 
