@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    
+
     [Header("Player elements")]
     [SerializeField] private bool isLocked;
     [SerializeField] private float speed;
@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Player Audio")]
     [SerializeField] private AudioSource footstep;
 
+    public bool IsLocked { get => isLocked; set => isLocked = value; }
+
     void Start() {
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 
     void LateUpdate() {
         ResetVelocityIfNeeded();
-        if (!isLocked) { 
+        if (!IsLocked) { 
             Move();
             Jump();
             Shoot();
@@ -115,11 +117,11 @@ public class PlayerController : MonoBehaviour {
     }
     
     public void Lock() {
-        isLocked = true;
+        IsLocked = true;
     }
 
     public void Unlock() {
-        isLocked = false;
+        IsLocked = false;
     }
 
 }

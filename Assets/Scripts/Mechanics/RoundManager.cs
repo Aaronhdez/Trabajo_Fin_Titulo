@@ -13,12 +13,14 @@ public class RoundManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI enemiesText;
 
     [Header("Round Parameters")]
-    [SerializeField] private bool roundStarted = false;
-    [SerializeField] private int enemiesAlive = 0;
+    [SerializeField] public bool roundStarted = false;
+    [SerializeField] public int enemiesAlive = 0;
 
     [Header("Enemies Prefabs")]
     [SerializeField] private List<GameObject> enemies;
 
+    public bool RoundStarted { get => roundStarted; set => roundStarted = value; }
+    public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
 
     void Start() {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
@@ -33,7 +35,7 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void ProcessRoundActions() {
-        if (!roundStarted) {
+        if (!RoundStarted) {
             player.GetComponent<PlayerController>().Lock();
             playerHUD.SetActive(false);
         } else {
@@ -74,8 +76,8 @@ public class RoundManager : MonoBehaviour {
         }
     }
 
-    internal void StartRound() {
-        roundStarted = true;
+    public void StartRound() {
+        RoundStarted = true;
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
     }
 }

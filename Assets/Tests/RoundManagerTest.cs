@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
+
+public class RoundManagerTest
+{
+    GameObject gameManager;
+    GameObject player;
+
+    [SetUp]
+    public void SetUp() {
+        gameManager = Resources.Load<GameObject>("GameManager");
+        player = Resources.Load<GameObject>("PlayerPrefab");
+    }
+
+    [Test]
+    public void RoundStatusIsChangedWhenRoundStarts() {
+        gameManager = Resources.Load<GameObject>("GameManager");
+        var roundManager = gameManager.GetComponent<RoundManager>();
+        var status = roundManager.roundStarted;
+
+        roundManager.StartRound();
+
+        status = roundManager.roundStarted;
+        Assert.IsTrue(status);
+    }
+}
