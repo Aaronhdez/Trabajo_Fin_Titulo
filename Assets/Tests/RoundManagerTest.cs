@@ -30,6 +30,8 @@ public class RoundManagerTest
     public void Enemies_are_spawned_when_round_starts() {
         var roundManager = gameManager.GetComponent<RoundManager>();
 
+        roundManager.StartRound();
+
         var enemiesSpawned = roundManager.enemiesAlive;
         Assert.AreNotEqual(enemiesSpawned, 0);
     }

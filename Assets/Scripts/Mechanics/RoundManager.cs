@@ -51,8 +51,7 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void UpdateEnemiesHUD() {
-        var enemiesRemaining = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        enemiesText.SetText(enemiesRemaining.ToString());
+        enemiesText.SetText(enemiesAlive.ToString());
     }
 
     private void StartCountDown() {
@@ -79,5 +78,6 @@ public class RoundManager : MonoBehaviour {
     public void StartRound() {
         RoundStarted = true;
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 }
