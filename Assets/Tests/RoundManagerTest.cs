@@ -42,4 +42,14 @@ public class RoundManagerTest
 
         Assert.IsFalse(playerStatus);
     }
+
+    [Test]
+    public void Player_is_unlocked_after_round_starts() {
+        var roundManager = gameManager.GetComponent<RoundManager>();
+        var playerStatus = player.GetComponent<PlayerController>().IsLocked;
+
+        roundManager.StartRound();
+
+        Assert.IsFalse(playerStatus);
+    }
 }
