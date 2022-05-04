@@ -1,18 +1,24 @@
 using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tests {
     public class PlayerControllerTest : MonoBehaviour {
         private GameObject player;
+        private GameObject healthHUD;
         private PlayerController playerController;
+        private HealthController healthController;
 
         [SetUp]
         public void SetUp() {
             player = Instantiate(
                 Resources.Load<GameObject>("Prefabs/Characters/PlayerPrefab"));
-            playerController = player.GetComponent<PlayerController>();
+            healthHUD = Instantiate(
+                Resources.Load<GameObject>("Prefabs/HUD/HealthHud"));
+            playerController = player.GetComponent<PlayerController>(); 
+            healthController = player.GetComponentInChildren<HealthController>();
+            playerController.healthController = healthController;
         }
 
         [Test]
@@ -31,6 +37,13 @@ namespace Tests {
             playerController.Unlock();
             playerController.Lock();
             Assert.IsTrue(playerController.IsLocked);
+        }
+
+        [Test]
+        public void Health_is_restored_when_method_is_called() {
+            healthController.healthText = healthHUD.GetComponentInChildren<TextMeshProUGUI>();
+            healthController.currentHealth = 400;
+            Assert.AreEqual(healthController.currentHealth, 500);
         }
     }
 }

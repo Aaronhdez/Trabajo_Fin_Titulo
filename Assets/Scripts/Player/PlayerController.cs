@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private List<GameObject> weaponsAvailable;
     [SerializeField] private WeaponController currentWeaponController;
-    [SerializeField] private HealthController healthController;
+    [SerializeField] public HealthController healthController;
 
     [Header("Physical Properties")]
     public float mass;

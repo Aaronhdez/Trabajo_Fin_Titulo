@@ -86,6 +86,5 @@ public class HealthController : MonoBehaviour {
 
     internal void RestorePlayerHealth() {
         currentHealth = maxHealth;
-        UpdateHealthHud();
     }
 }
