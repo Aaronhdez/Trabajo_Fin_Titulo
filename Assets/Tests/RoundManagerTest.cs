@@ -59,7 +59,7 @@ namespace Tests {
         [Test]
         public void RoundsPlayed_varibales_is_incremented_on_round_ending() {
             roundManager.EndRound();
-            Assert.Equals(roundManager.roundsPlayed, 1);
+            Assert.AreEqual(roundManager.roundsPlayed, 1);
         }
     }
 }

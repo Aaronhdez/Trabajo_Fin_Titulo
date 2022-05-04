@@ -16,6 +16,7 @@ public class RoundManager : MonoBehaviour {
     [Header("Round Parameters")]
     [SerializeField] public bool roundStarted = false;
     [SerializeField] public int enemiesAlive = 0;
+    [SerializeField] public int roundsPlayed = 0; 
 
     [Header("Enemies Prefabs")]
     [SerializeField] private List<GameObject> enemies;
@@ -56,7 +57,13 @@ public class RoundManager : MonoBehaviour {
     private void ActivateRoundComponents() {
         playerHUD.SetActive(true);
         roundText.SetActive(false);
-        player.GetComponent<PlayerController>().Unlock();
+        playerController.Unlock();
+    }
+
+    private void DisactivateRoundComponents() {
+        //playerHUD.SetActive(false);
+        //roundText.SetActive(true);
+        playerController.Lock();
     }
 
     private void UpdateEnemiesHUD() {
@@ -91,7 +98,9 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void EndRound() {
+        DisactivateRoundComponents();
+        roundsPlayed++;
         RoundStarted = false;
-        playerController.Lock();
+        spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
     }
 }
