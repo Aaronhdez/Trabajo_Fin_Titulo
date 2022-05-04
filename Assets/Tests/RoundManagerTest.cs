@@ -9,10 +9,10 @@ namespace Tests {
         private RoundManager roundManager;
         private SpawnManager spawnManager;
 
+        //Components must be assigned in setUp as if they wouldn't exists
+        //Make'em public in objects implicated
         [SetUp]
         public void SetUp() {
-            //Components must be assigned in setUp as if they wouldn't exists
-            //Make'em public in objects
             gameManager = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("GameManager"));
             player = MonoBehaviour.Instantiate(
@@ -54,6 +54,12 @@ namespace Tests {
         public void Player_is_locked_after_round_ends() {
             roundManager.EndRound();
             Assert.True(roundManager.playerController.IsLocked);
+        }
+
+        [Test]
+        public void RoundsPlayed_varibales_is_incremented_on_round_ending() {
+            roundManager.EndRound();
+            Assert.Equals(roundManager.roundsPlayed, 1);
         }
     }
 }
