@@ -6,6 +6,8 @@ namespace Tests {
 
         private GameObject gameManager;
         private GameObject player;
+        private GameObject playerHUD;
+        private GameObject roundText;
         private RoundManager roundManager;
         private SpawnManager spawnManager;
 
@@ -14,12 +16,19 @@ namespace Tests {
         [SetUp]
         public void SetUp() {
             gameManager = MonoBehaviour.Instantiate(
-                Resources.Load<GameObject>("GameManager"));
+                Resources.Load<GameObject>("Prefabs/GameManager"));
             player = MonoBehaviour.Instantiate(
-                Resources.Load<GameObject>("PlayerPrefab"));
+                Resources.Load<GameObject>("Prefabs/Characters/PlayerPrefab"));
+            playerHUD = MonoBehaviour.Instantiate(
+                Resources.Load<GameObject>("Prefabs/HUD/PlayerHud"));
+            roundText = MonoBehaviour.Instantiate(
+                 Resources.Load<GameObject>("Prefabs/HUD/RoundText"));
             roundManager = gameManager.GetComponent<RoundManager>();
+
             roundManager.player = player;
             roundManager.playerController = player.GetComponent<PlayerController>();
+            roundManager.playerHUD = playerHUD;
+            roundManager.roundText = roundText;
         }
 
         [Test]

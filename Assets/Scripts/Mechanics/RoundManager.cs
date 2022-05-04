@@ -10,8 +10,8 @@ public class RoundManager : MonoBehaviour {
     [SerializeField] public GameObject player;
     [SerializeField] public PlayerController playerController;
 
-    [SerializeField] private GameObject playerHUD;
-    [SerializeField] private GameObject roundText;
+    [SerializeField] public GameObject playerHUD;
+    [SerializeField] public GameObject roundText;
     [SerializeField] private TextMeshProUGUI enemiesText;
     [Header("Round Parameters")]
     [SerializeField] public bool roundStarted = false;
@@ -61,8 +61,8 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void DisactivateRoundComponents() {
-        //playerHUD.SetActive(false);
-        //roundText.SetActive(true);
+        playerHUD.SetActive(false);
+        roundText.SetActive(true);
         playerController.Lock();
     }
 
