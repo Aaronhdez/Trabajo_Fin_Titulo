@@ -43,6 +43,7 @@ namespace Tests {
         public void Health_is_restored_when_method_is_called() {
             healthController.healthText = healthHUD.GetComponentInChildren<TextMeshProUGUI>();
             healthController.currentHealth = 400;
+            playerController.RestoreHealth();
             Assert.AreEqual(healthController.currentHealth, 500);
         }
     }
