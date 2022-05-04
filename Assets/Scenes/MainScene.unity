@@ -43706,10 +43706,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
       propertyPath: playerHUD
       value: 
       objectReference: {fileID: 1526190823}

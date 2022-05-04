@@ -7,6 +7,7 @@ namespace Tests {
         private GameObject gameManager;
         private GameObject player;
         private GameObject playerHUD;
+        private GameObject enemiesHUD;
         private GameObject roundText;
         private RoundManager roundManager;
         private SpawnManager spawnManager;
@@ -19,6 +20,7 @@ namespace Tests {
             roundManager.player = player;
             roundManager.playerController = player.GetComponent<PlayerController>();
             roundManager.playerHUD = playerHUD;
+            roundManager.enemiesHUD = enemiesHUD;
             roundManager.roundText = roundText;
         }
 
@@ -29,6 +31,8 @@ namespace Tests {
                 Resources.Load<GameObject>("Prefabs/Characters/PlayerPrefab"));
             playerHUD = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("Prefabs/HUD/PlayerHud"));
+            enemiesHUD = MonoBehaviour.Instantiate(
+                Resources.Load<GameObject>("Prefabs/HUD/EnemiesHud"));
             roundText = MonoBehaviour.Instantiate(
                  Resources.Load<GameObject>("Prefabs/HUD/RoundText"));
             roundManager = gameManager.GetComponent<RoundManager>();
@@ -36,13 +40,13 @@ namespace Tests {
 
         [Test]
         public void RoundStatus_is_false_when_round_is_not_started() {;
-            Assert.IsFalse(roundManager.roundStarted);
+            Assert.IsFalse(roundManager.PlayingRound);
         }
 
         [Test]
         public void RoundStatus_is_true_when_round_starts() {
             roundManager.StartRound();
-            Assert.IsTrue(roundManager.roundStarted);
+            Assert.IsTrue(roundManager.PlayingRound);
         }
 
         [Test]
@@ -53,7 +57,7 @@ namespace Tests {
 
         [Test]
         public void Player_is_locked_before_round_starts() {
-            Assert.IsFalse(roundManager.playerController.IsLocked);
+            Assert.IsTrue(roundManager.playerController.IsLocked);
         }
 
         [Test]
