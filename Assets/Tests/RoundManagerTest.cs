@@ -15,8 +15,16 @@ namespace Tests {
         //Make'em public in objects implicated
         [SetUp]
         public void SetUp() {
+            CreateGameObjects();
+            roundManager.player = player;
+            roundManager.playerController = player.GetComponent<PlayerController>();
+            roundManager.playerHUD = playerHUD;
+            roundManager.roundText = roundText;
+        }
+
+        private void CreateGameObjects() {
             gameManager = MonoBehaviour.Instantiate(
-                Resources.Load<GameObject>("Prefabs/GameManager"));
+                            Resources.Load<GameObject>("Prefabs/GameManager"));
             player = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("Prefabs/Characters/PlayerPrefab"));
             playerHUD = MonoBehaviour.Instantiate(
@@ -24,11 +32,6 @@ namespace Tests {
             roundText = MonoBehaviour.Instantiate(
                  Resources.Load<GameObject>("Prefabs/HUD/RoundText"));
             roundManager = gameManager.GetComponent<RoundManager>();
-
-            roundManager.player = player;
-            roundManager.playerController = player.GetComponent<PlayerController>();
-            roundManager.playerHUD = playerHUD;
-            roundManager.roundText = roundText;
         }
 
         [Test]
