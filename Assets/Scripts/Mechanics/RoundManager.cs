@@ -15,6 +15,7 @@ public class RoundManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI enemiesText;
     [Header("Round Parameters")]
     [SerializeField] public bool roundStarted = false;
+    [SerializeField] private bool roundFinished = false;
     [SerializeField] public int enemiesAlive = 0;
     [SerializeField] public int roundsPlayed = 0; 
 
@@ -24,6 +25,7 @@ public class RoundManager : MonoBehaviour {
 
     public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
     public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
+    public bool RoundFinished { get => roundFinished; set => roundFinished = value; }
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -52,7 +54,16 @@ public class RoundManager : MonoBehaviour {
         }
 
         if (enemiesAlive == 0 && PlayingRound) {
-            EndRound();
+            PlayingRound = false;
+            roundFinished = true;
+        }
+
+        if (roundFinished) {
+            playerHUD.SetActive(false);
+            roundText.SetActive(true);
+            roundFinished = false;
+            counterTextValue.SetText("Congratulations! you survived, for now...");
+            Invoke(nameof(EndRound), 5);
         }
     }
 
