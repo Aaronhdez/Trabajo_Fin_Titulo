@@ -55,7 +55,7 @@ public class RoundManager : MonoBehaviour {
         counterTextValue.SetText("Press F4 to play");
     }
 
-    void Update() {
+    void LateUpdate() {
         if (Input.GetKeyDown(KeyCode.F4) && !PlayingRound) {
             counterTextValue.SetText("3");
             Invoke(nameof(CountDown), 1);
@@ -133,7 +133,6 @@ public class RoundManager : MonoBehaviour {
                 EndRound();
             }
         }
-        
     }
 
     public void EndRound() {
