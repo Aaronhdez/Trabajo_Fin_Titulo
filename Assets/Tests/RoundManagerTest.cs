@@ -30,35 +30,30 @@ namespace Tests {
         [Test]
         public void RoundStatus_is_true_when_round_starts() {
             roundManager.StartRound();
-            var status = roundManager.roundStarted;
-            Assert.IsTrue(status);
+            Assert.IsTrue(roundManager.roundStarted);
         }
 
         [Test]
         public void Enemies_are_spawned_when_round_starts() {
             roundManager.StartRound();
-            var enemiesSpawned = roundManager.enemiesAlive;
-            Assert.AreNotEqual(enemiesSpawned, 0);
+            Assert.AreNotEqual(roundManager.enemiesAlive, 0);
         }
 
         [Test]
         public void Player_is_locked_before_round_starts() {
-            var playerStatus = player.GetComponent<PlayerController>().IsLocked;
-            Assert.IsFalse(playerStatus);
+            Assert.IsFalse(roundManager.playerController.IsLocked);
         }
 
         [Test]
         public void Player_is_unlocked_after_round_starts() {
-            var playerStatus = player.GetComponent<PlayerController>().IsLocked;
             roundManager.StartRound();
-            Assert.IsFalse(playerStatus);
+            Assert.IsFalse(roundManager.playerController.IsLocked);
         }
 
         [Test]
         public void Player_is_locked_after_round_ends() {
-            var playerStatus = player.GetComponent<PlayerController>().IsLocked;
             roundManager.EndRound();
-            Assert.IsFalse(roundManager.roundStarted);
+            Assert.True(roundManager.playerController.IsLocked);
         }
     }
 }
