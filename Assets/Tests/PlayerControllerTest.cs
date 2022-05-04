@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Tests {
     public class PlayerControllerTest : MonoBehaviour {
@@ -18,6 +17,7 @@ namespace Tests {
                 Resources.Load<GameObject>("Prefabs/HUD/HealthHud"));
             playerController = player.GetComponent<PlayerController>(); 
             healthController = player.GetComponentInChildren<HealthController>();
+            healthController.healthText = healthHUD.GetComponentInChildren<TextMeshProUGUI>();
             playerController.healthController = healthController;
         }
 
@@ -41,7 +41,6 @@ namespace Tests {
 
         [Test]
         public void Health_is_restored_when_method_is_called() {
-            healthController.healthText = healthHUD.GetComponentInChildren<TextMeshProUGUI>();
             healthController.currentHealth = 400;
             playerController.RestoreHealth();
             Assert.AreEqual(playerController.GetHealthValue(), 500);
