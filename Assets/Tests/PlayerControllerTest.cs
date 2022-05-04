@@ -26,5 +26,10 @@ namespace Tests {
             Assert.IsFalse(playerController.IsLocked);
         }
 
+        [Test]
+        public void Player_is_locked_by_when_method_is_called() {
+            playerController.Unlock();
+            Assert.IsTrue(playerController.IsLocked);
+        }
     }
 }
