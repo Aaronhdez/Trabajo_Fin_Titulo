@@ -1,0 +1,788 @@
+[33mcommit a40958960746508c7d176bceed8d6dca87d4de23[m[33m ([m[1;36mHEAD -> [m[1;32mFSM01[m[33m)[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:58:16 2022 +0100
+
+    refactor: PlayerController tests refactored
+
+[33mcommit f8a809530ae39d97ee898701b54b8281289cca4c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:55:05 2022 +0100
+
+    green: Health_is_reduced_when_player_receives_damage
+
+[33mcommit c0814181fdfe4bab41eda49c1c1e3a668539f529[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:52:05 2022 +0100
+
+    red: Health_is_resduced_when_player_receives_damage
+
+[33mcommit 53b6abb801e3a813f52ebae5ab0509ac75aae59c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:14:43 2022 +0100
+
+    refactor: test refactored
+
+[33mcommit fe2ab426c7d27884a909e6f4f441d796bcff38df[m[33m ([m[1;31morigin/FSM01[m[33m)[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:11:22 2022 +0100
+
+    green: Health_is_restored_when_method_is_called
+
+[33mcommit 02a4cdd294342112658557aa48f0ada1448eb1c1[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 17:10:59 2022 +0100
+
+    red: Health_is_restored_when_method_is_called
+
+[33mcommit f33706eed32e67facdd6eaa3d97ea1b163b21dd0[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:39:22 2022 +0100
+
+    green: Player_is_locked_by_when_method_is_called
+
+[33mcommit 7506686d84b771124bf0657853e5f0bd49cacc0b[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:38:45 2022 +0100
+
+    red: Player_is_locked_by_when_method_is_called
+
+[33mcommit 8296d1c1fc518133c1d12b16ffca2634da10c186[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:37:04 2022 +0100
+
+    green: Player_is_unlocked_by_when_method_is_called
+
+[33mcommit 143d048dd136f5b492ce74d99f7c5d7ba785a814[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:36:27 2022 +0100
+
+    red: Player_is_unlocked_by_when_method_is_called
+
+[33mcommit f764ec62c54b1ba495e4bef684bda0f29690766b[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:34:11 2022 +0100
+
+    green: Player_is_locked_by_default
+
+[33mcommit e2d0bce39c10a4dbf2ff3693ca5de9b5a9bf094c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:33:23 2022 +0100
+
+    red: Player_is_locked_by_default
+
+[33mcommit a855bccdaf205e0857cdbc972036cd15c7323dd0[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:18:04 2022 +0100
+
+    refactor: Round Manager refactored to comply tests
+
+[33mcommit 1260d448b31805585a9445702449448dfd088ada[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 16:02:28 2022 +0100
+
+    refactor: Round Manager refactored to comply tests
+
+[33mcommit c99b7f764e235106bcad9c87102c2af9c97fa3c3[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 12:45:45 2022 +0100
+
+    refactor: Round Manager flow improved to include round finishing
+
+[33mcommit cb759ab39c83840c077af4895de81bcb85896da6[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 12:27:45 2022 +0100
+
+    refactor: Round Manager flow refactored
+
+[33mcommit 71da742b489f565047a7c85b44c1a701cd293e33[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:47:21 2022 +0100
+
+    refactor: Round test refactored
+
+[33mcommit bcb2b295664ab0e96d3321be4c7d0972f4804877[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:46:28 2022 +0100
+
+    refactor: Round test refactored to include prefabs relocalization
+
+[33mcommit 56e0a1510edcfb30c8b64713ef995b60625909cf[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:46:01 2022 +0100
+
+    refactor: prefabs moved to resources folder to improve testing performance
+
+[33mcommit efcec750bf5cb412f128c247a852ce9f3beb2e20[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:36:28 2022 +0100
+
+    green: RoundsPlayed_varibales_is_incremented_on_round_ending
+
+[33mcommit 1c6e8fb31988ccdbde856e5bc8d77dd87e7cefee[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:34:40 2022 +0100
+
+    red: RoundsPlayed_varibales_is_incremented_on_round_ending
+
+[33mcommit 35ecd23aec4f0433b14c608000a97291b270a1d0[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:25:23 2022 +0100
+
+    refactor: round manager test refactored
+
+[33mcommit 81866204979ecaa638fe757a5107c6a0a9227903[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 11:22:35 2022 +0100
+
+    green: Player_is_locked_after_round_ends
+
+[33mcommit d3a92d6f7df8cf5292bba6b7e865ef57e9ab7b60[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Wed May 4 10:25:37 2022 +0100
+
+    red: Player_is_locked_after_round_ends
+
+[33mcommit f005f2df5f584e820a67578299f51ea902e6550c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:50:23 2022 +0100
+
+    refactor: RoundManagerTests refactored
+
+[33mcommit 0a4df69e1233fa46d83af81ddf04476ca055668a[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:15:34 2022 +0100
+
+    green: Player_is_unlocked_after_round_starts
+
+[33mcommit d45d711452b62f9f0560af06845e16ab4ecc2a08[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:14:35 2022 +0100
+
+    green: Player_is_locked_before_round_starts
+
+[33mcommit 3ae6463219f3b7813798403e746a3cc334df9a92[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:08:17 2022 +0100
+
+    green: Enemies_are_spawned_when_round_starts
+
+[33mcommit 20b09b5e6f9875e0c85253fd348be3ac5001f93f[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:04:47 2022 +0100
+
+    red: Enemies_are_spawned_when_round_starts
+
+[33mcommit dd0df2767a5e6eead7f0749183f1abbe81f8fd3c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:01:12 2022 +0100
+
+    green: RoundStatus_is_changed_when_round_starts
+
+[33mcommit 73cb2708a3556493ac0021d356821f2841e10a55[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue May 3 21:00:36 2022 +0100
+
+    red: RoundStatus_is_changed_when_round_starts
+
+[33mcommit fc885f11f66db8304e1d599975f5a57b98f73e9c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 21:32:00 2022 +0100
+
+    methods refactored to improve legibility
+
+[33mcommit 7bb3c4aa63d031b4deeff9f91ae399d4fa0c57c7[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 21:19:21 2022 +0100
+
+    methods refactored to improve legibility
+
+[33mcommit 2e5b046328df78ab6c194a49ca900a52efe04245[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 21:14:39 2022 +0100
+
+    refactor: locking methods added to avoid player actions before round starts
+
+[33mcommit 8b473e72494919ba886ba4b8c9234f1cf04a36f4[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:57:10 2022 +0100
+
+    green: StartRound function added
+
+[33mcommit bc82538708907d961720c3dce9784492aef129fe[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:20:56 2022 +0100
+
+    red: StartRound function added
+
+[33mcommit b8d336349a0d6617c7809a79e66c899b2a682193[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:19:07 2022 +0100
+
+    refactor: round Manager extracted from GameManager
+
+[33mcommit 5ac2c24e35618924a01eb07fa35cfd23757d193f[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:18:29 2022 +0100
+
+    refactor: walking animations added to player
+
+[33mcommit 52c31a1ba7dac840105ea2b2a801cec02db958f9[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:17:23 2022 +0100
+
+    assets: TMPro fonts added
+
+[33mcommit d51716ad18d5d8f6eed5d7a426a20aaa7edcc70c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:16:04 2022 +0100
+
+    assets: ProjectSettings updated
+
+[33mcommit a830a74a048cbaeb34b61950f723b8bed8187cae[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:15:17 2022 +0100
+
+    assets: Main Menu prototype added
+
+[33mcommit c5f18cfe0ac01a3d49cf5ac89302500de0f20e12[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:13:02 2022 +0100
+
+    prefabs: effects and animations added to player and enemy
+
+[33mcommit 7b00c19c4909ee4ebf43a2a8d30209145e1523ac[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:11:37 2022 +0100
+
+    assets: player textures added
+
+[33mcommit a6c98d88f9db3b30bc3d3f15db6dda73df8e1505[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:10:45 2022 +0100
+
+    FX: bullets effects modified
+
+[33mcommit e139e673e31c6ed6ac323e75bd786171c7e5e218[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Mon May 2 20:09:26 2022 +0100
+
+    assets: player animations added
+
+[33mcommit c152d1ad741b634949837508fe9d6499957924fb[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 18:31:43 2022 +0100
+
+    green: audio added to weapons in player prefab
+
+[33mcommit 9b333996501787e6535ff44c8b96355f2b9b8295[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 18:08:03 2022 +0100
+
+    refactor: sound effects folder reestructured
+
+[33mcommit 26c216a9e031ff0056cb4ce59949eabbdb1f4b09[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 18:06:20 2022 +0100
+
+    assets: added sound effects
+
+[33mcommit cfd1ad64229936cbe2a37b285abb45481d2faccf[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 17:51:13 2022 +0100
+
+    green: health status implemented
+
+[33mcommit 3e4c41fd5ef779f5b8fd75ca91b8d289978d8006[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 17:13:36 2022 +0100
+
+    red: health status implemented
+
+[33mcommit 31fb7f0743357ba0e5e7403dcb3a53b50f53e583[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 16:26:42 2022 +0100
+
+    refactor: NavMesh adjusted to avoid issues with Walkable areas
+
+[33mcommit 8eaa9770c63b7ceed44a9932318ef49a4562909f[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 16:13:30 2022 +0100
+
+    green: WanderState implemented
+
+[33mcommit 9b930c16425e00ad6de1765121c1917fb56d07c0[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 16:01:30 2022 +0100
+
+    red: WanderState implemented
+
+[33mcommit ca31275a42b673c653bdb0417d10a6b0adc4f551[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 13:09:37 2022 +0100
+
+    refactor: navMesh agents chase state refactored
+
+[33mcommit b3c77e2485c4ab36bbc43dea506fec7a87b23e5a[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 12:14:43 2022 +0100
+
+    green: ChaseState integrated with navMeshAgent class
+
+[33mcommit 7f6e58a83cb0886ee5ff5fc3ef2d2101216f9b49[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 12:02:39 2022 +0100
+
+    red: ChaseState integrated with navMeshAgent class
+
+[33mcommit 89f8033c1914fb21ecd94e6091b98311dc5bd25f[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 11:59:44 2022 +0100
+
+    green: NavMeshes infrastacture integrated with enemy prefabs
+
+[33mcommit 614fe1ea0336ed8a9c470eb8eedbf296cc29ec54[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 11:36:29 2022 +0100
+
+    red: NavMeshes integrated with enemy prefabs
+
+[33mcommit 1f240b7f75a53e9bffd7ed27465e73f5f06c92be[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 11:35:54 2022 +0100
+
+    green: weapon controlling system added
+
+[33mcommit e2e660925ad859f7332f7859afc8052442a2ce13[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Apr 28 11:34:03 2022 +0100
+
+    fx: added audio and effects particles systems
+
+[33mcommit d3e982a37323f5684ecffdbfa891417b9f1f29c5[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 13:07:38 2022 +0100
+
+    refactor: hud controller removed due to non-usability
+
+[33mcommit 0733c89915e41d201f4d5d4327e5f24eeaf5e28d[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 13:06:04 2022 +0100
+
+    refactor: health control fully assigned to player
+
+[33mcommit 97f59c9a5e18676ff8c8de1cfb3ef95062dafdd4[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:52:58 2022 +0100
+
+    green: dead status modified to property
+
+[33mcommit 81df0458cd3c77716dfaee7ed343f22d67beac10[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:46:25 2022 +0100
+
+    refactor: methods extracted to improve legibility
+
+[33mcommit 1aaafe0377c53b43c761a6f1cca240b574572a0e[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:44:01 2022 +0100
+
+    green: HealthController added to player
+
+[33mcommit d9bac387208e6e46acf79e6095a5e5efccc46cdf[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:30:43 2022 +0100
+
+    assets: HUD folder created
+
+[33mcommit 49742c106f5b3b643e6923c82c28ea27408ab171[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:29:25 2022 +0100
+
+    red: HealthController added to player
+
+[33mcommit b4e30549c036bb0319ac8ae56cfb8eb6331eaa17[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:28:32 2022 +0100
+
+    refactor: headers added to weapon controller
+
+[33mcommit 8cc0fd135c78051862a1ea70bd3322092c453a4d[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:27:55 2022 +0100
+
+    refactor: minor refactorizarion in player controller
+
+[33mcommit 6a0ac4aff6e4558718d8db83678230e8bacb7c06[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:05:56 2022 +0100
+
+    refactor: Hud Controller removed from Game Manager
+
+[33mcommit c43c07bea997de0411d827dcaea0106451e876f8[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 12:03:25 2022 +0100
+
+    green: weapon switching added
+
+[33mcommit 7c04da48a39c2c6afd0ce0cbad6879f19bbd1a48[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:47:14 2022 +0100
+
+    red: weapon switching added
+
+[33mcommit f2f362a34242ce29a718dc3064fe6a7943fe2b64[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:19:22 2022 +0100
+
+    refactor: weapon controller added to player
+
+[33mcommit ade013b2d1dc88b8f512249642ddae05dbcb2614[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:14:22 2022 +0100
+
+    refactor: MainScene refactored
+
+[33mcommit 2dc98d70141fdae9969bfc5e5824b9e9207b9101[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:13:51 2022 +0100
+
+    refactor: Weapon Controller added to player
+
+[33mcommit 445043d2c9cc06375c58b7ed7648fa1e59036cd5[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:12:24 2022 +0100
+
+    green: basic HudController added to project
+
+[33mcommit 9fa133bf640027ed2becde23b1c48be0174b36be[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:10:57 2022 +0100
+
+    red: basic HudController added to project
+
+[33mcommit 84c58d278bfbffd976d7ce61339d1c7cad7944e8[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:09:45 2022 +0100
+
+    assets: navMesh area added to project
+
+[33mcommit 30fd823f62b9baf90b12d2ab74f22b4ce5496c02[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:09:11 2022 +0100
+
+    refactor: tags modified
+
+[33mcommit 05c0a94486d6c1e997cddebcd18faee1b2e99895[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:08:34 2022 +0100
+
+    assets: TextMeshPro UI added
+
+[33mcommit ef268d614e8d779677e945819b121f5c75c25f99[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 22 11:07:41 2022 +0100
+
+    assets: icons pack added
+
+[33mcommit 75a256cfe3cf2df0b15db717b0e6a7a5e31cbd48[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 14:16:04 2022 +0100
+
+    assets: Supply point prefab added
+
+[33mcommit 6a0f0b3e271262add1506b49fad142936c9b53f4[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 13:54:08 2022 +0100
+
+    refactor: Inheritance introduce to improve consumables management
+
+[33mcommit e8a4ca295e2af7f9e107fd367039e37ce4697530[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 13:39:25 2022 +0100
+
+    refactor: RestoreAspect refactored to dictionary
+
+[33mcommit abce651bcb598ef83837afdf9daf399937dfcfb3[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 11:40:14 2022 +0100
+
+    refator: health consumable has been added
+
+[33mcommit 1dbfa551da3a42b3095269bd1e3632adfd5fd192[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 11:39:41 2022 +0100
+
+    green: consumable triggers effect when player is on area
+
+[33mcommit b281dde56e65ee3067f09af7eaad6f6f0e2c3388[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 10:30:00 2022 +0100
+
+    red: consumable gives effect when player is on area
+
+[33mcommit 09cc3f95ccbcf9754ff84a600144db84b0ea1d31[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 10:28:59 2022 +0100
+
+    green: navMesh agent instantiated in project
+
+[33mcommit 9f1a7fffaee9999962ad0c00242a3b1676418f88[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 10:28:13 2022 +0100
+
+    assets: ammo and medkit props added to be configured
+
+[33mcommit c139c9e4a8e5bcddc43d50480d08c79fc15f8a2e[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 10:26:24 2022 +0100
+
+    assets: navMesh Library updated from Unity Tutorial
+
+[33mcommit 41561b42deb2cf4fb6b2639bd42fd7b66d6b8c4d[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 10:25:07 2022 +0100
+
+    prefabs: modifiers added to decoration props to ignore navMesh baking process
+
+[33mcommit 6384d66da0abc1a0acd6427df59c70a21ec3203a[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 09:49:57 2022 +0100
+
+    assets: basica navMesh script added from Unity Library
+
+[33mcommit 78a14b56aa5ab8a7240488eeee5f63486b12c39a[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 09:47:56 2022 +0100
+
+    assets: boxes crates added to projects
+
+[33mcommit ef356d969e4cd1f94a5ef21f14040cd059f19609[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Tue Apr 12 09:44:55 2022 +0100
+
+    assets: box colliders added to prefab modifiers
+
+[33mcommit e89af5a2975edd3999e4f8ad2f9788464a9a5f43[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 19:29:05 2022 +0100
+
+    refactor: enemies respawnFactor improved
+
+[33mcommit 09f52689c7fddc01f80d94d3c28e342d51677a6d[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 19:11:08 2022 +0100
+
+    green: RespawnEnemies
+
+[33mcommit 76f67c108ea25a7f2a86053d4887b1ef97022513[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 18:56:47 2022 +0100
+
+    red: RespawnEnemies
+
+[33mcommit f3615ae7c50ef7559a1d932419dedae7dd315e04[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 18:48:18 2022 +0100
+
+    refactor: SpawnManager extracted from GameManager
+
+[33mcommit 417fcea7a7c3fa380cd80a3300ac83afbf7b5830[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 18:38:04 2022 +0100
+
+    refactor: player spawn now works properly
+
+[33mcommit 8ca65ee86e9a92cc3388bf7fd99b57ed18427503[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 17:08:00 2022 +0100
+
+    green: player spawn now works properly
+
+[33mcommit e6034766b8d80414244ae731d67386614eb2c24c[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:16:25 2022 +0100
+
+    refactor: patrol selection script added
+
+[33mcommit 212a805d5c6d833c5363f0daa74bd537e01bf2e9[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:14:55 2022 +0100
+
+    refactor: state Pattern classes implemented
+
+[33mcommit de1b7ccce014fe92dc1518d04d57a3a3418dad97[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:14:17 2022 +0100
+
+    refactor: basic state machine infrastructure modified
+
+[33mcommit e275296d789df5133e703f92d07d39532eecce6a[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:13:02 2022 +0100
+
+    green: basic state machine added
+
+[33mcommit 7ad16d7c1b7fd121aa90a3d3759fa0b528bc25bf[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:10:09 2022 +0100
+
+    assets: animation tree added
+
+[33mcommit 2bc9ef342eb7d4bd9008a1829a65e085639bb404[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:08:03 2022 +0100
+
+    asset: navmesh infrastructure added
+
+[33mcommit 159d3f4fa2a503d32d7b6d0ee638591de08fd163[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:06:15 2022 +0100
+
+    assets: projectSettings uploaded
+
+[33mcommit eb1340b58f721ee98e10aad5ef870a24c41598de[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 16:04:19 2022 +0100
+
+    assets: models and meshes added to project
+
+[33mcommit 5154851f81b1c792ab5fc2d52c5bf32d059cbe91[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 15:59:49 2022 +0100
+
+    assets: more materials added to project
+
+[33mcommit 0ce27810fffe7f1c3556d36e014cf8d3c5f53060[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Fri Apr 8 15:57:40 2022 +0100
+
+    assets: textures added to project
+
+[33mcommit 01ba53f7c2f474a1a5235af99e4f3f98f3b6f02b[m[33m ([m[1;31morigin/develop[m[33m)[m
+Merge: 44d90e2 a4ac407
+Author: kikenky <aaronhdezalv@hotmail.com>
+Date:   Thu Mar 31 16:20:08 2022 +0100
+
+    Merge pull request #4 from Aaronhdez/ANI01
+    
+    assests: Player Prefab added
+
+[33mcommit a4ac407bd252eaa659ef4e42159c885fc46cc3c1[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 16:18:33 2022 +0100
+
+    assests: Player Prefab added
+
+[33mcommit 44d90e22114d095875f5a37ebd15d5fed8aee1c8[m[33m ([m[1;32mdevelop[m[33m)[m
+Merge: 7f7dac9 89e6c04
+Author: kikenky <aaronhdezalv@hotmail.com>
+Date:   Thu Mar 31 16:10:33 2022 +0100
+
+    Merge pull request #3 from Aaronhdez/FSM01
+    
+    State Machines and player controller added to the project
+
+[33mcommit 89e6c0465e494ba0009a84f136f3d87fd9f7ea6e[m
+Merge: 4c2c4c3 7f7dac9
+Author: kikenky <aaronhdezalv@hotmail.com>
+Date:   Thu Mar 31 16:10:12 2022 +0100
+
+    Merge branch 'develop' into FSM01
+
+[33mcommit 4c2c4c33627a2eb18a93a9fe99dc5a9e57bd04e0[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Mar 31 16:03:36 2022 +0100
+
+    green: tested player controller from project
+
+[33mcommit 3c8889775532e8b68739b940f60c2309f5e84ec6[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Thu Mar 31 16:02:52 2022 +0100
+
+    assets: assets modified to keep project updated
+
+[33mcommit 7f7dac9ef16c04631a62ab40cb350d0f0fb5fa13[m
+Merge: c2cd646 3127502
+Author: EricManrique <72133206+EricManrique@users.noreply.github.com>
+Date:   Thu Mar 31 16:00:19 2022 +0100
+
+    Merge pull request #2 from Aaronhdez/ANI01
+    
+    Ani01
+
+[33mcommit 312750289c69a56759054c3d498361f5e7c5118d[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 15:58:30 2022 +0100
+
+    assests: minorAssetsUpdate added
+
+[33mcommit 8c2cd5cfd6602ffecb779e2ee3fbe9440ff88982[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 15:57:53 2022 +0100
+
+    green: PlayerMoveScript added
+
+[33mcommit fd71fbab5bfc930d55d42565cddf9bcebe9252f2[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 15:56:47 2022 +0100
+
+    Scenes: PlayerScene added
+
+[33mcommit 6b5d9c2cf32966bb7268674215b60b2ffbdb0722[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 15:52:58 2022 +0100
+
+    assets: Textures added
+
+[33mcommit 18d1751a036009337f5e4888abcf791ac524cb1b[m
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Thu Mar 31 15:51:41 2022 +0100
+
+    assets: Animations added
+
+[33mcommit e928a9c44b9c78a00baccb52417fbe1929cf6e89[m
+Merge: b469dda c2cd646
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:46:21 2022 +0000
+
+    Merge branch 'develop' of https://github.com/Aaronhdez/Trabajo_Fin_Titulo into FSM01
+
+[33mcommit 372b3109d8773de4d20ffbe416de99a7266a1503[m
+Merge: 157be2f c2cd646
+Author: EricManrique <eric.manrique99@gmail.com>
+Date:   Sun Mar 20 18:45:32 2022 +0000
+
+    Merge branch 'develop' of https://github.com/Aaronhdez/Trabajo_Fin_Titulo into ANI01
+
+[33mcommit c2cd646a8cb1f8b668041152e915c2d76cb26298[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:40:19 2022 +0000
+
+    packages: ProBuilder added
+
+[33mcommit b469ddab8ffe8c234114ae9b8cdb7ad25fc07e37[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:22:19 2022 +0000
+
+    red: Finite State Machine infrastructure added
+
+[33mcommit 157be2f24a74374a484238cbbf805c1ec62aa88d[m
+Merge: 724e83d 40e218e
+Author: kikenky <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:17:27 2022 +0000
+
+    Merge pull request #1 from Aaronhdez/develop
+    
+    PR_TFT_SetUp
+
+[33mcommit 40e218e7638b0423d3128223d2276ea708c33df1[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:14:45 2022 +0000
+
+    initial commit in develop branch
+
+[33mcommit 724e83d4d12064bc7f6a2464f4a5d3e9d0cd79e6[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Aaronhdez <aaronhdezalv@hotmail.com>
+Date:   Sun Mar 20 18:11:46 2022 +0000
+
+    TFT: initial commit
