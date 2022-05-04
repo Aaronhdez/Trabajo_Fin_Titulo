@@ -44,7 +44,7 @@ namespace Tests {
             healthController.healthText = healthHUD.GetComponentInChildren<TextMeshProUGUI>();
             healthController.currentHealth = 400;
             playerController.RestoreHealth();
-            Assert.AreEqual(healthController.currentHealth, 500);
+            Assert.AreEqual(playerController.GetHealthValue(), 500);
         }
     }
 }

@@ -115,7 +115,11 @@ public class PlayerController : MonoBehaviour {
     public void RestoreHealth() {
         healthController.RestorePlayerHealth();
     }
-    
+
+    public int GetHealthValue() {
+        return healthController.currentHealth;
+    }
+
     public void Lock() {
         IsLocked = true;
     }
@@ -123,5 +127,4 @@ public class PlayerController : MonoBehaviour {
     public void Unlock() {
         IsLocked = false;
     }
-
 }
