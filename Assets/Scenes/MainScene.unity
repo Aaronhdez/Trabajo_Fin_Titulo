@@ -13788,7 +13788,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh353790
+  m_Name: pb_Mesh43178
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -44478,11 +44478,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8828804563565601229, guid: 537a5e593a1df744285a671e7570742c, type: 3}
   m_PrefabInstance: {fileID: 853894993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2116632785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
-  m_PrefabInstance: {fileID: 1304592130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2118016877
 GameObject:
   m_ObjectHideFlags: 0
@@ -45365,7 +45360,7 @@ PrefabInstance:
     - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 2116632785}
+      objectReference: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
     - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
       propertyPath: playerHUD
       value: 
@@ -45378,13 +45373,5 @@ PrefabInstance:
       propertyPath: enemiesText
       value: 
       objectReference: {fileID: 374622693}
-    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
-      propertyPath: enemiesAlive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
-      propertyPath: roundStarted
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}

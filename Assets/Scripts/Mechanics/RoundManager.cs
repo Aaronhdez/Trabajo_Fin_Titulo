@@ -6,12 +6,13 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour {
 
     [Header("Round Elements")]
-    [SerializeField] private GameObject spawnManager;
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject spawnManager;
+    [SerializeField] public GameObject player;
+    [SerializeField] public PlayerController playerController;
+
     [SerializeField] private GameObject playerHUD;
     [SerializeField] private GameObject roundText;
     [SerializeField] private TextMeshProUGUI enemiesText;
-
     [Header("Round Parameters")]
     [SerializeField] public bool roundStarted = false;
     [SerializeField] public int enemiesAlive = 0;
@@ -24,15 +25,22 @@ public class RoundManager : MonoBehaviour {
 
     void Start() {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
+        player = GameObject.Find("PlayerPrefab");
+        playerController = player.GetComponent<PlayerController>();
         roundStarted = false;
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.F4)) {
+        if (Input.GetKeyDown(KeyCode.F4) && !RoundStarted) {
             roundText.GetComponentInChildren<TextMeshProUGUI>().SetText("3");
             Invoke(nameof(StartCountDown), 1);
+        } else { 
+            ProcessRoundActions();
         }
-        ProcessRoundActions();
+        enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (enemiesAlive == 0 && RoundStarted) {
+            EndRound();
+        }
     }
 
     private void ProcessRoundActions() {
@@ -80,5 +88,10 @@ public class RoundManager : MonoBehaviour {
         RoundStarted = true;
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
         enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+    }
+
+    public void EndRound() {
+        RoundStarted = false;
+        playerController.Lock();
     }
 }

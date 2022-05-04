@@ -7,14 +7,19 @@ namespace Tests {
         private GameObject gameManager;
         private GameObject player;
         private RoundManager roundManager;
+        private SpawnManager spawnManager;
 
         [SetUp]
         public void SetUp() {
+            //Components must be assigned in setUp as if they wouldn't exists
+            //Make'em public in objects
             gameManager = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("GameManager"));
             player = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("PlayerPrefab"));
             roundManager = gameManager.GetComponent<RoundManager>();
+            roundManager.player = player;
+            roundManager.playerController = player.GetComponent<PlayerController>();
         }
 
         [Test]
@@ -52,8 +57,8 @@ namespace Tests {
         [Test]
         public void Player_is_locked_after_round_ends() {
             var playerStatus = player.GetComponent<PlayerController>().IsLocked;
-            Assert.IsTrue(playerStatus);
+            roundManager.EndRound();
+            Assert.IsFalse(roundManager.roundStarted);
         }
-
     }
 }
