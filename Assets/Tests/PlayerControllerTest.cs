@@ -48,7 +48,7 @@ namespace Tests {
         }
 
         [Test]
-        public void Health_is_resduced_when_player_receives_damage() {
+        public void Health_is_reduced_when_player_receives_damage() {
             playerController.ApplyDamage(15);
             Assert.AreEqual(playerController.GetHealthValue(), 485);
         }

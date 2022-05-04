@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     public void ApplyDamage(int damageToApply) {
-        
+        healthController.DecreaseHealth(damageToApply);
     }
 
     public int GetHealthValue() {
