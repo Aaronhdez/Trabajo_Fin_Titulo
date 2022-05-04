@@ -49,5 +49,11 @@ namespace Tests {
             Assert.IsFalse(playerStatus);
         }
 
+        [Test]
+        public void Player_is_locked_after_round_ends() {
+            var playerStatus = player.GetComponent<PlayerController>().IsLocked;
+            Assert.IsTrue(playerStatus);
+        }
+
     }
 }
