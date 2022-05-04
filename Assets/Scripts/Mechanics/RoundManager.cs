@@ -13,7 +13,7 @@ public class RoundManager : MonoBehaviour {
     [SerializeField] public GameObject playerHUD;
     [SerializeField] public GameObject roundText;
     [SerializeField] public GameObject enemiesHUD;
-    [SerializeField] private TextMeshProUGUI enemiesText;
+
     [Header("Round Parameters")]
     [SerializeField] private bool roundStarted = false;
     [SerializeField] private bool roundFinished = false;
@@ -22,7 +22,10 @@ public class RoundManager : MonoBehaviour {
 
     [Header("Enemies Prefabs")]
     [SerializeField] private List<GameObject> enemies;
-    private TextMeshProUGUI counterTextValue;
+
+    [Header("Text Fields")]
+    [SerializeField] private TextMeshProUGUI enemiesText;
+    [SerializeField] private TextMeshProUGUI counterTextValue;
 
     public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
     public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
@@ -73,7 +76,7 @@ public class RoundManager : MonoBehaviour {
             roundText.SetActive(true);
             roundFinished = false;
             counterTextValue.SetText("Congratulations! you survived, for now...");
-            Invoke(nameof(StartNewRoundCounter), 2);
+            Invoke(nameof(StartNewRoundCounter), 5);
         }
     }
 
@@ -103,7 +106,7 @@ public class RoundManager : MonoBehaviour {
     private void UpdateCounterText() {
         var value = int.Parse(counterTextValue.text) - 1;
         if (value > 0) {
-            counterTextValue.SetText(value + "");
+            counterTextValue.SetText(value.ToString());
             Invoke(nameof(CountDown), 1);
         } else if (value == 0) {
             counterTextValue.SetText("Survive the horde!");
@@ -116,7 +119,21 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void StartNewRoundCounter() {
-        counterTextValue.SetText("5");
+        if(counterTextValue.text.Equals("Congratulations! you survived, for now...")) {
+            counterTextValue.SetText("5");
+            Invoke(nameof(StartNewRoundCounter), 1);
+        } else {
+            var value = int.Parse(counterTextValue.text) - 1;
+            if (value > 0) {
+                counterTextValue.SetText(value.ToString());
+                Invoke(nameof(StartNewRoundCounter), 1);
+                return;
+            } else {
+                ResetCounterText();
+                EndRound();
+            }
+        }
+        
     }
 
     public void EndRound() {
