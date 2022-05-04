@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private List<GameObject> weaponsAvailable;
     [SerializeField] private WeaponController currentWeaponController;
-    [SerializeField] private HealthController healthController;
+    [SerializeField] public HealthController healthController;
 
     [Header("Physical Properties")]
     public float mass;
@@ -116,6 +116,14 @@ public class PlayerController : MonoBehaviour {
         healthController.RestorePlayerHealth();
     }
     
+    public void ApplyDamage(int damageToApply) {
+        healthController.DecreaseHealth(damageToApply);
+    }
+
+    public int GetHealthValue() {
+        return healthController.currentHealth;
+    }
+
     public void Lock() {
         IsLocked = true;
     }
@@ -123,5 +131,4 @@ public class PlayerController : MonoBehaviour {
     public void Unlock() {
         IsLocked = false;
     }
-
 }

@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f3368ddbf564e409fb618ad44cc5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundManager: {fileID: 0}
+  roundManager: {fileID: 6446314086817778951}
 --- !u!114 &6446314086817778951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,12 +89,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 6446314087770467955}
-  player: {fileID: 0}
+  player: {fileID: 2173718520094191835, guid: 8624e4bf16c8e3841b7b9e3bcdd2acc9, type: 3}
+  playerController: {fileID: 0}
   playerHUD: {fileID: 0}
   roundText: {fileID: 0}
   enemiesText: {fileID: 0}
   roundStarted: 0
+  roundFinished: 0
   enemiesAlive: 0
+  roundsPlayed: 0
   enemies:
   - {fileID: 2774093424538293546, guid: 4377e57600db6034d996fe61f3c031dc, type: 3}
 --- !u!1 &6446314087100849967

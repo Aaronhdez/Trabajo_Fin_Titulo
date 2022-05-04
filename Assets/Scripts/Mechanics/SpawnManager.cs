@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour {
 
     public void RespawnEnemies(List<GameObject> enemies) {
         var availablePoints = GetAvailablePoints();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 1; i++) {
             var randomPick = Random.Range(0, availablePoints.Count);
             var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
             var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;

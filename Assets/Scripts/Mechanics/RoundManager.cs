@@ -6,79 +6,139 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour {
 
     [Header("Round Elements")]
-    [SerializeField] private GameObject spawnManager;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject playerHUD;
-    [SerializeField] private GameObject roundText;
-    [SerializeField] private TextMeshProUGUI enemiesText;
+    [SerializeField] public GameObject spawnManager;
+    [SerializeField] public GameObject player;
+    [SerializeField] public PlayerController playerController;
+
+    [SerializeField] public GameObject playerHUD;
+    [SerializeField] public GameObject roundText;
+    [SerializeField] public GameObject enemiesHUD;
 
     [Header("Round Parameters")]
-    [SerializeField] public bool roundStarted = false;
+    [SerializeField] private bool roundStarted = false;
+    [SerializeField] private bool roundFinished = false;
     [SerializeField] public int enemiesAlive = 0;
+    [SerializeField] public int roundsPlayed = 0; 
 
     [Header("Enemies Prefabs")]
     [SerializeField] private List<GameObject> enemies;
 
-    public bool RoundStarted { get => roundStarted; set => roundStarted = value; }
+    [Header("Text Fields")]
+    [SerializeField] private TextMeshProUGUI enemiesText;
+    [SerializeField] private TextMeshProUGUI counterTextValue;
+
+    public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
     public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
+    public bool RoundFinished { get => roundFinished; set => roundFinished = value; }
 
     void Start() {
+        enemiesText = GameObject.Find("EnemiesText").GetComponent<TextMeshProUGUI>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        counterTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
+        RespawnPlayer();
+        ResetRoundComponents();
+        ResetCounterText();
+    }
+
+    private void RespawnPlayer() {
         spawnManager.GetComponent<SpawnManager>().RespawnPlayer(player);
-        roundStarted = false;
     }
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.F4)) {
-            roundText.GetComponentInChildren<TextMeshProUGUI>().SetText("3");
-            Invoke(nameof(StartCountDown), 1);
+    private void ResetRoundComponents() {
+        playerHUD.SetActive(false);
+        roundText.SetActive(true);
+        playerController.Lock();
+    }
+
+    private void ResetCounterText() {
+        counterTextValue.SetText("Press F4 to play");
+    }
+
+    void LateUpdate() {
+        if (Input.GetKeyDown(KeyCode.F4) && !PlayingRound) {
+            counterTextValue.SetText("3");
+            Invoke(nameof(CountDown), 1);
         }
-        ProcessRoundActions();
-    }
-
-    private void ProcessRoundActions() {
-        if (!RoundStarted) {
-            player.GetComponent<PlayerController>().Lock();
-            playerHUD.SetActive(false);
-        } else {
-            ActivateRoundComponents();
+        
+        if (PlayingRound) {
+            enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
             UpdateEnemiesHUD();
         }
+
+        if (enemiesAlive == 0 && PlayingRound) {
+            PlayingRound = false;
+            roundFinished = true;
+        }
+
+        if (roundFinished) {
+            playerHUD.SetActive(false);
+            roundText.SetActive(true);
+            roundFinished = false;
+            counterTextValue.SetText("Congratulations! you survived, for now...");
+            Invoke(nameof(StartNewRoundCounter), 5);
+        }
+    }
+
+    private void CountDown() {
+        if (counterTextValue.text.Equals("Survive the horde!")) {
+            StartRound();
+            enemiesText.SetText(enemiesAlive.ToString());
+            return;
+        } else {
+            UpdateCounterText();
+        }
+    }
+
+    public void StartRound() {
+        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        ActivateRoundComponents();
     }
 
     private void ActivateRoundComponents() {
+        playerController.Unlock();
         playerHUD.SetActive(true);
         roundText.SetActive(false);
-        player.GetComponent<PlayerController>().Unlock();
+        PlayingRound = true;
+    }
+
+    private void UpdateCounterText() {
+        var value = int.Parse(counterTextValue.text) - 1;
+        if (value > 0) {
+            counterTextValue.SetText(value.ToString());
+            Invoke(nameof(CountDown), 1);
+        } else if (value == 0) {
+            counterTextValue.SetText("Survive the horde!");
+            Invoke(nameof(CountDown), 1);
+        }
     }
 
     private void UpdateEnemiesHUD() {
         enemiesText.SetText(enemiesAlive.ToString());
     }
 
-    private void StartCountDown() {
-        TextMeshProUGUI roundTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
-        if (roundTextValue.text.Equals("Survive the horde!")) {
-            StartRound();
-            return;
+    private void StartNewRoundCounter() {
+        if(counterTextValue.text.Equals("Congratulations! you survived, for now...")) {
+            counterTextValue.SetText("5");
+            Invoke(nameof(StartNewRoundCounter), 1);
         } else {
-            UpdateRoundText(roundTextValue);
+            var value = int.Parse(counterTextValue.text) - 1;
+            if (value > 0) {
+                counterTextValue.SetText(value.ToString());
+                Invoke(nameof(StartNewRoundCounter), 1);
+                return;
+            } else {
+                ResetCounterText();
+                EndRound();
+            }
         }
     }
 
-    private void UpdateRoundText(TextMeshProUGUI roundTextValue) {
-        var value = int.Parse(roundTextValue.text) - 1;
-        if (value > 0) {
-            roundTextValue.SetText(value + "");
-            Invoke(nameof(StartCountDown), 1);
-        } else if (value == 0) {
-            roundTextValue.SetText("Survive the horde!");
-            Invoke(nameof(StartCountDown), 1);
-        }
-    }
-
-    public void StartRound() {
-        RoundStarted = true;
-        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
-        enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+    public void EndRound() {
+        ResetRoundComponents();
+        RespawnPlayer();
+        roundsPlayed++;
+        PlayingRound = false;
     }
 }

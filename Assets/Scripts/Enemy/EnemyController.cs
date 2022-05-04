@@ -26,7 +26,10 @@ public class EnemyController : MonoBehaviour
 
     public void ApplyDamage(int damagedReceived) {
         health -= (health - damagedReceived > 0) ? damagedReceived : health;
-        Debug.Log("Damaged: health = "+health);
+        CheckHealthStatus();
+    }
+
+    private void CheckHealthStatus() {
         if (health == 0) {
             Instantiate(deadEffect, transform.position, Quaternion.LookRotation(Vector3.up));
             isDead = true;

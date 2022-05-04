@@ -25,14 +25,6 @@ public class HealthController : MonoBehaviour {
     }
 
     void Update() {
-        if (!IsDead) { 
-            if (Input.GetKeyDown(KeyCode.H)) {
-                DecreaseHealth();
-            }
-            if (Input.GetKeyDown(KeyCode.J)) {
-                IncreaseHealth();
-            }
-        }
         UpdateHealthHud();
         CheckDeadStatus();
     }
@@ -41,19 +33,11 @@ public class HealthController : MonoBehaviour {
         IsDead = (currentHealth == 0);
     }
 
-    public void DecreaseHealth() {
+    public void DecreaseHealth(int damageToApply) {
         if (currentHealth > 0) {
-            currentHealth -= (currentHealth >= healthChange) ?
-                healthChange :
+            currentHealth -= (currentHealth >= damageToApply) ?
+                damageToApply :
                 currentHealth;
-        }
-    }
-
-    public void IncreaseHealth() {
-        if (currentHealth < maxHealth) {
-            currentHealth += (currentHealth <= maxHealth - healthChange) ?
-                healthChange :
-                (maxHealth - currentHealth);
         }
     }
 
@@ -86,6 +70,5 @@ public class HealthController : MonoBehaviour {
 
     internal void RestorePlayerHealth() {
         currentHealth = maxHealth;
-        UpdateHealthHud();
     }
 }
