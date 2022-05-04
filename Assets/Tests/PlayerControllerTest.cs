@@ -46,5 +46,11 @@ namespace Tests {
             playerController.RestoreHealth();
             Assert.AreEqual(playerController.GetHealthValue(), 500);
         }
+
+        [Test]
+        public void Health_is_resduced_when_player_receives_damage() {
+            playerController.ApplyDamage(15);
+            Assert.AreEqual(playerController.GetHealthValue(), 485);
+        }
     }
 }

@@ -115,6 +115,10 @@ public class PlayerController : MonoBehaviour {
     public void RestoreHealth() {
         healthController.RestorePlayerHealth();
     }
+    
+    public void ApplyDamage(int damageToApply) {
+        
+    }
 
     public int GetHealthValue() {
         return healthController.currentHealth;
