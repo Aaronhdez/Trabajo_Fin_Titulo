@@ -26,6 +26,7 @@ namespace Tests {
             var amountInMagazine = weaponController.amountInMagazine;
 
             weaponController.Fire();
+            weaponController.Reload();
             Assert.AreEqual(amountInMagazine, weaponController.amountInMagazine);
         }
     }
