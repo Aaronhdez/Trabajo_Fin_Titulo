@@ -6,9 +6,9 @@ using UnityEngine;
 public class ConsumableController : MonoBehaviour
 {
 
-    [SerializeField] protected Animator animator;
-    [SerializeField] protected bool playerInArea = false;
-    [SerializeField] protected GameObject player;
+    [SerializeField] public Animator animator;
+    [SerializeField] public bool playerInArea = false;
+    [SerializeField] public GameObject player;
 
     private void Start() {
         player = GameObject.Find("PlayerPrefab");
