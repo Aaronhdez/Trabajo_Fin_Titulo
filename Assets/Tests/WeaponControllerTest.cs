@@ -54,5 +54,16 @@ namespace Tests {
             weaponController.Reload();
             Assert.AreEqual(weaponController.amountOfBullets, 0);
         }
+
+        [Test]
+        public void Weapon_total_ammo_quantity_is_restored_to_max_on_restoration() {
+            GameObject weapon = Instantiate(
+                Resources.Load<GameObject>("Prefabs/Weapons/Rifle"));
+            var weaponController = weapon.GetComponent<WeaponController>();
+            weaponController.amountOfBullets = 30;
+            weaponController.maxAmountOfBullets = 500;
+
+            Assert.AreEqual(weaponController.amountOfBullets, 500);
+        }
     }
 }

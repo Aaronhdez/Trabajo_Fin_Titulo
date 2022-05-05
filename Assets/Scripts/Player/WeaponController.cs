@@ -141,10 +141,12 @@ public class WeaponController : MonoBehaviour {
 
     public void ReplenishAmmo() {
         reloadSound.Play();
+        RestoreAmmoValues();
+    }
+
+    public void RestoreAmmoValues() {
         amountOfBullets = maxAmountOfBullets;
         amountInMagazine = maxAmountInMagazine;
         mustReplenish = false;
-        UpdateGunHUD();
     }
-
 }
