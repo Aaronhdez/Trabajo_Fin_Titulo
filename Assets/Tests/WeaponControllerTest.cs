@@ -29,5 +29,16 @@ namespace Tests {
             weaponController.Reload();
             Assert.AreEqual(amountInMagazine, weaponController.amountInMagazine);
         }
+
+        [Test]
+        public void Weapon_total_ammo_quantity_is_reduced_when_weapon_is_reloaded() {
+            GameObject weapon = Instantiate(
+                Resources.Load<GameObject>("Prefabs/Weapons/Rifle"));
+            var weaponController = weapon.GetComponent<WeaponController>();
+            var amountInMagazine = weaponController.amountOfBullets;
+
+            weaponController.Fire();
+            Assert.AreNotEqual(amountInMagazine, weaponController.amountOfBullets);
+        }
     }
 }
