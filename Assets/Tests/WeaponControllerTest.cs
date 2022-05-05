@@ -63,6 +63,7 @@ namespace Tests {
             weaponController.amountOfBullets = 30;
             weaponController.maxAmountOfBullets = 500;
 
+            weaponController.RestoreAmmoValues();
             Assert.AreEqual(weaponController.amountOfBullets, 500);
         }
     }
