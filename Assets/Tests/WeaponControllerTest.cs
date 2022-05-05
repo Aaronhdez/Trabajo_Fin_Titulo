@@ -51,6 +51,7 @@ namespace Tests {
             weaponController.amountInMagazine = 10;
             weaponController.maxAmountInMagazine = 50;
 
+            weaponController.Reload();
             Assert.AreEqual(weaponController.amountOfBullets, 0);
         }
     }
