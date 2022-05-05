@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tests {
-    public class WeaponControllerTest : MonoBehaviour {
+    public class WeaponControllerTest {
         private GameObject weapon;
         private WeaponController weaponController;
         private int amountInMagazine;
 
         [SetUp]
         public void SetUp() {
-            weapon = Instantiate(
+            weapon = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("Prefabs/Weapons/Rifle"));
             weaponController = weapon.GetComponent<WeaponController>();
         }
