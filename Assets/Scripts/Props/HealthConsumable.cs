@@ -6,7 +6,7 @@ public class HealthConsumable : ConsumableController {
 
     protected string aspectToRestore = PlayerAspects.HEALTH_KEY;
 
-    protected override void ApplyEffectOver() {
-        player.GetComponent<PlayerController>().RestoreAspect(aspectToRestore);
+    public override void ApplyEffectOver() {
+        player.GetComponent<PlayerController>().RestoreHealth();
     }
 }

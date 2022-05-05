@@ -6,7 +6,7 @@ public class AmmoConsumable : ConsumableController {
     
     protected string aspectToRestore = PlayerAspects.AMMO_KEY;
 
-    protected override void ApplyEffectOver() {
+    public override void ApplyEffectOver() {
         player.GetComponent<PlayerController>().RestoreAspect(aspectToRestore);
     }
 }
