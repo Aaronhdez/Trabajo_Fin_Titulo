@@ -14,7 +14,7 @@ namespace Tests {
             var weaponController = weapon.GetComponent<WeaponController>();
             var amountInMagazine = weaponController.amountInMagazine;
 
-
+            weaponController.Fire();
             Assert.AreNotEqual(amountInMagazine, weaponController.amountInMagazine);
         }
     }
