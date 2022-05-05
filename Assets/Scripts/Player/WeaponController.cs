@@ -60,6 +60,8 @@ public class WeaponController : MonoBehaviour {
     public void Shoot() {
         if (amountInMagazine > 0) {
             Fire();
+            RaycastShot();
+            shotSound.Play();
             if (amountInMagazine == 0) {
                 mustReload = true;
                 if (amountOfBullets == 0) {
@@ -69,10 +71,8 @@ public class WeaponController : MonoBehaviour {
         }
     }
 
-    private void Fire() {
+    public void Fire() {
         if(Time.time > fireRate + lastShot) {
-            shotSound.Play();
-            RaycastShot();
             amountInMagazine -= 1;
             lastShot = Time.time;
         }
@@ -129,12 +129,12 @@ public class WeaponController : MonoBehaviour {
         }
     }
 
-    internal void SetInactive() {
+    public void SetInactive() {
         hudElementAssociated.SetActive(false);
         this.gameObject.SetActive(false);
     }
 
-    internal void SetActive() {
+    public void SetActive() {
         hudElementAssociated.SetActive(true);
         this.gameObject.SetActive(true);
     }
