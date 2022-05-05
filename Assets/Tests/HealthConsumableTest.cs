@@ -10,13 +10,17 @@ namespace Tests {
             var medKit = MonoBehaviour.Instantiate(
                 Resources.Load<GameObject>("Prefabs/Supply/Consumables/MedKitProp"));
             var player = MonoBehaviour.Instantiate(
-                Resources.Load<GameObject>("Prefabs/Character/PlayerPrefab"));
+                Resources.Load<GameObject>("Prefabs/Characters/PlayerPrefab"));
+            var healthController = MonoBehaviour.Instantiate(
+                Resources.Load<GameObject>("Prefabs/Characters/PlayerAssets/HealthController"));
             var consumableController = medKit.GetComponent<HealthConsumable>();
-            var playerController = medKit.GetComponent<PlayerController>();
+            var playerController = player.GetComponent<PlayerController>();
+            consumableController.player = player;
+            playerController.healthController = healthController.GetComponent<HealthController>();
             playerController.healthController.maxHealth = 100;
             playerController.healthController.currentHealth = 50;
-            consumableController.player = player;
 
+            consumableController.ApplyEffectOver();
 
             var newHealth = playerController.healthController.currentHealth;
             Assert.AreEqual(playerController.healthController.currentHealth, newHealth);

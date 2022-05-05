@@ -36,5 +36,5 @@ public class ConsumableController : MonoBehaviour
         }
     }
 
-    protected virtual void ApplyEffectOver() { }
+    public virtual void ApplyEffectOver() { }
 }

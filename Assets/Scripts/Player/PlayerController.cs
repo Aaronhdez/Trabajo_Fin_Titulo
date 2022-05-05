@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CharacterController playerCC;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Dictionary<string, System.Action> actions;
+    [SerializeField] public Dictionary<string, System.Action> actions;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Animator playerAnimator;
 
