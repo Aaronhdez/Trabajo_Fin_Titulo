@@ -64,7 +64,19 @@ namespace Tests {
             weaponController.maxAmountOfBullets = 500;
 
             weaponController.RestoreAmmoValues();
-            Assert.AreEqual(weaponController.amountOfBullets, 500);
+            Assert.AreEqual(weaponController.amountOfBullets, weaponController.maxAmountOfBullets);
+        }
+
+        [Test]
+        public void Weapon_total_ammo_quantity_in_magazine_is_restored_to_max_on_restoration() {
+            GameObject weapon = Instantiate(
+                Resources.Load<GameObject>("Prefabs/Weapons/Rifle"));
+            var weaponController = weapon.GetComponent<WeaponController>();
+            weaponController.amountInMagazine = 25;
+            weaponController.maxAmountInMagazine = 30;
+
+            weaponController.RestoreAmmoValues();
+            Assert.AreEqual(weaponController.amountInMagazine, weaponController.maxAmountInMagazine);
         }
     }
 }
