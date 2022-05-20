@@ -5,18 +5,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BT_DummyBT_V1_Test : MonoBehaviour {
-    private DummyBT_V1 dummyBT;
+namespace Tests.BehaviourTrees.V1 {
+    public class BT_DummyBT_V1_Test : MonoBehaviour {
+        private DummyBT_V1 dummyBT;
+        private Mock<CheckTargetIsInAttackRange> checkAttackRange;
+        private Mock<Attack> attack;
+        private Mock<CheckTargetIsInFOVRange> checkFOVRange;
+        private Mock<Chase> chase;
+        private Mock<WanderAround> wanderAround;
 
-    [Test]
-    public void Agent_should_attack_if_conditions_are_met() {
-        var checkAttackRange = new Mock<CheckTargetIsInAttackRange>();
-        var attack = new Mock<Attack>();
-        var checkFOVRange = new Mock<CheckTargetIsInFOVRange>();
-        var chase = new Mock<Chase>();
-        var wanderAround = new Mock<WanderAround>();
+        [SetUp]
+        public void SetUp() {
+            checkAttackRange = new Mock<CheckTargetIsInAttackRange>();
+            attack = new Mock<Attack>();
+            checkFOVRange = new Mock<CheckTargetIsInFOVRange>();
+            chase = new Mock<Chase>();
+            wanderAround = new Mock<WanderAround>();
 
-        INode root = new Selector(new List<Node>() {
+            INode root = new Selector(new List<Node>() {
                 new Sequence(new List<Node>() {
                     checkAttackRange.Object,
                     attack.Object
@@ -28,82 +34,46 @@ public class BT_DummyBT_V1_Test : MonoBehaviour {
                 wanderAround.Object
             });
 
-        dummyBT = new DummyBT_V1(root);
+            dummyBT = new DummyBT_V1(root);
+        }
 
-        checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
-        attack.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+        [Test]
+        public void Agent_should_attack_if_conditions_are_met() {
+            checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            attack.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
 
-        dummyBT.Start();
-        dummyBT.Update();
+            dummyBT.Start();
+            dummyBT.Update();
 
-        checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        attack.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        checkFOVRange.Verify(c => c.Evaluate(), Times.Never());
-    }
+            checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            attack.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkFOVRange.Verify(c => c.Evaluate(), Times.Never());
+        }
 
-    [Test]
-    public void Agent_should_chase_if_attacking_is_not_possible() {
-        var checkAttackRange = new Mock<CheckTargetIsInAttackRange>();
-        var attack = new Mock<Attack>();
-        var checkFOVRange = new Mock<CheckTargetIsInFOVRange>();
-        var chase = new Mock<Chase>();
-        var wanderAround = new Mock<WanderAround>();
+        [Test]
+        public void Agent_should_chase_if_attacking_is_not_possible() {
+            checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            chase.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
 
-        INode root = new Selector(new List<Node>() {
-                new Sequence(new List<Node>() {
-                    checkAttackRange.Object,
-                    attack.Object
-                }),
-                new Sequence(new List<Node>() {
-                    checkFOVRange.Object,
-                    chase.Object
-                }),
-                wanderAround.Object
-            });
+            dummyBT.Start();
+            dummyBT.Update();
 
-        dummyBT = new DummyBT_V1(root);
+            wanderAround.Verify(c => c.Evaluate(), Times.Never());
+            checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+        }
 
-        checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-        checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
-        chase.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+        [Test]
+        public void Agent_should_wander_if_the_rest_of_possibilites_are_not_possible() {
+            checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
 
-        dummyBT.Start();
-        dummyBT.Update();
+            dummyBT.Start();
+            dummyBT.Update();
 
-        wanderAround.Verify(c => c.Evaluate(), Times.Never());
-        checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-    }
-
-    [Test]
-    public void Agent_should_wander_if_the_rest_of_possibilites_are_not_possible() {
-        var checkAttackRange = new Mock<CheckTargetIsInAttackRange>();
-        var attack = new Mock<Attack>();
-        var checkFOVRange = new Mock<CheckTargetIsInFOVRange>();
-        var chase = new Mock<Chase>();
-        var wanderAround = new Mock<WanderAround>();
-
-        INode root = new Selector(new List<Node>() {
-                new Sequence(new List<Node>() {
-                    checkAttackRange.Object,
-                    attack.Object
-                }),
-                new Sequence(new List<Node>() {
-                    checkFOVRange.Object,
-                    chase.Object
-                }),
-                wanderAround.Object
-            });
-
-        dummyBT = new DummyBT_V1(root);
-
-        checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-        checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-
-        dummyBT.Start();
-        dummyBT.Update();
-
-        checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        checkFOVRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        wanderAround.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkFOVRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            wanderAround.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+        }
     }
 }
