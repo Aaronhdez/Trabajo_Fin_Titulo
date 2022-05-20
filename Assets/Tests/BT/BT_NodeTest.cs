@@ -22,5 +22,13 @@ namespace Tests {
 
             Assert.IsTrue(node.Evaluate()==NodeState.FAILURE);
         }
+        
+        [Test]
+        public void Data_is_properly_set_up() {
+            Node node = new Node();
+            node.SetData("dummy", "dummy");
+
+            Assert.IsNotNull(node.GetData("dummy"));
+        }
     }
 }
