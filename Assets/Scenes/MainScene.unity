@@ -35261,6 +35261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8f7380da49034cd488ddff94b1ac35d1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7380da49034cd488ddff94b1ac35d1, type: 3}
 --- !u!4 &1654970670 stripped
@@ -42109,6 +42113,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2013583699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013583693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2353f67b095018342831c3f85c7136d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderSpeed: 0
+  chaseSpeed: 0
+  health: 0
+  isDead: 0
+  gameManager: {fileID: 0}
+  soundController: {fileID: 0}
+  fovRange: 0
+  attackRange: 0
+  deadEffect: {fileID: 0}
 --- !u!4 &2019149719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7371939441663329640, guid: 4c774ccb36270434caf72b6a59424109, type: 3}

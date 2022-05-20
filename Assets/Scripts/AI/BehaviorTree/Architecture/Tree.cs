@@ -6,12 +6,12 @@ using UnityEngine;
 namespace BehaviorTree {
     public abstract class Tree : MonoBehaviour {
         private INode _rootNode = null;
-        protected void Start(){
+        public void Start(){
             _rootNode = SetupTree();
         }
 
         //Función de evaluación desde el nodo padre
-        protected void Update() {
+        public void Update() {
             if (_rootNode != null) {
                 _rootNode.Evaluate();
             }
