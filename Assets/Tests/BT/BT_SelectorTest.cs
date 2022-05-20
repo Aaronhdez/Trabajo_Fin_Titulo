@@ -40,5 +40,23 @@ namespace Tests {
             Assert.AreEqual(NodeState.SUCCESS, selector.Evaluate());
         }
 
+
+        [Test]
+        public void Selector_returns_running_on_one_child_running() {
+            Mock<Node> child1 = new Mock<Node>();
+            Mock<Node> child2 = new Mock<Node>();
+
+            List<Node> children = new List<Node>();
+            children.Add(child1.Object);
+            children.Add(child2.Object);
+
+            Selector selector = new Selector(children);
+
+            child1.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            child1.Setup(c => c.Evaluate()).Returns(NodeState.RUNNING);
+
+            Assert.AreEqual(NodeState.RUNNING, selector.Evaluate());
+        }
+
     }
 }
