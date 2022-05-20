@@ -15,5 +15,12 @@ namespace Tests {
 
             Assert.IsTrue(parent.children.ToArray().Length != 0);
         }
+
+        [Test]
+        public void Default_state_returned_is_failure() {
+            Node node = new Node();
+
+            Assert.IsTrue(node.Evaluate()==NodeState.FAILURE);
+        }
     }
 }

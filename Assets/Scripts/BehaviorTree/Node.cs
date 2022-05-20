@@ -27,6 +27,7 @@ namespace BehaviorTree {
             node.parent = this;
             children.Add(node);
         }
+        public virtual NodeState Evaluate() => NodeState.FAILURE;
 
     }
 
