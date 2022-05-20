@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Tests.BehaviourTrees.V1 {
     public class BT_DummyBT_V1_Test : MonoBehaviour {
-        private DummyBT_V1 dummyBT;
+        private ITree dummyBT;
         private Mock<CheckTargetIsInAttackRange> checkAttackRange;
         private Mock<Attack> attack;
         private Mock<CheckTargetIsInFOVRange> checkFOVRange;
@@ -42,8 +42,8 @@ namespace Tests.BehaviourTrees.V1 {
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             attack.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
 
-            dummyBT.Start();
-            dummyBT.Update();
+            dummyBT.InitTree();
+            dummyBT.UpdateNodes();
 
             checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             attack.Verify(c => c.Evaluate(), Times.AtLeastOnce());
@@ -56,8 +56,8 @@ namespace Tests.BehaviourTrees.V1 {
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             chase.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
 
-            dummyBT.Start();
-            dummyBT.Update();
+            dummyBT.InitTree();
+            dummyBT.UpdateNodes();
 
             wanderAround.Verify(c => c.Evaluate(), Times.Never());
             checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
@@ -68,8 +68,8 @@ namespace Tests.BehaviourTrees.V1 {
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
 
-            dummyBT.Start();
-            dummyBT.Update();
+            dummyBT.InitTree();
+            dummyBT.UpdateNodes();
 
             checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             checkFOVRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());

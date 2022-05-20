@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviorTree {
-    public abstract class Tree : MonoBehaviour {
+    public abstract class Tree : ITree {
         private INode _rootNode = null;
-        public void Start(){
+
+        public void InitTree() {
             _rootNode = SetupTree();
         }
-
-        //Función de evaluación desde el nodo padre
-        public void Update() {
+        public void UpdateNodes() {
             if (_rootNode != null) {
                 _rootNode.Evaluate();
             }
