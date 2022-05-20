@@ -40,6 +40,16 @@ namespace BehaviorTree {
                 return value;
             }
 
+            //Si no lo obtenemos, exploramos hacia arriba
+            Node node = parent;
+            while (node != null) {
+                value = node.GetData(key);
+                if (value != null) {
+                    return value;
+                }
+                node = node.parent;
+            }
+
             //Si no está, retornamos null
             return null;
         }
