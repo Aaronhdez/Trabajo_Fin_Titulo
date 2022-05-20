@@ -62,25 +62,5 @@ namespace Tests {
             Assert.AreEqual(result, selector.Evaluate());
         }
 
-
-        [Test]
-        public void Selector_returns_success_with_three_nodes() {
-            Mock<Node> child1 = new Mock<Node>();
-            Mock<Node> child2 = new Mock<Node>();
-            Mock<Node> child3 = new Mock<Node>();
-
-            List<Node> children = new List<Node>();
-            children.Add(child1.Object);
-            children.Add(child2.Object);
-
-            Selector selector = new Selector(children);
-
-            child1.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-            child1.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
-            child1.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-
-            Assert.AreEqual(NodeState.RUNNING, selector.Evaluate());
-        }
-
     }
 }
