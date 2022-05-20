@@ -11,6 +11,11 @@ namespace BehaviorTree {
             bool anyChildIsRunning = false;
             foreach (Node child in children) {
                 switch (child.Evaluate()) {
+                    case NodeState.FAILURE:
+                        state = NodeState.FAILURE;
+                        return state;
+                    case NodeState.SUCCESS:
+                        continue;
                     default:
                         state = NodeState.SUCCESS;
                         return state;
