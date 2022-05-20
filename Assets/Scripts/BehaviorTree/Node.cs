@@ -30,10 +30,15 @@ namespace BehaviorTree {
         public virtual NodeState Evaluate() => NodeState.FAILURE;
 
         public void SetData(string key, object value) {
-            //_dataContext.Add(key, value);
+            _dataContext.Add(key, value);
         }
 
         public object GetData(string key) {
+            //Intenamos obtener el valor en el nodo actual.
+            object value = null;
+            if (_dataContext.TryGetValue(key, out value)) {
+                return value;
+            }
 
             //Si no está, retornamos null
             return null;
