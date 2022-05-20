@@ -13,7 +13,10 @@ namespace BehaviorTree {
         [SerializeField] private ThirdPersonCharacter character;
         [SerializeField] private int resetDestinationTime;
         private float currentTime = 0;
-        
+
+        public WanderAround() {
+        }
+
         public WanderAround(GameObject agent) {
             this.agent = agent;
             target = GameObject.FindGameObjectWithTag("Player");

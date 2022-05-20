@@ -18,6 +18,9 @@ namespace BehaviorTree {
         private float _attackCounter = 0f;
         private float _attackTime = 1f;
 
+        public Attack() {
+        }
+
         public Attack(GameObject agent) {
             this.agent = agent;
             animator = agent.GetComponent<Animator>();

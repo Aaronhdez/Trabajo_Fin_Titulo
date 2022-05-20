@@ -7,6 +7,9 @@ namespace BehaviorTree {
         private readonly GameObject agent;
         private readonly float _attackRange;
 
+        public CheckTargetIsInAttackRange() {
+        }
+
         public CheckTargetIsInAttackRange(GameObject agent) {
             this.agent = agent;
             _attackRange = agent.GetComponent<EnemyController_BT>().attackRange;

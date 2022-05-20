@@ -14,6 +14,9 @@ namespace BehaviorTree {
         [SerializeField] private float runSpeed = 7f;
         [SerializeField] private ThirdPersonCharacter character;
 
+        public Chase() {
+        }
+
         public Chase(GameObject agent) {
             this.agent = agent;
             animator = agent.GetComponent<Animator>();

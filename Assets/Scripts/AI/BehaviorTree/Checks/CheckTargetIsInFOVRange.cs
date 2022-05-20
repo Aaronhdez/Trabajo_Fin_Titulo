@@ -8,6 +8,9 @@ namespace BehaviorTree {
         private readonly GameObject agent;
         private readonly float _fovRange;
 
+        public CheckTargetIsInFOVRange() {
+        }
+
         public CheckTargetIsInFOVRange(GameObject agent) {
             this.agent = agent;
             _fovRange = agent.GetComponent<EnemyController_BT>().fovRange;
