@@ -43,5 +43,26 @@ namespace Tests {
 
             Assert.AreEqual(result, selector.Evaluate());
         }
+
+        [TestCase(NodeState.FAILURE, NodeState.SUCCESS, NodeState.SUCCESS, NodeState.FAILURE)]
+        [TestCase(NodeState.SUCCESS, NodeState.FAILURE, NodeState.SUCCESS, NodeState.FAILURE)]
+        [TestCase(NodeState.SUCCESS, NodeState.SUCCESS, NodeState.FAILURE, NodeState.FAILURE)]
+        [TestCase(NodeState.RUNNING, NodeState.RUNNING, NodeState.RUNNING, NodeState.RUNNING)]
+        [TestCase(NodeState.SUCCESS, NodeState.RUNNING, NodeState.RUNNING, NodeState.RUNNING)]
+        [TestCase(NodeState.SUCCESS, NodeState.SUCCESS, NodeState.RUNNING, NodeState.RUNNING)]
+        [TestCase(NodeState.SUCCESS, NodeState.SUCCESS, NodeState.SUCCESS, NodeState.SUCCESS)]
+        public void Sequence_test_cases_for_three_nodes(NodeState state1, NodeState state2, NodeState state3, NodeState result) {
+            List<Node> children = new List<Node>();
+            children.Add(children3Node[0].Object);
+            children.Add(children3Node[1].Object);
+            children.Add(children3Node[2].Object);
+            Sequence selector = new Sequence(children);
+
+            children3Node[0].Setup(c => c.Evaluate()).Returns(state1);
+            children3Node[1].Setup(c => c.Evaluate()).Returns(state2);
+            children3Node[2].Setup(c => c.Evaluate()).Returns(state3);
+
+            Assert.AreEqual(result, selector.Evaluate());
+        }
     }
 }
