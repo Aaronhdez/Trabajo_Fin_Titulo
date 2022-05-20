@@ -55,6 +55,13 @@ namespace BehaviorTree {
         }
 
         public bool ClearData(string key) {
+            //Intenamos borrar el valor en el nodo actual.
+            if (_dataContext.ContainsKey(key)) {
+                _dataContext.Remove(key);
+                return true;
+            }
+
+            //Si no está, retornamos falso
             return false;
         }
     }
