@@ -10,7 +10,9 @@ namespace BehaviorTree {
         public override NodeState Evaluate() {
             foreach (Node child in children) {
                 switch (child.Evaluate()) {
-                    
+                    case NodeState.SUCCESS:
+                        state = NodeState.SUCCESS;
+                        return state;
                     default:
                         continue;
                 }
