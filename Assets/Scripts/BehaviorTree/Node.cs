@@ -61,6 +61,16 @@ namespace BehaviorTree {
                 return true;
             }
 
+            //Si no lo obtenemos, exploramos hacia arriba hasta borrarlo
+            Node node = parent;
+            while (node != null) {
+                bool cleared = node.ClearData(key);
+                if (cleared) {
+                    return true;
+                }
+                node = node.parent;
+            }
+
             //Si no está, retornamos falso
             return false;
         }
