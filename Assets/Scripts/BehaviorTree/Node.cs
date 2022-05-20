@@ -53,6 +53,10 @@ namespace BehaviorTree {
             //Si no está, retornamos null
             return null;
         }
+
+        public bool ClearData(string key) {
+            return false;
+        }
     }
 
     public enum NodeState {

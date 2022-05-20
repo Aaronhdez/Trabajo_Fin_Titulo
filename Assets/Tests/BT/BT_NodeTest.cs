@@ -41,5 +41,13 @@ namespace Tests {
 
             Assert.IsNotNull(node.GetData("dummy"));
         }
+
+        [Test]
+        public void Data_can_be_cleared_in_current_node_if_exists() {
+            Node node = new Node();
+            node.SetData("dummy", "dummy");
+
+            Assert.IsTrue(node.ClearData("dummy"));
+        }
     }
 }
