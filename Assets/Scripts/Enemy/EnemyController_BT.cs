@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static FiniteStateMachine;
 
-public class EnemyController : MonoBehaviour, IEnemyController
-{
+public class EnemyController_BT : MonoBehaviour, IEnemyController {
     [Header("Enemy Properties")]
     [SerializeField] private float wanderSpeed;
     [SerializeField] private float chaseSpeed;
     [SerializeField] public int health;
     [SerializeField] private bool isDead;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private State defaultState = State.Wander;
     [SerializeField] private SoundController soundController;
+    [SerializeField] public float fovRange;
+    [SerializeField] public float attackRange;
     public ParticleSystem deadEffect;
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
