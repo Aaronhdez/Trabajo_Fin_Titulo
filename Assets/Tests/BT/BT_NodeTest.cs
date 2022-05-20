@@ -30,5 +30,16 @@ namespace Tests {
 
             Assert.IsNotNull(node.GetData("dummy"));
         }
+
+        [Test]
+        public void Data_can_be_accessed_in_parent_node() {
+            Node node = new Node();
+            List<Node> children = new List<Node>();
+            children.Add(node);
+            Node parent = new Node(children);
+            parent.SetData("dummy", "dummy");
+
+            Assert.IsNotNull(node.GetData("dummy"));
+        }
     }
 }
