@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tests {
+namespace Tests.BehaviourTrees.Architecture {
     public class BT_NodeTest {
         private Node node;
 

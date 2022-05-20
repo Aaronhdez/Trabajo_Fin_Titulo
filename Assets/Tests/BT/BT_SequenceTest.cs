@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Tests {
+namespace Tests.BehaviourTrees.Architecture {
     public class BT_SequenceTest {
         private List<Mock<Node>> children2Node;
         private List<Mock<Node>> children3Node;
