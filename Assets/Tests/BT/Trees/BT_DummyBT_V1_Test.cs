@@ -38,7 +38,7 @@ namespace Tests.BehaviourTrees.V1 {
         }
 
         [Test]
-        public void Agent_should_attack_if_conditions_are_met() {
+        public void Dummy_should_attack_if_conditions_are_met() {
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             attack.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
 
@@ -51,7 +51,7 @@ namespace Tests.BehaviourTrees.V1 {
         }
 
         [Test]
-        public void Agent_should_chase_if_attacking_is_not_possible() {
+        public void Dummy_should_chase_if_attacking_is_not_possible() {
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             chase.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -64,7 +64,7 @@ namespace Tests.BehaviourTrees.V1 {
         }
 
         [Test]
-        public void Agent_should_wander_if_the_rest_of_possibilites_are_not_possible() {
+        public void Dummy_should_wander_if_the_rest_of_possibilites_are_not_possible() {
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
 
