@@ -56,5 +56,17 @@ namespace Tests {
 
             Assert.IsFalse(node.ClearData("dummy"));
         }
+
+        [Test]
+        public void Data_can_be_cleared_in_grandParent_node() {
+            Node node = new Node();
+            List<Node> children = new List<Node>();
+            children.Add(node);
+            Node parent = new Node(children);
+            Node grandParent = new Node(children);
+            grandParent.SetData("dummy", "dummy");
+
+            Assert.IsTrue(node.ClearData("dummy"));
+        }
     }
 }
