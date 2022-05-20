@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static FiniteStateMachine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEnemyController
 {
     [Header("Enemy Properties")]
     [SerializeField] private float wanderSpeed;

@@ -2,7 +2,7 @@ using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
-namespace Tests {
+namespace Tests.Character {
     public class PlayerControllerTest : MonoBehaviour {
         private GameObject player;
         private GameObject healthHUD;
