@@ -18,21 +18,13 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
-            //Verificar si el jugador ya ha alertado a otro barker
-            //Si no se ha alertado, retornar exito
             if (!AlertManager.GetCurrentActiveStatus()) {
                 state = NodeState.SUCCESS;
                 return state;
             }
 
-            //Ha dado la alerta retornar failure
             state = NodeState.FAILURE;
-            return state;
-            
-        }
-
-        private NodeState CheckIfPlayerIsOnAlertRange(object target) {
-            return NodeState.FAILURE;
+            return state;            
         }
     }
 }

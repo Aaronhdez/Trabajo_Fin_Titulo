@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace BehaviorTree {
     public abstract class Tree : ITree {
+
+        public GameObject _agent;
         private INode _rootNode = null;
 
         public void InitTree() {

@@ -34,7 +34,7 @@ namespace Tests.BehaviourTrees.V1 {
                 wanderAround.Object
             });
 
-            dummyBT = new DummyBT_V1(root);
+            dummyBT = new DummyBT_V1(root, null);
         }
 
         [Test]

@@ -45,7 +45,7 @@ namespace Tests.BehaviourTrees.V1 {
                 wanderAround.Object
             });
 
-            barkerBT = new BarkerBT_V1(root);
+            barkerBT = new BarkerBT_V1(root, null);
         }
 
         [Test]

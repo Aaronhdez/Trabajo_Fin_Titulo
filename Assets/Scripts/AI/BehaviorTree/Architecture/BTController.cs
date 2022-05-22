@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace BehaviorTree {
     public class BTController : MonoBehaviour {
-        public ITree tree = null;
+        [SerializeField] public string treeToLoad;
+        [SerializeField] public GameObject agent;
+        private Tree tree;
+
         public void Start() {
+            tree = new TreeGenerator(agent).ConstructTreeFor(treeToLoad);
             tree.InitTree();
         }
 
-        //Función de evaluación desde el nodo padre
         public void Update() {
             tree.UpdateNodes();
         }
