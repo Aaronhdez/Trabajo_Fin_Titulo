@@ -8,7 +8,12 @@ namespace Mechanics {
         private static AlertManager _instance;
 
         public static AlertManager GetInstance() {
-            return null;
+            if (_instance == null) {
+                _instance = new AlertManager();
+            }
+            return _instance;
         }
+
+
     }
 }
