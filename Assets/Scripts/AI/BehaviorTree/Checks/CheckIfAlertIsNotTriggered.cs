@@ -18,7 +18,7 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
-            if (!AlertManager.GetCurrentActiveStatus()) {
+            if (!AlertManager.AlertHasBeenTriggered()) {
                 state = NodeState.SUCCESS;
                 return state;
             }

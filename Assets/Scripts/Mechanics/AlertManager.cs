@@ -21,7 +21,7 @@ namespace Mechanics {
             status = newStatus;
         }
 
-        public static bool GetCurrentActiveStatus() {
+        public static bool AlertHasBeenTriggered() {
             GetInstance();
             return status;
         }

@@ -1,3 +1,4 @@
+using Mechanics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -11,6 +12,7 @@ namespace BehaviorTree {
         [SerializeField] private float rotationSpeed = 7f;
         [SerializeField] private float runSpeed = 7f;
         [SerializeField] private ThirdPersonCharacter character;
+        private AlertController alertController;
         [SerializeField] private int resetDestinationTime;
         private float currentTime = 0;
 
@@ -23,13 +25,16 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
+            alertController = target.GetComponent<AlertController>();
             navMeshAgent.updateRotation = false;
             navMeshAgent.speed = 1f;
         }
 
         public override NodeState Evaluate() {
-            
-            state = NodeState.FAILURE;
+            navMeshAgent.speed = 0f;
+            alertController.TriggerAlert();
+            animator.Play("Z_Attack");
+            state = NodeState.RUNNING;
             return state;
         }
     }

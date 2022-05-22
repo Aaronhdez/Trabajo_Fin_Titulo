@@ -15,13 +15,13 @@ namespace Tests.Mechanics {
         [Test]
         public void Alert_is_properly_triggered() {
             AlertManager.SetActiveStatusTo(true);
-            Assert.IsTrue(AlertManager.GetCurrentActiveStatus());
+            Assert.IsTrue(AlertManager.AlertHasBeenTriggered());
         }
 
         [Test]
         public void Alert_is_properly_untriggered() {
             AlertManager.SetActiveStatusTo(false);
-            Assert.IsFalse(AlertManager.GetCurrentActiveStatus());
+            Assert.IsFalse(AlertManager.AlertHasBeenTriggered());
         }
     }
 }
