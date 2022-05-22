@@ -11,5 +11,11 @@ namespace Tests.Mechanics {
         public void Instance_should_return_AlertManager_value() {
             Assert.IsNotNull(AlertManager.GetInstance());
         }
+
+        [Test]
+        public void Alert_is_properly_triggered() {
+            AlertManager.SetActiveStatusTo(true);
+            Assert.IsTrue(AlertManager.GetCurrentActiveStatus());
+        }
     }
 }
