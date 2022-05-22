@@ -18,7 +18,7 @@ namespace Mechanics {
 
         public static void SetActiveStatusTo(bool newStatus) {
             GetInstance();
-           // _status = newStatus;
+            status = newStatus;
         }
 
         public static bool GetCurrentActiveStatus() {
