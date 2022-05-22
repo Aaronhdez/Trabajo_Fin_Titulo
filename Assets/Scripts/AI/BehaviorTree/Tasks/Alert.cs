@@ -28,6 +28,7 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
+            
             state = NodeState.FAILURE;
             return state;
         }
