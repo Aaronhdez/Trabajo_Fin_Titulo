@@ -49,6 +49,7 @@ namespace BehaviorTree {
             return state;
         }
         private void AttackToPlayer() {
+            navMeshAgent.speed = 0f;
             animator.Play("Z_Attack");
             if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) < 6f) {
                 _playerController.ApplyDamage(30);
