@@ -17,5 +17,11 @@ namespace Tests.Mechanics {
             AlertManager.SetActiveStatusTo(true);
             Assert.IsTrue(AlertManager.GetCurrentActiveStatus());
         }
+
+        [Test]
+        public void Alert_is_properly_un_triggered() {
+            AlertManager.SetActiveStatusTo(false);
+            Assert.IsFalse(AlertManager.GetCurrentActiveStatus());
+        }
     }
 }
