@@ -16,5 +16,16 @@ namespace Tests.BehaviourTrees.Nodes {
 
             Assert.AreEqual(NodeState.SUCCESS, node.Evaluate());
         }
+
+
+        [Test]
+        public void Return_failure_if_agent_is_not_in_distance_range() {
+            GameObject dummyAgent = new GameObject();
+            dummyAgent.transform.position = new Vector3(3f, 2f, 0f);
+            AlertManager.SetLastAlertPosition(new Vector3(53f, 21f, 0f));
+            var node = new CheckIfAgentCanBeAlerted(dummyAgent);
+
+            Assert.AreEqual(NodeState.FAILURE, node.Evaluate());
+        }
     }
 }
