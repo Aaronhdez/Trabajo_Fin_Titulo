@@ -4,21 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviorTree {
-    public class CheckIfAgentCanBeAlerted : Node {
+    public class CheckIfAgentCanSpreadAlert : Node {
         private readonly GameObject agent;
         private readonly float _attackRange;
 
-        public CheckIfAgentCanBeAlerted() {
+        public CheckIfAgentCanSpreadAlert() {
         }
 
-        public CheckIfAgentCanBeAlerted(GameObject agent) {
+        public CheckIfAgentCanSpreadAlert(GameObject agent) {
             this.agent = agent;
         }
 
         public override NodeState Evaluate() {
             var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            Debug.Log(Vector3.Distance(agent.transform.position, lastAlertPosition));
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < 30f) {
+            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < 20f) {
                 state = NodeState.SUCCESS;
                 return state;
             }
@@ -26,5 +25,6 @@ namespace BehaviorTree {
             state = NodeState.FAILURE;
             return state;
         }
+
     }
 }

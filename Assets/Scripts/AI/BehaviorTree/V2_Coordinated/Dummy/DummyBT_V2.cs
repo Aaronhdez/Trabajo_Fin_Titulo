@@ -28,7 +28,7 @@ namespace BehaviorTree {
                 }),
                 new Selector(new List<Node>() {
                     new Sequence(new List<Node>() {
-                        new CheckIfAlertIsNotTriggered(_agent),
+                        new CheckIfAlertIsTriggered(_agent),
                         new CheckIfAgentCanBeAlerted(_agent),
                         new ChaseOnAlert(_agent)
                     }),

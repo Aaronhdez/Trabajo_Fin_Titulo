@@ -4,21 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviorTree {
-    public class CheckIfAgentCanBeAlerted : Node {
+    public class CheckIfAlertIsTriggered : Node {
         private readonly GameObject agent;
         private readonly float _attackRange;
 
-        public CheckIfAgentCanBeAlerted() {
+        public CheckIfAlertIsTriggered() {
         }
 
-        public CheckIfAgentCanBeAlerted(GameObject agent) {
+        public CheckIfAlertIsTriggered(GameObject agent) {
             this.agent = agent;
         }
 
         public override NodeState Evaluate() {
-            var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            Debug.Log(Vector3.Distance(agent.transform.position, lastAlertPosition));
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < 30f) {
+            if (AlertManager.AlertHasBeenTriggered()) {
                 state = NodeState.SUCCESS;
                 return state;
             }

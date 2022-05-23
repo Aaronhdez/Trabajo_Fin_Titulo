@@ -22,7 +22,7 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     private NavMeshAgent navMeshAgent;
     private bool mustBeKilled;
 
-    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;sssss }
+    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;}
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
     public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
