@@ -80,7 +80,7 @@ namespace Tests.BehaviourTrees.V2 {
             checkAttackRange.Verify(c => c.Evaluate(), Times.Never());
         }
 
-        /*[Test]
+        [Test]
         public void Dummy_should_attack_if_conditions_are_met() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -94,7 +94,7 @@ namespace Tests.BehaviourTrees.V2 {
             checkFOVRange.Verify(c => c.Evaluate(), Times.Never());
         }
 
-        [Test]
+        /*[Test]
         public void Dummy_should_chase_if_attacking_is_not_possible() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
