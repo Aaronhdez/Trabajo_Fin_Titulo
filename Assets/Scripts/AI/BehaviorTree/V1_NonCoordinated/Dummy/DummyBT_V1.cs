@@ -18,6 +18,10 @@ namespace BehaviorTree {
             }
 
             INode root = new Selector(new List<Node>() {
+                new Sequence(new List<Node>(){
+                    new CheckIfAgentIsDead(),
+                    new Dead(_agent)
+                }),
                 new Sequence(new List<Node>() {
                     new CheckTargetIsInAttackRange(_agent),
                     new Attack(_agent)
