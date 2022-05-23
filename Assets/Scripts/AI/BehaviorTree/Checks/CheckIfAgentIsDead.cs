@@ -13,9 +13,14 @@ namespace BehaviorTree {
 
         public CheckIfAgentIsDead(GameObject agent) {
             this.agent = agent;
+            enemyController = agent.GetComponent<EnemyController_BT>();
         }
 
         public override NodeState Evaluate() {
+            if (enemyController.IsDead) {
+                state = NodeState.SUCCESS;
+                return state;
+            }
             state = NodeState.FAILURE;
             return state;
         }
