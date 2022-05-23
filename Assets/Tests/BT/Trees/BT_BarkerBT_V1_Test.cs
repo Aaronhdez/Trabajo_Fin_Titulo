@@ -8,6 +8,8 @@ using UnityEngine;
 namespace Tests.BehaviourTrees.V1 {
     public class BT_BarkerBT_V1_Test : MonoBehaviour {
         private ITree barkerBT;
+        private Mock<CheckIfAgentIsDead> checkAgentIsDead;
+        private Mock<Dead> dead;
         private Mock<CheckIfAlertIsNotTriggered> checkAlertNotTriggered;
         private Mock<CheckTargetIsInFOVRange> checkFOVRange_Alert;
         private Mock<CheckIfAlertIsNotTriggered> alert;
@@ -19,6 +21,8 @@ namespace Tests.BehaviourTrees.V1 {
 
         [SetUp]
         public void SetUp() {
+            checkAgentIsDead = new Mock<CheckIfAgentIsDead>();
+            dead = new Mock<Dead>();
             checkAlertNotTriggered = new Mock<CheckIfAlertIsNotTriggered>();
             checkFOVRange_Alert = new Mock<CheckTargetIsInFOVRange>();
             alert = new Mock<CheckIfAlertIsNotTriggered>();
@@ -29,6 +33,10 @@ namespace Tests.BehaviourTrees.V1 {
             wanderAround = new Mock<WanderAround>();
 
             INode root = new Selector(new List<Node>() {
+                new Sequence(new List<Node>() {
+                    checkAgentIsDead.Object,
+                    dead.Object
+                }),
                 new Sequence(new List<Node>(){
                     checkAlertNotTriggered.Object,
                     checkFOVRange_Alert.Object,
@@ -49,7 +57,21 @@ namespace Tests.BehaviourTrees.V1 {
         }
 
         [Test]
+        public void Barker_should_die_if_the_agent_is_dead() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            dead.Setup(c => c.Evaluate()).Returns(NodeState.RUNNING);
+
+            barkerBT.InitTree();
+            barkerBT.UpdateNodes();
+
+            checkAgentIsDead.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            dead.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkAttackRange.Verify(c => c.Evaluate(), Times.Never());
+        }
+
+        [Test]
         public void Barker_should_alert_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAlertNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             checkFOVRange_Alert.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             alert.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -65,6 +87,7 @@ namespace Tests.BehaviourTrees.V1 {
 
         [Test]
         public void Barker_should_attack_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAlertNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             attack.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -81,6 +104,7 @@ namespace Tests.BehaviourTrees.V1 {
 
         [Test]
         public void Barker_should_chase_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAlertNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange_Chase.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -100,6 +124,7 @@ namespace Tests.BehaviourTrees.V1 {
 
         [Test]
         public void Barker_should_wander_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAlertNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange_Chase.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
