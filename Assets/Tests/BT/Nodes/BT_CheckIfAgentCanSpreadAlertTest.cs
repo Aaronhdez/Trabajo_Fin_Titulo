@@ -22,5 +22,12 @@ namespace Tests.BehaviourTrees.Nodes {
             AlertManager.SetLastAlertPosition(new Vector3(3f, 1f, 0f));
             Assert.AreEqual(NodeState.SUCCESS, node.Evaluate());
         }
+
+        [Test]
+        public void Return_failure_if_agent_is_not_in_distance_range() {
+            dummyAgent.transform.position = new Vector3(3f, 2f, 0f);
+            AlertManager.SetLastAlertPosition(Vector3.positiveInfinity);
+            Assert.AreEqual(NodeState.FAILURE, node.Evaluate());
+        }
     }
 }
