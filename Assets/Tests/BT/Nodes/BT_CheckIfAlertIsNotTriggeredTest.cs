@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tests.BehaviourTrees.Nodes {
-    public class BT_CheckIfAlertIsNotTriggeredTest : MonoBehaviour {
+    public class BT_CheckIfAlertIsNotTriggeredTest {
 
         private CheckIfAlertIsNotTriggered node;
 

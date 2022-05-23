@@ -18,12 +18,12 @@ namespace Tests.BehaviourTrees.Nodes {
             Assert.AreEqual(NodeState.FAILURE, node.Evaluate());
         }
 
-        /*[Test]
-        public void Returns_failure_if_alert_has_already_been_started() {
+        [Test]
+        public void Returns_success_if_alert_has_already_been_started() {
             AlertManager.SetActiveStatusTo(true);
             node = new CheckIfAlertIsTriggered();
 
-            Assert.AreEqual(NodeState.FAILURE, node.Evaluate());
-        }*/
+            Assert.AreEqual(NodeState.SUCCESS, node.Evaluate());
+        }
     }
 }
