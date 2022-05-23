@@ -1,29 +1,29 @@
 using Mechanics;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviorTree {
-    public class CheckIfAlertIsNotTriggered : Node {
+    public class CheckIfAgentCanBeAlerted : Node {
         private readonly GameObject agent;
         private readonly float _attackRange;
 
-        public CheckIfAlertIsNotTriggered() {
+        public CheckIfAgentCanBeAlerted() {
         }
 
-        public CheckIfAlertIsNotTriggered(GameObject agent) {
+        public CheckIfAgentCanBeAlerted(GameObject agent) {
             this.agent = agent;
         }
 
         public override NodeState Evaluate() {
-            if (!AlertManager.AlertHasBeenTriggered()) {
-                state = NodeState.SUCCESS;
+            var lastAlertPosition = AlertManager.GetLastAlertPosition();
+            if (lastAlertPosition == null) {
+                state = NodeState.FAILURE;
                 return state;
             }
 
             state = NodeState.FAILURE;
-            return state;            
+            return state;
         }
     }
 }
