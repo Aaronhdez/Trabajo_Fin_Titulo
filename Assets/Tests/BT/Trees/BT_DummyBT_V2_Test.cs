@@ -45,11 +45,6 @@ namespace Tests.BehaviourTrees.V2 {
                     checkAttackRange.Object,
                     attack.Object
                 }),
-                new Sequence(new List<Node>() {
-                    checkFOVRange.Object,
-                    chase.Object
-                }),
-
                 new Selector(new List<Node>() {
                     new Sequence(new List<Node>() {
                         checkIfAlertIsNotTriggered.Object,
@@ -94,8 +89,28 @@ namespace Tests.BehaviourTrees.V2 {
             checkFOVRange.Verify(c => c.Evaluate(), Times.Never());
         }
 
+
+        [Test]
+        public void Dummy_should_chase_on_alert_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkIfAlertIsNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            checkIfAgentCanBeAlerted.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            chaseOnAlert.Setup(c => c.Evaluate()).Returns(NodeState.RUNNING);
+
+            dummyBT.InitTree();
+            dummyBT.UpdateNodes();
+
+            checkAgentIsDead.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkIfAlertIsNotTriggered.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkIfAgentCanBeAlerted.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            chaseOnAlert.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkFOVRange.Verify(c => c.Evaluate(), Times.Never());
+        }
+
         /*[Test]
-        public void Dummy_should_chase_if_attacking_is_not_possible() {
+        public void Dummy_should_chase_normally_if_attacking_is_not_possible() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
