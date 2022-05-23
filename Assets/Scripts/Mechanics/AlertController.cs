@@ -13,7 +13,7 @@ namespace Mechanics {
             if (AlertManager.AlertHasBeenTriggered()) {
                 if (currentTriggertime - _lastTriggertime >= _alertPeriod) {
                     AlertManager.SetActiveStatusTo(false);
-                    //borrar ultima posición
+                    AlertManager.SetLastAlertPosition(Vector3.positiveInfinity);
                 }
             }
         }
@@ -22,7 +22,8 @@ namespace Mechanics {
             if (!AlertManager.AlertHasBeenTriggered()) {
                 _lastTriggertime = currentTriggertime;
                 AlertManager.SetActiveStatusTo(true);
-                //Actualizar ultima posición
+                AlertManager.SetLastAlertPosition(transform.position);
+                Debug.Log("Ultima posición del juagdor: " + AlertManager.GetLastAlertPosition());
             }
         }
     }
