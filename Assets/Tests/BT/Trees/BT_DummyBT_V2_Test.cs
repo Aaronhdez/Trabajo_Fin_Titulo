@@ -76,7 +76,7 @@ namespace Tests.BehaviourTrees.V2 {
         }
 
         [Test]
-        public void Dummy_should_attack_if_conditions_are_met() {
+        public void Dummy_V2_should_attack_if_conditions_are_met() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
             attack.Setup(c => c.Evaluate()).Returns(NodeState.RUNNING);
@@ -91,7 +91,7 @@ namespace Tests.BehaviourTrees.V2 {
 
 
         [Test]
-        public void Dummy_should_chase_on_alert_if_conditions_are_met() {
+        public void Dummy_V2_should_chase_on_alert_if_conditions_are_met() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkIfAlertIsNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -110,7 +110,7 @@ namespace Tests.BehaviourTrees.V2 {
         }
 
         [Test]
-        public void Dummy_should_chase_normally_if_attacking_is_not_possible() {
+        public void Dummy_V2_should_chase_normally_if_attacking_is_not_possible() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkIfAlertIsNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -131,19 +131,26 @@ namespace Tests.BehaviourTrees.V2 {
             wanderAround.Verify(c => c.Evaluate(), Times.Never());
         }
 
-        /*
+        
         [Test]
-        public void Dummy_should_wander_if_the_rest_of_possibilites_are_not_possible() {
+        public void Dummy_V2_should_wander_if_the_rest_of_possibilites_are_not_possible() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkIfAlertIsNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            checkIfAgentCanBeAlerted.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
 
             dummyBT.InitTree();
             dummyBT.UpdateNodes();
 
+            checkAgentIsDead.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkIfAlertIsNotTriggered.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkIfAgentCanBeAlerted.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            chaseOnAlert.Verify(c => c.Evaluate(), Times.Never());
             checkFOVRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            chase.Verify(c => c.Evaluate(), Times.Never());
             wanderAround.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        }*/
+        }
     }
 }
