@@ -156,11 +156,11 @@ namespace Tests.BehaviourTrees.V2 {
             checkFOVRange_Chase.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             chase.Verify(c => c.Evaluate(), Times.AtLeastOnce());
         }
-        /*
+
         [Test]
-        public void Barker_should_wander_if_conditions_are_met() {
+        public void Barker_V2_should_wander_if_conditions_are_met() {
             checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
-            checkAlertNotTriggered.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkIfAlertIsTriggered.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkAttackRange.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             checkFOVRange_Chase.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
             wanderAround.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
@@ -168,14 +168,13 @@ namespace Tests.BehaviourTrees.V2 {
             barkerBT.InitTree();
             barkerBT.UpdateNodes();
 
-            checkAlertNotTriggered.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkIfAlertIsTriggered.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             checkFOVRange_Alert.Verify(c => c.Evaluate(), Times.Never());
-            alert.Verify(c => c.Evaluate(), Times.Never());
             checkAttackRange.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             attack.Verify(c => c.Evaluate(), Times.Never());
             checkFOVRange_Chase.Verify(c => c.Evaluate(), Times.AtLeastOnce());
             chase.Verify(c => c.Evaluate(), Times.Never());
             wanderAround.Verify(c => c.Evaluate(), Times.AtLeastOnce());
-        }*/
+        }
     }
 }
