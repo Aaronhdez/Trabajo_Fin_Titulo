@@ -8,6 +8,7 @@ namespace Mechanics {
 
         private static AlertManager _instance;
         private static bool status;
+        private static Vector3 lastAlertPosition;
 
         public static AlertManager GetInstance() {
             if (_instance == null) {
@@ -24,6 +25,16 @@ namespace Mechanics {
         public static bool AlertHasBeenTriggered() {
             GetInstance();
             return status;
+        }
+
+        public static Vector3 GetLastAlertPosition() {
+            GetInstance();
+            return lastAlertPosition;
+        }
+
+        public static void SetLastAlertPosition(Vector3 triggerPosition) {
+            GetInstance();
+            lastAlertPosition = triggerPosition;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Mechanics {
             if (AlertManager.AlertHasBeenTriggered()) {
                 if (currentTriggertime - _lastTriggertime >= _alertPeriod) {
                     AlertManager.SetActiveStatusTo(false);
-                    Debug.Log("Alerta desactivada");
+                    //borrar ultima posición
                 }
             }
         }
@@ -22,7 +22,7 @@ namespace Mechanics {
             if (!AlertManager.AlertHasBeenTriggered()) {
                 _lastTriggertime = currentTriggertime;
                 AlertManager.SetActiveStatusTo(true);
-                Debug.Log("Alerta Activada");
+                //Actualizar ultima posición
             }
         }
     }
