@@ -13,8 +13,6 @@ namespace BehaviorTree {
         [SerializeField] private float runSpeed = 7f;
         [SerializeField] private ThirdPersonCharacter character;
         private AlertController alertController;
-        [SerializeField] private int resetDestinationTime;
-        private float currentTime = 0;
 
         public Alert() {
         }
