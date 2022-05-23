@@ -2979,11 +2979,11 @@ MonoBehaviour:
   chaseSpeed: 0
   health: 0
   isDead: 0
-  gameManager: {fileID: 0}
-  soundController: {fileID: 0}
   fovRange: 10
   attackRange: 6
-  deadEffect: {fileID: 0}
+  gameManager: {fileID: 0}
+  soundController: {fileID: 0}
+  deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
 --- !u!1 &8833157807759279677
 GameObject:
   m_ObjectHideFlags: 0
