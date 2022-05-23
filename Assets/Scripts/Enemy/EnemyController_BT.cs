@@ -22,7 +22,7 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     private NavMeshAgent navMeshAgent;
     private bool mustBeKilled;
 
-    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
+    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;sssss }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
     public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
@@ -39,7 +39,6 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     public void Update() {
         if (mustBeKilled) {
             StartCoroutine(PlayDeadSequence());
-            //Destroy(gameObject);
         }
     }
 
@@ -59,6 +58,6 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
         animator.Play("Z_FallingBack");
         navMeshAgent.speed = 0f;
         yield return new WaitForSecondsRealtime(3f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
