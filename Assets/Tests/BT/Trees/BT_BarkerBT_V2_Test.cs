@@ -101,6 +101,25 @@ namespace Tests.BehaviourTrees.V2 {
             checkAttackRange.Verify(c => c.Evaluate(), Times.Never());
         }
 
+
+        [Test]
+        public void Barker_V2_should_spread_alert_if_conditions_are_met() {
+            checkAgentIsDead.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            checkIfAlertIsTriggered.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            checkFOVRange_Alert.Setup(c => c.Evaluate()).Returns(NodeState.FAILURE);
+            agentCanSpreadAlert.Setup(c => c.Evaluate()).Returns(NodeState.SUCCESS);
+            spreadAlert.Setup(c => c.Evaluate()).Returns(NodeState.RUNNING);
+
+            barkerBT.InitTree();
+            barkerBT.UpdateNodes();
+
+            checkIfAlertIsTriggered.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkFOVRange_Alert.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            alert.Verify(c => c.Evaluate(), Times.Never());
+            agentCanSpreadAlert.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            spreadAlert.Verify(c => c.Evaluate(), Times.AtLeastOnce());
+            checkAttackRange.Verify(c => c.Evaluate(), Times.Never());
+        }
         /*
         [Test]
         public void Barker_should_attack_if_conditions_are_met() {
