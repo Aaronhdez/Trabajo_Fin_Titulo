@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace BehaviorTree {
     public class Dead : Node {
@@ -9,6 +8,7 @@ namespace BehaviorTree {
         private GameObject target;
         private Animator animator;
         private NavMeshAgent navMeshAgent;
+        private EnemyController_BT enemyController;
         private Rigidbody agentRb;
 
         public Dead() {
@@ -18,19 +18,13 @@ namespace BehaviorTree {
             _agent = agent;
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
+            enemyController = agent.GetComponent<EnemyController_BT>();
         }
 
         public override NodeState Evaluate() {
-            PlayDeadSequence();
+            enemyController.Kill = true;
             state = NodeState.RUNNING;
             return state;
-        }
-
-        private IEnumerator PlayDeadSequence() {
-            navMeshAgent.speed = 0f;
-            agentRb.AddForce(Vector3.right * 5, ForceMode.Impulse);
-            animator.Play("Z_FallingBack");
-            yield return new WaitForSeconds(5f);
         }
     }
 }

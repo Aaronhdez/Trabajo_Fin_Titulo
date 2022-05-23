@@ -20,10 +20,12 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     private Animator animator;
     private Rigidbody agentRb;
     private NavMeshAgent navMeshAgent;
+    private bool mustBeKilled;
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
+    public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
 
     private void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -31,6 +33,14 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
         agentRb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         IsDead = false;
+        Kill = false;
+    }
+
+    public void Update() {
+        if (mustBeKilled) {
+            StartCoroutine(PlayDeadSequence());
+            //Destroy(gameObject);
+        }
     }
 
     public void ApplyDamage(int damagedReceived) {
@@ -43,5 +53,12 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
             Instantiate(deadEffect, transform.position, Quaternion.LookRotation(Vector3.up));
             isDead = true;
         }
+    }
+
+    private IEnumerator PlayDeadSequence() {
+        animator.Play("Z_FallingBack");
+        navMeshAgent.speed = 0f;
+        yield return new WaitForSecondsRealtime(3f);
+        Destroy(gameObject);
     }
 }

@@ -19,7 +19,7 @@ namespace BehaviorTree {
 
             INode root = new Selector(new List<Node>() {
                 new Sequence(new List<Node>(){
-                    new CheckIfAgentIsDead(),
+                    new CheckIfAgentIsDead(_agent),
                     new Dead(_agent)
                 }),
                 new Sequence(new List<Node>(){
