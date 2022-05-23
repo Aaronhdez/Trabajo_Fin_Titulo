@@ -49,16 +49,11 @@ namespace BehaviorTree {
             return state;
         }
         private void AttackToPlayer() {
+            navMeshAgent.speed = 0f;
             animator.Play("Z_Attack");
             if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) < 6f) {
                 _playerController.ApplyDamage(30);
             }
-        }
-
-        private IEnumerable Animate() {
-            animator.Play("Z_Attack");
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length
-                + animator.GetCurrentAnimatorStateInfo(0).speed);
         }
 
         private bool PlayerIsDead() {

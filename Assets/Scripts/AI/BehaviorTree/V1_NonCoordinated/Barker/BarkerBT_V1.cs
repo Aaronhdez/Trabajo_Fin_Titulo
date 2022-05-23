@@ -5,11 +5,11 @@ using UnityEngine;
 namespace BehaviorTree {
     public class BarkerBT_V1 : Tree {
 
-        public GameObject agent;
         private INode _customRoot = null;
 
-        public BarkerBT_V1(INode root) {
+        public BarkerBT_V1(INode root, GameObject agent) {
             _customRoot = root;
+            _agent = agent;
         }
 
         protected override INode SetupTree() {
@@ -19,17 +19,23 @@ namespace BehaviorTree {
 
             INode root = new Selector(new List<Node>() {
                 new Sequence(new List<Node>(){
-
+                    new CheckIfAgentIsDead(_agent),
+                    new Dead(_agent)
+                }),
+                new Sequence(new List<Node>(){
+                    new CheckIfAlertIsNotTriggered(),
+                    new CheckTargetIsInFOVRange(_agent),
+                    new Alert(_agent)
                 }),
                 new Sequence(new List<Node>() {
-                    new CheckTargetIsInAttackRange(agent),
-                    new Attack(agent)
+                    new CheckTargetIsInAttackRange(_agent),
+                    new Attack(_agent)
                 }),
                 new Sequence(new List<Node>() {
-                    new CheckTargetIsInFOVRange(agent),
-                    new Chase(agent)
+                    new CheckTargetIsInFOVRange(_agent),
+                    new Chase(_agent)
                 }),
-                new WanderAround(agent)
+                new WanderAround(_agent)
             });
 
             return root;
