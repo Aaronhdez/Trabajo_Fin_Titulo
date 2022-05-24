@@ -6,18 +6,19 @@ using UnityEngine;
 namespace BehaviorTree {
     public class CheckIfAgentCanSpreadAlert : Node {
         private readonly GameObject agent;
-        private readonly float _attackRange;
+        private readonly float distanceToSpreadAlert;
 
         public CheckIfAgentCanSpreadAlert() {
         }
 
         public CheckIfAgentCanSpreadAlert(GameObject agent) {
             this.agent = agent;
+            distanceToSpreadAlert = agent.GetComponent<EnemyController_BT>().DistanceToSpreadAlert;
         }
 
         public override NodeState Evaluate() {
             var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < 20f) {
+            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < distanceToSpreadAlert) {
                 state = NodeState.SUCCESS;
                 return state;
             }

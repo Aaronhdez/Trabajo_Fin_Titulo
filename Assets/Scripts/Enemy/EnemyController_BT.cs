@@ -10,11 +10,12 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     [SerializeField] private float chaseSpeed;
     [SerializeField] public int health;
     [SerializeField] private bool isDead;
-    [SerializeField] public float fovRange;
-    [SerializeField] public float attackRange;
+    [SerializeField] private float fovRange;
+    [SerializeField] private float attackRange;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float minimumDistanceToTarget;
     [SerializeField] private float maxDistanceToBeAlerted;
+    [SerializeField] private float distanceToSpreadAlert;
 
 
     [Header("Game Instances")]
@@ -26,14 +27,29 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     private NavMeshAgent navMeshAgent;
     private bool mustBeKilled;
 
-    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;}
-    public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
-    public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
-    public bool IsDead { get => isDead; set => isDead = value; }
-    public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
-    public float MinimumDistanceToTarget { get => minimumDistanceToTarget; set => minimumDistanceToTarget = value; }
-    public float MaxDistanceToBeAlerted { get => maxDistanceToBeAlerted; set => maxDistanceToBeAlerted = value; }
-
+    public bool IsDead { 
+        get => isDead; set => isDead = value; }
+    public bool Kill { 
+        get => mustBeKilled; set => mustBeKilled = value; }
+    public float ChaseSpeed { 
+        get => chaseSpeed; set => chaseSpeed = value;}
+    public float WanderSpeed { 
+        get => wanderSpeed; set => wanderSpeed = value; }
+    public float AttackSpeed { 
+        get => attackSpeed; set => attackSpeed = value; }
+    public float AttackRange { 
+        get => attackRange; set => attackRange = value; }
+    public float FovRange { 
+        get => fovRange; set => fovRange = value; }
+    public float MinimumDistanceToTarget { 
+        get => minimumDistanceToTarget; 
+        set => minimumDistanceToTarget = value; }
+    public float MaxDistanceToBeAlerted { 
+        get => maxDistanceToBeAlerted; 
+        set => maxDistanceToBeAlerted = value; }
+    public float DistanceToSpreadAlert { 
+        get => distanceToSpreadAlert; 
+        set => distanceToSpreadAlert = value; }
 
     private void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
