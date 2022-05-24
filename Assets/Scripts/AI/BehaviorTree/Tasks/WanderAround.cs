@@ -24,7 +24,7 @@ namespace BehaviorTree {
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = 1f;
+            navMeshAgent.speed = agent.GetComponent<EnemyController_BT>().WanderSpeed;
             SetNewDestination();
         }
 

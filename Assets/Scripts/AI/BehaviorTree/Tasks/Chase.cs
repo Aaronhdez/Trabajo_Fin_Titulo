@@ -10,9 +10,8 @@ namespace BehaviorTree {
         private GameObject target;
         private Animator animator;
         private NavMeshAgent navMeshAgent;
-        [SerializeField] private float rotationSpeed = 7f;
-        [SerializeField] private float runSpeed = 7f;
-        [SerializeField] private ThirdPersonCharacter character;
+        private ThirdPersonCharacter character;
+        private float chaseSpeed;
 
         public Chase() {
         }
@@ -22,7 +21,9 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
+            chaseSpeed = agent.GetComponent<EnemyController_BT>().ChaseSpeed;
             navMeshAgent.updateRotation = false;
+            navMeshAgent.speed = chaseSpeed;
         }
 
         public override NodeState Evaluate() {
@@ -34,7 +35,6 @@ namespace BehaviorTree {
         }
 
         private void ChaseTarget() {
-            navMeshAgent.speed = 5f;
             navMeshAgent.SetDestination(target.transform.position);
             if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
                 character.Move(navMeshAgent.desiredVelocity, false, false);

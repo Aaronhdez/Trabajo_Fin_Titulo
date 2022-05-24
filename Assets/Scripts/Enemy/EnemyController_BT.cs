@@ -12,6 +12,10 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     [SerializeField] private bool isDead;
     [SerializeField] public float fovRange;
     [SerializeField] public float attackRange;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private float minimumDistanceToTarget;
+    [SerializeField] private float maxDistanceToBeAlerted;
+
 
     [Header("Game Instances")]
     [SerializeField] private GameManager gameManager;
@@ -24,8 +28,12 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;}
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
+    public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
     public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
+    public float MinimumDistanceToTarget { get => minimumDistanceToTarget; set => minimumDistanceToTarget = value; }
+    public float MaxDistanceToBeAlerted { get => maxDistanceToBeAlerted; set => maxDistanceToBeAlerted = value; }
+
 
     private void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
