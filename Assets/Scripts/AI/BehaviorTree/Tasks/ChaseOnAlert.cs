@@ -2,6 +2,7 @@ using Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -45,7 +46,17 @@ namespace BehaviorTree {
         }
 
         private Vector3 SelectBestDestinationPoint() {
-            return AlertManager.GetLastAlertPosition();
+            if (Vector3.Distance(AlertManager.GetLastAlertPosition(),
+                agent.transform.position) <= 10f) {
+                return AlertManager.GetLastAlertPosition();
+            }
+            return TakeBestPointOfZone();
+        }
+
+        private Vector3 TakeBestPointOfZone() {
+            var lastZoneReported = AlertManager.GetLastZoneReported()
+                .OrderBy(pos => Vector3.Distance(pos, agent.transform.position));
+            return lastZoneReported.First();
         }
     }
 }
