@@ -23,10 +23,10 @@ namespace BehaviorTree {
             character = agent.GetComponent<ThirdPersonCharacter>();
             chaseSpeed = agent.GetComponent<EnemyController_BT>().ChaseSpeed;
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = chaseSpeed;
         }
 
         public override NodeState Evaluate() {
+            navMeshAgent.speed = chaseSpeed;
             animator.Play("Z_Run_InPlace");
             target = (GameObject) GetData("target");
             ChaseTarget();
@@ -35,6 +35,7 @@ namespace BehaviorTree {
         }
 
         private void ChaseTarget() {
+            Debug.Log(navMeshAgent.speed);
             navMeshAgent.SetDestination(target.transform.position);
             if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
                 character.Move(navMeshAgent.desiredVelocity, false, false);

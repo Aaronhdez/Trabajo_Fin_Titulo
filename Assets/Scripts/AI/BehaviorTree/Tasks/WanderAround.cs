@@ -13,6 +13,7 @@ namespace BehaviorTree {
         [SerializeField] private ThirdPersonCharacter character;
         [SerializeField] private int resetDestinationTime;
         private float currentTime = 0;
+        private float wanderSpeed;
 
         public WanderAround() {
         }
@@ -24,11 +25,12 @@ namespace BehaviorTree {
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = agent.GetComponent<EnemyController_BT>().WanderSpeed;
+            wanderSpeed = agent.GetComponent<EnemyController_BT>().WanderSpeed;
             SetNewDestination();
         }
 
         public override NodeState Evaluate() {
+            navMeshAgent.speed = wanderSpeed;
             animator.Play("Z_Walk_InPlace");
             if (Time.time - currentTime > resetDestinationTime) {
                 SetNewDestination();

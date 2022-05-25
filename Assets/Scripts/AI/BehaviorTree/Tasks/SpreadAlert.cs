@@ -21,10 +21,10 @@ namespace BehaviorTree {
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             alertController = target.GetComponent<AlertController>();
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = 0f;
         }
 
         public override NodeState Evaluate() {
+            navMeshAgent.speed = 0f;
             Debug.Log("Propagando Alerta");
             //alertController.UpdatePositions();
             animator.Play("Z_Attack");

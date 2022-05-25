@@ -29,6 +29,7 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
+            navMeshAgent.speed = chaseSpeed;
             animator.Play("Z_Run_InPlace");
             var destiny = SelectBestDestinationPoint();
             MoveToDestinationPoint(destiny);
@@ -37,7 +38,6 @@ namespace BehaviorTree {
         }
 
         private void MoveToDestinationPoint(Vector3 destiny) {
-            navMeshAgent.speed = chaseSpeed;
             navMeshAgent.SetDestination(destiny);
             if (navMeshAgent.remainingDistance > minimumDistanceToTarget) {
                 character.Move(navMeshAgent.desiredVelocity, false, false);
