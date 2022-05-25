@@ -6,6 +6,7 @@ namespace Mechanics {
     public class AlertController : MonoBehaviour {
         public float _alertPeriod;
         private float _lastTriggertime = 0f;
+        public bool _AlertTriggered;
 
         public void Update() {
             var currentTriggertime = Time.time;
@@ -15,6 +16,7 @@ namespace Mechanics {
                     AlertManager.SetLastAlertPosition(Vector3.positiveInfinity);
                 }
             }
+            _AlertTriggered = AlertManager.AlertHasBeenTriggered();
         }
         public void TriggerAlert() {
             var currentTriggertime = Time.time;

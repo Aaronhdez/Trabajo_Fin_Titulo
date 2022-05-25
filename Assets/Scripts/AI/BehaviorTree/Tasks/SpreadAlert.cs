@@ -1,7 +1,6 @@
 using Mechanics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace BehaviorTree {
     public class SpreadAlert : Node {
@@ -10,6 +9,7 @@ namespace BehaviorTree {
         private Animator animator;
         private NavMeshAgent navMeshAgent;
         private AlertController alertController;
+        private EnemyController_BT enemyController;
 
         public SpreadAlert() {
         }
@@ -20,14 +20,14 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             alertController = target.GetComponent<AlertController>();
+            enemyController = agent.GetComponent<EnemyController_BT>();
             navMeshAgent.updateRotation = false;
         }
 
         public override NodeState Evaluate() {
-            navMeshAgent.speed = 0f;
+            enemyController.HasAlreadyAlerted = true;
             Debug.Log("Propagando Alerta");
             //alertController.UpdatePositions();
-            animator.Play("Z_Attack");
             state = NodeState.RUNNING;
             return state;
         }
