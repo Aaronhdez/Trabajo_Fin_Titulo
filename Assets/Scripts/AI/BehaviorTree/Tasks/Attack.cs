@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -17,6 +15,8 @@ namespace BehaviorTree {
         private NavMeshAgent navMeshAgent;
         private float _attackCounter = 0f;
         private float _attackTime = 1f;
+        private float attackRange;
+        private float attackDamage;
 
         public Attack() {
         }
@@ -26,7 +26,9 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             character = agent.GetComponent<ThirdPersonCharacter>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
-            navMeshAgent.speed = 4f;
+            navMeshAgent.speed = agent.GetComponent<EnemyController_BT>().AttackSpeed;
+            attackRange = agent.GetComponent<EnemyController_BT>().AttackRange;
+            attackDamage = agent.GetComponent<EnemyController_BT>().AttackDamage;
         }
 
         public override NodeState Evaluate() {
@@ -49,10 +51,9 @@ namespace BehaviorTree {
             return state;
         }
         private void AttackToPlayer() {
-            navMeshAgent.speed = 0f;
             animator.Play("Z_Attack");
-            if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) < 6f) {
-                _playerController.ApplyDamage(30);
+            if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) <= attackRange) {
+                _playerController.ApplyDamage((int) attackDamage);
             }
         }
 

@@ -13,7 +13,7 @@ namespace BehaviorTree {
 
         public CheckTargetIsInFOVRange(GameObject agent) {
             this.agent = agent;
-            _fovRange = agent.GetComponent<EnemyController_BT>().fovRange;
+            _fovRange = agent.GetComponent<EnemyController_BT>().FovRange;
         }
 
         public override NodeState Evaluate() {
@@ -32,7 +32,7 @@ namespace BehaviorTree {
             var distanceToPlayer = Vector3.Distance(
                 agent.transform.position, player.transform.position);
             
-            if (distanceToPlayer < _fovRange) {
+            if (Math.Abs(distanceToPlayer) < _fovRange) {
                 parent.parent.SetData("target", player);
                 state = NodeState.SUCCESS;
                 return state;

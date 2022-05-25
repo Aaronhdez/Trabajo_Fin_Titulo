@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace BehaviorTree {
@@ -12,7 +11,7 @@ namespace BehaviorTree {
 
         public CheckTargetIsInAttackRange(GameObject agent) {
             this.agent = agent;
-            _attackRange = agent.GetComponent<EnemyController_BT>().attackRange;
+            _attackRange = agent.GetComponent<EnemyController_BT>().AttackRange;
         }
 
         public override NodeState Evaluate() {
@@ -28,7 +27,7 @@ namespace BehaviorTree {
         private NodeState CheckIfPlayerIsOnAttackRange(object player) {
             var distanceToPlayer = Vector3.Distance(agent.transform.position, 
                 ((GameObject)player).transform.position);
-            if (distanceToPlayer < _attackRange) {
+            if (Math.Abs(distanceToPlayer) < _attackRange) {
                 state = NodeState.SUCCESS;
                 return state;
             }

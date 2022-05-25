@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 1
-  speed: 10
+  speed: 6
   cameraRotationSpeed: 0
   mainCamera: {fileID: 2173718520730238823}
   playerCC: {fileID: 2173718520094191837}
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _alertPeriod: 5
+  _AlertTriggered: 0
 --- !u!1 &2173718520508437908
 GameObject:
   m_ObjectHideFlags: 0

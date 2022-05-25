@@ -9,6 +9,7 @@ namespace Mechanics {
         private static AlertManager _instance;
         private static bool status;
         private static Vector3 lastAlertPosition;
+        private static List<Vector3> lastZoneReported;
 
         public static AlertManager GetInstance() {
             if (_instance == null) {
@@ -35,6 +36,14 @@ namespace Mechanics {
         public static void SetLastAlertPosition(Vector3 triggerPosition) {
             GetInstance();
             lastAlertPosition = triggerPosition;
+        }
+
+        public static void SetLastZoneReported(List<Vector3> lastZone) {
+            lastZoneReported = lastZone;
+        }
+
+        public static List<Vector3> GetLastZoneReported() {
+            return new List<Vector3>(lastZoneReported);
         }
     }
 }

@@ -22,22 +22,29 @@ namespace BehaviorTree {
                     new CheckIfAgentIsDead(_agent),
                     new Dead(_agent)
                 }),
-                new Sequence(new List<Node>(){
-                    new CheckIfAlertIsTriggered(),
-                    new Selector(new List<Node>() {
-                        //Alertar
-                        new Sequence(new List<Node>(){
-                            new CheckTargetIsInFOVRange(_agent),
-                            new Alert(_agent)
-                        }),
-                        //Propagar Alerta
-                        new Sequence(new List<Node>(){
-                            new CheckIfAgentCanSpreadAlert(_agent),
-                            new SpreadAlert(_agent)
+                new Selector(new List<Node>() {
+                    new Sequence(new List<Node>(){
+                        new CheckIfAlertIsNotTriggered(),
+                        new CheckIfAgentCanSpreadAlert(_agent),
+                        new CheckTargetIsInFOVRange(_agent),
+                        new Alert(_agent)
+                    }),
+                    new Sequence(new List<Node>(){
+                        new CheckIfAlertIsTriggered(),
+                        new Selector(new List<Node>() {
+                            new Sequence(new List<Node>(){
+                                new CheckTargetIsInFOVRange(_agent),
+                                new Alert(_agent)
+                            }),
+                            new Sequence(new List<Node>(){
+                                new CheckIfAgentCanSpreadAlert(_agent),
+                                new SpreadAlert(_agent)
+                            })
                         })
-                    })
+                    }),
                 }),
                 new Sequence(new List<Node>() {
+                    new CheckTargetIsInFOVRange(_agent),
                     new CheckTargetIsInAttackRange(_agent),
                     new Attack(_agent)
                 }),

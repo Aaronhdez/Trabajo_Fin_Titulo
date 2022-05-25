@@ -1201,15 +1201,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2353f67b095018342831c3f85c7136d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderSpeed: 0
-  chaseSpeed: 0
-  health: 0
+  wanderSpeed: 1
+  chaseSpeed: 5
+  health: 350
   isDead: 0
-  gameManager: {fileID: 0}
-  soundController: {fileID: 0}
   fovRange: 10
   attackRange: 6
-  deadEffect: {fileID: 0}
+  attackSpeed: 0
+  attackDamage: 35
+  minimumDistanceToTarget: 6
+  maxDistanceToBeAlerted: 15
+  distanceToSpreadAlert: 0
+  timeToRespawnAlert: 0
+  gameManager: {fileID: 0}
+  soundController: {fileID: 0}
+  deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
 --- !u!1 &3057490153788911036
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ namespace BehaviorTree {
     public class CheckIfAgentIsDead : Node {
         private readonly GameObject agent;
         private EnemyController_BT enemyController;
-        private readonly float _attackRange;
 
         public CheckIfAgentIsDead() {
         }

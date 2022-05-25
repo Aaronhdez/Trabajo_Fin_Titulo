@@ -10,27 +10,57 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
     [SerializeField] private float chaseSpeed;
     [SerializeField] public int health;
     [SerializeField] private bool isDead;
-    [SerializeField] public float fovRange;
-    [SerializeField] public float attackRange;
+    [SerializeField] private float fovRange;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float minimumDistanceToTarget;
+
+    [Header("Barker Properties")]
+    [SerializeField] private float maxDistanceToBeAlerted;
+    [SerializeField] private float distanceToSpreadAlert;
+    [SerializeField] private float timeToRespawnAlert;
+
 
     [Header("Game Instances")]
     [SerializeField] private GameManager gameManager;
     [SerializeField] private SoundController soundController;
     public ParticleSystem deadEffect;
     private Animator animator;
-    private Rigidbody agentRb;
     private NavMeshAgent navMeshAgent;
     private bool mustBeKilled;
+    private bool hasAlreadyAlerted;
 
-    public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value;}
-    public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
-    public bool IsDead { get => isDead; set => isDead = value; }
-    public bool Kill { get => mustBeKilled; set => mustBeKilled = value; }
+    public bool IsDead { 
+        get => isDead; set => isDead = value; }
+    public bool Kill { 
+        get => mustBeKilled; set => mustBeKilled = value; }
+    public float ChaseSpeed { 
+        get => chaseSpeed; set => chaseSpeed = value;}
+    public float WanderSpeed { 
+        get => wanderSpeed; set => wanderSpeed = value; }
+    public float AttackSpeed { 
+        get => attackSpeed; set => attackSpeed = value; }
+    public float AttackRange { 
+        get => attackRange; set => attackRange = value; }
+    public float AttackDamage { get => attackDamage; set => attackDamage = value; }
+    public float FovRange { 
+        get => fovRange; set => fovRange = value; }
+    public float MinimumDistanceToTarget { 
+        get => minimumDistanceToTarget; 
+        set => minimumDistanceToTarget = value; }
+    public float MaxDistanceToBeAlerted { 
+        get => maxDistanceToBeAlerted; 
+        set => maxDistanceToBeAlerted = value; }
+    public float DistanceToSpreadAlert { 
+        get => distanceToSpreadAlert; 
+        set => distanceToSpreadAlert = value; }
+    public bool HasAlreadyAlerted { get => hasAlreadyAlerted; set => hasAlreadyAlerted = value; }
+
 
     private void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
-        agentRb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         IsDead = false;
         Kill = false;
@@ -40,8 +70,10 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
         if (mustBeKilled) {
             StartCoroutine(PlayDeadSequence());
         }
+        if (HasAlreadyAlerted) {
+            StartCoroutine(PlayAlertSequence());
+        }
     }
-
     public void ApplyDamage(int damagedReceived) {
         health -= (health - damagedReceived > 0) ? damagedReceived : health;
         CheckHealthStatus();
@@ -60,4 +92,12 @@ public class EnemyController_BT : MonoBehaviour, IEnemyController {
         yield return new WaitForSecondsRealtime(3f);
         gameObject.SetActive(false);
     }
+
+    private IEnumerator PlayAlertSequence() {
+        navMeshAgent.speed = 0f;
+        animator.Play("Z_Attack");
+        yield return new WaitForSecondsRealtime(timeToRespawnAlert);
+        HasAlreadyAlerted = false;
+    }
+
 }

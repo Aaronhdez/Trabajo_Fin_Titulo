@@ -1,18 +1,15 @@
 using Mechanics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace BehaviorTree {
     public class SpreadAlert : Node {
         private GameObject agent;
         private GameObject target;
         private Animator animator;
-        [SerializeField] private NavMeshAgent navMeshAgent;
-        [SerializeField] private float rotationSpeed = 7f;
-        [SerializeField] private float runSpeed = 7f;
-        [SerializeField] private ThirdPersonCharacter character;
+        private NavMeshAgent navMeshAgent;
         private AlertController alertController;
+        private EnemyController_BT enemyController;
 
         public SpreadAlert() {
         }
@@ -22,15 +19,15 @@ namespace BehaviorTree {
             target = GameObject.FindGameObjectWithTag("Player");
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
-            character = agent.GetComponent<ThirdPersonCharacter>();
             alertController = target.GetComponent<AlertController>();
+            enemyController = agent.GetComponent<EnemyController_BT>();
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = 0f;
         }
 
         public override NodeState Evaluate() {
+            enemyController.HasAlreadyAlerted = true;
+            Debug.Log("Propagando Alerta");
             //alertController.UpdatePositions();
-            animator.Play("Z_Attack");
             state = NodeState.RUNNING;
             return state;
         }

@@ -1,13 +1,9 @@
 using Mechanics;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BehaviorTree {
     public class CheckIfAlertIsNotTriggered : Node {
         private readonly GameObject agent;
-        private readonly float _attackRange;
 
         public CheckIfAlertIsNotTriggered() {
         }

@@ -1,7 +1,6 @@
 using Mechanics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace BehaviorTree {
     public class Alert : Node {
@@ -11,8 +10,8 @@ namespace BehaviorTree {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private float rotationSpeed = 7f;
         [SerializeField] private float runSpeed = 7f;
-        [SerializeField] private ThirdPersonCharacter character;
         private AlertController alertController;
+        private EnemyController_BT enemyController;
 
         public Alert() {
         }
@@ -22,16 +21,14 @@ namespace BehaviorTree {
             target = GameObject.FindGameObjectWithTag("Player");
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
-            character = agent.GetComponent<ThirdPersonCharacter>();
             alertController = target.GetComponent<AlertController>();
+            enemyController = agent.GetComponent<EnemyController_BT>();
             navMeshAgent.updateRotation = false;
-            navMeshAgent.speed = 1f;
         }
 
         public override NodeState Evaluate() {
-            navMeshAgent.speed = 0f;
+            enemyController.HasAlreadyAlerted = true;
             alertController.TriggerAlert();
-            animator.Play("Z_Attack");
             state = NodeState.RUNNING;
             return state;
         }
