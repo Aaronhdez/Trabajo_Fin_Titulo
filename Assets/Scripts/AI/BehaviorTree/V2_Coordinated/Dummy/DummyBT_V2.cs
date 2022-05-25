@@ -23,6 +23,7 @@ namespace BehaviorTree {
                     new Dead(_agent)
                 }),
                 new Sequence(new List<Node>() {
+                    new CheckTargetIsInFOVRange(_agent),
                     new CheckTargetIsInAttackRange(_agent),
                     new Attack(_agent)
                 }),
