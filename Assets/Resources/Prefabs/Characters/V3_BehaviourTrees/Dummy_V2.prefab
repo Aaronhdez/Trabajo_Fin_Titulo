@@ -1349,15 +1349,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderSpeed: 1
-  chaseSpeed: 10
+  chaseSpeed: 5
   health: 350
   isDead: 0
   fovRange: 10
-  attackRange: 6
+  attackRange: 4
   attackSpeed: 0
-  minimumDistanceToTarget: 6
-  maxDistanceToBeAlerted: 35
+  attackDamage: 35
+  minimumDistanceToTarget: 4
+  maxDistanceToBeAlerted: 40
   distanceToSpreadAlert: 0
+  timeToRespawnAlert: 0
   gameManager: {fileID: 0}
   soundController: {fileID: 0}
   deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}

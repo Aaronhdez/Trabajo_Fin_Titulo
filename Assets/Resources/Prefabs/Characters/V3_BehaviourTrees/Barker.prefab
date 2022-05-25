@@ -2982,9 +2982,11 @@ MonoBehaviour:
   fovRange: 10
   attackRange: 6
   attackSpeed: 0
+  attackDamage: 25
   minimumDistanceToTarget: 6
   maxDistanceToBeAlerted: 25
   distanceToSpreadAlert: 20
+  timeToRespawnAlert: 0
   gameManager: {fileID: 0}
   soundController: {fileID: 0}
   deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
