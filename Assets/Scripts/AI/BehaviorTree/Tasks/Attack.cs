@@ -15,6 +15,8 @@ namespace BehaviorTree {
         private NavMeshAgent navMeshAgent;
         private float _attackCounter = 0f;
         private float _attackTime = 1f;
+        private float attackRange;
+        private float attackDamage;
 
         public Attack() {
         }
@@ -25,6 +27,8 @@ namespace BehaviorTree {
             character = agent.GetComponent<ThirdPersonCharacter>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             navMeshAgent.speed = agent.GetComponent<EnemyController_BT>().AttackSpeed;
+            attackRange = agent.GetComponent<EnemyController_BT>().AttackRange;
+            attackDamage = agent.GetComponent<EnemyController_BT>().AttackDamage;
         }
 
         public override NodeState Evaluate() {
@@ -48,8 +52,8 @@ namespace BehaviorTree {
         }
         private void AttackToPlayer() {
             animator.Play("Z_Attack");
-            if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) < 6f) {
-                _playerController.ApplyDamage(30);
+            if (Math.Abs(Vector3.Distance(agent.transform.position, target.transform.position)) <= attackRange) {
+                _playerController.ApplyDamage((int) attackDamage);
             }
         }
 
