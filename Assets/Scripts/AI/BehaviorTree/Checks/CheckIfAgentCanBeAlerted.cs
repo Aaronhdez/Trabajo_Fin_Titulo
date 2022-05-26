@@ -18,7 +18,7 @@ namespace BehaviorTree {
 
         public override NodeState Evaluate() {
             var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < maxDistanceToBeAlerted) {
+            if (Vector3.Distance(agent.transform.position, lastAlertPosition) <= maxDistanceToBeAlerted) {
                 state = NodeState.SUCCESS;
                 return state;
             }

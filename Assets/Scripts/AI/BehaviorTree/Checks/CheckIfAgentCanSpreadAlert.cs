@@ -22,7 +22,7 @@ namespace BehaviorTree {
                 return state;
             }
             var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < distanceToSpreadAlert) {
+            if (Vector3.Distance(agent.transform.position, lastAlertPosition) <= distanceToSpreadAlert) {
                 state = NodeState.SUCCESS;
                 return state;
             }
