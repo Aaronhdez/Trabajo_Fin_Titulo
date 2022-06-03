@@ -100,7 +100,7 @@ public class WeaponController : MonoBehaviour {
 
     private void ApplyDamageOnTarget(RaycastHit impactInfo) {
         Instantiate(bloodEffect, impactInfo.point, Quaternion.LookRotation(impactInfo.normal));
-        impactInfo.collider.GetComponent<IEnemyController>().ApplyDamage(weaponDamage);
+        impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
     }
 
     private void PlayImpactAnimation() {
