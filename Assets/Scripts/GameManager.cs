@@ -10,7 +10,4 @@ public class GameManager : MonoBehaviour {
     void Start() {
         roundManager = GetComponent<RoundManager>();
     }
-
-    void Update() {
-    }
 }
