@@ -1,38 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static FiniteStateMachine;
+using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour, IEnemyController
+public abstract class EnemyController : MonoBehaviour
 {
-    [Header("Enemy Properties")]
-    [SerializeField] private float wanderSpeed;
-    [SerializeField] private float chaseSpeed;
-    [SerializeField] public int health;
-    [SerializeField] private bool isDead;
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private State defaultState = State.Wander;
-    [SerializeField] private SoundController soundController;
-    public ParticleSystem deadEffect;
+    [Header("General Properties")]
+    [SerializeField] protected float wanderSpeed;
+    [SerializeField] protected float chaseSpeed;
+    public int health;
+    public int attackDamage;
+    [SerializeField] protected bool isDead;
+    [SerializeField] protected float fovRange;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float attackSpeed;
+    [SerializeField] protected float minimumDistanceToTarget;
+
+    [Header("Game Instances")]
+    [SerializeField] protected GameManager gameManager;
+    [SerializeField] protected SoundController soundController;
+    [SerializeField] protected ParticleSystem deadEffect;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected NavMeshAgent navMeshAgent;
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
+    public int AttackDamage { get => attackDamage; set => attackDamage = value; }
+    public float AttackSpeed {
+        get => attackSpeed; set => attackSpeed = value;
+    }
+    public float AttackRange {
+        get => attackRange; set => attackRange = value;
+    }
+    public float FovRange {
+        get => fovRange; set => fovRange = value;
+    }
 
-    private void Start() {
+    void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         IsDead = false;
     }
 
-    public void ApplyDamage(int damagedReceived) {
-        health -= (health - damagedReceived > 0) ? damagedReceived : health;
-        CheckHealthStatus();
-    }
+    public virtual void ApplyDamage(int damagedReceived) { }
 
-    private void CheckHealthStatus() {
-        if (health == 0) {
-            Instantiate(deadEffect, transform.position, Quaternion.LookRotation(Vector3.up));
-            isDead = true;
-        }
-    }
+    protected virtual void CheckHealthStatus() { }
 }
