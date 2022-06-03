@@ -1464,17 +1464,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5045757298182841332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fe35ea2a391d645a9ce4e2fdc1b351, type: 3}
+  m_Script: {fileID: 11500000, guid: f5b34aa254d8c3b4b90ad64810618ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wanderSpeed: 0
   chaseSpeed: 0
-  health: 500
+  health: 0
+  attackDamage: 0
   isDead: 0
+  fovRange: 0
+  attackRange: 0
+  attackSpeed: 0
+  minimumDistanceToTarget: 0
   gameManager: {fileID: 0}
-  defaultState: 4
   soundController: {fileID: 0}
-  deadEffect: {fileID: 19800008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
+  deadEffect: {fileID: 0}
+  animator: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  defaultState: 4
 --- !u!114 &8266005003544351525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,10 +1491,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5045757298182841332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994e2c09d3dd8764182ce3193bc4078d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9488d8bc5ac90dd4d9f7d03a68606538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 5045757298182841332}
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  patrolPath: []
+  currentState: 0
+  subject: {fileID: 0}
 --- !u!1 &5098555821810745466
 GameObject:
   m_ObjectHideFlags: 0
