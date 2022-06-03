@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Mechanics {
-    public class AlertController : MonoBehaviour {
+    public class AlertController_NearestNodes : MonoBehaviour {
         public float _alertPeriod;
         private float _lastTriggertime = 0f;
         public bool _AlertTriggered;

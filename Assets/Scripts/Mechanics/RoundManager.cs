@@ -6,25 +6,26 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour {
 
     [Header("Round Elements")]
-    [SerializeField] public GameObject spawnManager;
-    [SerializeField] public GameObject player;
-    [SerializeField] public PlayerController playerController;
+    public GameObject spawnManager;
+    public GameObject player;
+    public PlayerController playerController;
+    [SerializeField] private int enemyLifePoints;
+    [SerializeField] private int enemyDamage;
 
-    [SerializeField] public GameObject playerHUD;
-    [SerializeField] public GameObject roundText;
-    [SerializeField] public GameObject enemiesHUD;
+    public GameObject playerHUD;
+    public GameObject roundText;
+    public GameObject roundCounter;
+    public GameObject enemiesHUD;
 
     [Header("Round Parameters")]
     [SerializeField] private bool roundStarted = false;
     [SerializeField] private bool roundFinished = false;
-    [SerializeField] public int enemiesAlive = 0;
-    [SerializeField] public int roundsPlayed = 0; 
-
-    [Header("Enemies Prefabs")]
-    [SerializeField] private List<GameObject> enemies;
+    public int enemiesAlive = 0;
+    public int roundsPlayed = 0; 
 
     [Header("Text Fields")]
     [SerializeField] private TextMeshProUGUI enemiesText;
+    [SerializeField] private TextMeshProUGUI roundPlayedText;
     [SerializeField] private TextMeshProUGUI counterTextValue;
 
     public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
@@ -91,7 +92,10 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void StartRound() {
-        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(
+            enemyLifePoints,
+            enemyDamage,
+            roundsPlayed);
         enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
         ActivateRoundComponents();
     }
