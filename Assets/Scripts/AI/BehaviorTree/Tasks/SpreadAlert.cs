@@ -8,7 +8,7 @@ namespace BehaviorTree {
         private GameObject target;
         private Animator animator;
         private NavMeshAgent navMeshAgent;
-        private AlertController alertController;
+        private AlertController_NearestNodes alertController;
         private EnemyController_BT enemyController;
 
         public SpreadAlert() {
@@ -19,7 +19,7 @@ namespace BehaviorTree {
             target = GameObject.FindGameObjectWithTag("Player");
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
-            alertController = target.GetComponent<AlertController>();
+            alertController = target.GetComponent<AlertController_NearestNodes>();
             enemyController = agent.GetComponent<EnemyController_BT>();
             navMeshAgent.updateRotation = false;
         }

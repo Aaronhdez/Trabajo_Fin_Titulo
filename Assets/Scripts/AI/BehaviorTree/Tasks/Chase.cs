@@ -35,7 +35,6 @@ namespace BehaviorTree {
         }
 
         private void ChaseTarget() {
-            Debug.Log(navMeshAgent.speed);
             navMeshAgent.SetDestination(target.transform.position);
             if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
                 character.Move(navMeshAgent.desiredVelocity, false, false);

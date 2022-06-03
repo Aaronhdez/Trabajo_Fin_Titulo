@@ -33,7 +33,7 @@ namespace BehaviorTree {
                 agent.transform.position, player.transform.position);
             
             if (Math.Abs(distanceToPlayer) < _fovRange) {
-                parent.parent.SetData("target", player);
+                _parent._parent.SetData("target", player);
                 state = NodeState.SUCCESS;
                 return state;
             }
