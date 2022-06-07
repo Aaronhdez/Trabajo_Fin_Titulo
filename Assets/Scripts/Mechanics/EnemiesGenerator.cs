@@ -17,6 +17,7 @@ public class EnemiesGenerator : MonoBehaviour
         enemiesCombinations.Add("1", LoadEasyMode());
         enemiesCombinations.Add("2", LoadMediumMode());
         enemiesCombinations.Add("3", LoadHardMode());
+        enemiesCombinations.Add("4", LoadVeryHardMode());
     }
 
     private List<GameObject> LoadEasyMode() {
@@ -34,7 +35,14 @@ public class EnemiesGenerator : MonoBehaviour
 
     private List<GameObject> LoadHardMode() {
         var list = new List<GameObject>();
-        list.Add(enemiesAvailable[3]);
+        list.Add(enemiesAvailable[3]); //Dummy V2
+        list.Add(enemiesAvailable[4]);
+        return list;
+    }
+
+    private List<GameObject> LoadVeryHardMode() {
+        var list = new List<GameObject>();
+        list.Add(enemiesAvailable[5]); //Dummy V3 (Slots)
         list.Add(enemiesAvailable[4]);
         return list;
     }

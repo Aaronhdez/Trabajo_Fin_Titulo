@@ -17,8 +17,9 @@ namespace BehaviorTree {
             //V2
             treesAvaliable.Add("DummyBT_V2", new DummyBT_V2(null, agent));
             treesAvaliable.Add("BarkerBT_V2", new BarkerBT_V2(null, agent));
-            
+
             //V3
+            treesAvaliable.Add("DummyBT_V3", new DummyBT_V3(null, agent));
             treesAvaliable.Add("BarkerBT_V3", new BarkerBT_V2(null, agent));
         }
 
