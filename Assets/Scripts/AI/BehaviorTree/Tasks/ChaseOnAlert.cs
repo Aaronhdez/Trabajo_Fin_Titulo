@@ -37,6 +37,20 @@ namespace BehaviorTree {
             return state;
         }
 
+        private Vector3 SelectBestDestinationPoint() {
+            //Cambio insertado para el sistema de slots
+            if (GetData("nextSlot") != null) {
+                return ((GameObject)GetData("nextSlot")).transform.position;
+            }
+
+            //Sin slots
+            if (Vector3.Distance(AlertManager.GetLastAlertPosition(),
+                agent.transform.position) <= maxDistanceToBeAlerted) {
+                return AlertManager.GetLastAlertPosition();
+            }
+            return TakeBestPointOfZone();
+        }
+
         private void MoveToDestinationPoint(Vector3 destiny) {
             navMeshAgent.SetDestination(destiny);
             if (navMeshAgent.remainingDistance > minimumDistanceToTarget) {
@@ -44,14 +58,6 @@ namespace BehaviorTree {
             } else {
                 character.Move(Vector3.zero, false, false);
             }
-        }
-
-        private Vector3 SelectBestDestinationPoint() {
-            if (Vector3.Distance(AlertManager.GetLastAlertPosition(),
-                agent.transform.position) <= maxDistanceToBeAlerted) {
-                return AlertManager.GetLastAlertPosition();
-            }
-            return TakeBestPointOfZone();
         }
 
         private Vector3 TakeBestPointOfZone() {
