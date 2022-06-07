@@ -44640,6 +44640,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 374622693}
     - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
+      propertyPath: enemyDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
+      propertyPath: roundsPlayed
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
+      propertyPath: enemyLifePoints
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446314086817778951, guid: c9ef1c50c3d2b4645977d0dfc5225b06, type: 3}
       propertyPath: enemies.Array.size
       value: 0
       objectReference: {fileID: 0}
