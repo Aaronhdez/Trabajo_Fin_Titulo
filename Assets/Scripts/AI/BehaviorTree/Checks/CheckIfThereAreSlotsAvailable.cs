@@ -16,6 +16,7 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
+            ClearData("nextSlot");
             var lastAlertZone = AlertManager.GetLastZoneReportedInNodes();
             //Si el jugador puede ser perseguido directamente verificar y asignar
 
