@@ -42,5 +42,18 @@ namespace Tests.Mechanics {
 
             Assert.IsFalse(status);
         }
+
+        [Test]
+        public void Returns_not_full_if_node_is_reseted() {
+            slotsController.TakeSlot(new GameObject());
+            slotsController.TakeSlot(new GameObject());
+            slotsController.TakeSlot(new GameObject());
+            var statusBefore = slotsController.IsFull();
+            slotsController.Reset();
+            var statusAfter = slotsController.IsFull();
+
+            Assert.IsTrue(statusBefore);
+            Assert.IsFalse(statusAfter);
+        }
     }
 }

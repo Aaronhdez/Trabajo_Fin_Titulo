@@ -25,5 +25,9 @@ namespace Mechanics.Slots {
         public void TakeSlot(GameObject gameObject) {
             slots.Add(gameObject);
         }
+
+        public void Reset() {
+
+        }
     }
 }
