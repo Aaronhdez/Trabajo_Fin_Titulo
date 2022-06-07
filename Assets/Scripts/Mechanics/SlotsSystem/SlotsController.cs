@@ -15,6 +15,10 @@ namespace Mechanics.Slots {
             slotsManager.TakeSlot(enemy);
         }
 
+        public bool IsFull() {
+            return slotsManager.IsFull();
+        }
+
         public void ResetSlots() {
             slotsManager.Reset();
         }

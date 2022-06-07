@@ -8,6 +8,7 @@ namespace Mechanics {
         private static bool status;
         private static Vector3 lastAlertPosition;
         private static List<Vector3> lastZoneReported;
+        private static List<GameObject> lastZoneReportedNodes;
 
         public static AlertManager GetInstance() {
             if (_instance == null) {
@@ -40,8 +41,16 @@ namespace Mechanics {
             lastZoneReported = lastZone;
         }
 
+        public static void SetLastZoneReportedInNode(List<GameObject> lastZone) {
+            lastZoneReportedNodes = lastZone;
+        }
+
         public static List<Vector3> GetLastZoneReported() {
             return new List<Vector3>(lastZoneReported);
+        }
+
+        public static List<GameObject> GetLastZoneReportedInNodes() {
+            return new List<GameObject>(lastZoneReportedNodes);
         }
     }
 }
