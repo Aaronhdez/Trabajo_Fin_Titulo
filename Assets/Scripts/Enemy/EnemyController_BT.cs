@@ -71,6 +71,7 @@ public class EnemyController_BT : EnemyController {
         animator.Play("Z_FallingBack");
         navMeshAgent.speed = 0f;
         yield return new WaitForSecondsRealtime(3f);
+        mustBeKilled = false;
         gameObject.SetActive(false);
     }
 
