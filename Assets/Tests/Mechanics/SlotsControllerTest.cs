@@ -7,6 +7,8 @@ namespace Tests.Mechanics {
         [Test]
         public void Returns_not_full_if_slots_are_empty() {
             SlotsController slotsController = new SlotsController();
+            slotsController.SlotsNumber = 5;
+            slotsController.Start();
             var status = slotsController.IsFull();
 
             Assert.IsFalse(status);
