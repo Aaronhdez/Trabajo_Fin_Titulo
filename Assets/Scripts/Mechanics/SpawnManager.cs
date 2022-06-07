@@ -112,7 +112,7 @@ public class SpawnManager : MonoBehaviour {
             var enemyController = enemy.GetComponent<EnemyController>();
             enemyController.IsDead = false;
             enemyController.health = enemyLifePoints + (10 * roundsPlayed%3);
-            enemyController.attackDamage = enemyLifePoints + (10 * roundsPlayed%5);
+            enemyController.attackDamage = enemyDamage + (10 * roundsPlayed%5);
             enemy.SetActive(true);
         }
     }

@@ -19,7 +19,7 @@ public class EnemiesGenerator : MonoBehaviour
         enemiesCombinations.Add("3", LoadHardMode());
     }
 
-    private List<GameObject> LoadHardMode() {
+    private List<GameObject> LoadEasyMode() {
         var list = new List<GameObject>();
         list.Add(enemiesAvailable[0]);
         return list;
@@ -32,7 +32,7 @@ public class EnemiesGenerator : MonoBehaviour
         return list;
     }
 
-    private List<GameObject> LoadEasyMode() {
+    private List<GameObject> LoadHardMode() {
         var list = new List<GameObject>();
         list.Add(enemiesAvailable[3]);
         list.Add(enemiesAvailable[4]);

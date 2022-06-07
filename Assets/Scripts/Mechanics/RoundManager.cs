@@ -1,3 +1,4 @@
+using Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -83,6 +84,7 @@ public class RoundManager : MonoBehaviour {
 
     private void CountDown() {
         if (counterTextValue.text.Equals("Survive the horde!")) {
+            AlertManager.SetActiveStatusTo(false);
             StartRound();
             enemiesText.SetText(enemiesAlive.ToString());
             return;
