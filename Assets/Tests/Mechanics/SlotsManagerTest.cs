@@ -5,11 +5,18 @@ using UnityEngine;
 namespace Tests.Mechanics {
     public class SlotsManagerTest {
 
-        [Test]
-        public void Returns_not_full_if_slots_are_empty() {
-            SlotsManager slotsController = new SlotsManager();
+        private SlotsManager slotsController;
+
+        [SetUp]
+        public void SetUp() {
+            slotsController = new SlotsManager();
             slotsController.SlotsNumber = 5;
             slotsController.Start();
+        }
+
+
+        [Test]
+        public void Returns_not_full_if_slots_are_empty() {
             var status = slotsController.IsFull();
 
             Assert.IsFalse(status);
@@ -17,9 +24,6 @@ namespace Tests.Mechanics {
 
         [Test]
         public void Returns_full_if_slots_are_full() {
-            SlotsManager slotsController = new SlotsManager();
-            slotsController.SlotsNumber = 5;
-            slotsController.Start();
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
@@ -32,9 +36,6 @@ namespace Tests.Mechanics {
 
         [Test]
         public void Returns_not_full_if_slots_are_not_complete() {
-            SlotsManager slotsController = new SlotsManager();
-            slotsController.SlotsNumber = 5;
-            slotsController.Start();
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
