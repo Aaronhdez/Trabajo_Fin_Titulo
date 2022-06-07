@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Mechanics.Slots {
-    public class SlotsController {
+    public class SlotsManager {
 
         private int slotsNumber;
         private List<GameObject> slots;
@@ -18,6 +18,10 @@ namespace Mechanics.Slots {
 
         public bool IsFull() {
             return (slots.Count() == slotsNumber);
+        }
+
+        public void TakeSlot(GameObject gameObject) {
+            slots.Add(gameObject);
         }
     }
 }
