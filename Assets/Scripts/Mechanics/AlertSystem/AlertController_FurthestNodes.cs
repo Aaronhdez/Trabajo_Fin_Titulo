@@ -25,21 +25,26 @@ namespace Mechanics {
                 _lastTriggertime = currentTriggertime;
                 AlertManager.SetActiveStatusTo(true);
                 AlertManager.SetLastAlertPosition(transform.position);
-                AlertManager.SetLastZoneReported(TriangulatePlayerPosition(transform.position));
+                TriangulatePlayerPosition(transform.position);
                 Debug.Log("Ultima posición del juagdor: " + AlertManager.GetLastAlertPosition());
             }
         }
 
-        private List<Vector3> TriangulatePlayerPosition(Vector3 position) {
+        private void TriangulatePlayerPosition(Vector3 position) {
             var layerMask = (1 << 16);
             var alertPoints = Physics.OverlapSphere(position, 50f, layerMask);
             alertPoints.OrderByDescending(x => Vector3.Distance(x.transform.position, position));
             List<Collider> filteredPoints = new List<Collider>(alertPoints);
+
+            List<GameObject> lastZoneInNodes = new List<GameObject>();
             List<Vector3> lastZone = new List<Vector3>();
+
             foreach (var filteredPoint in filteredPoints.GetRange(0, 3)) {
                 lastZone.Add(filteredPoint.transform.position);
+                lastZoneInNodes.Add(filteredPoint.gameObject);
             }
-            return lastZone;
+            AlertManager.SetLastZoneReported(lastZone);
+            AlertManager.SetLastZoneReportedInNode(lastZoneInNodes);
         }
     }
 }
