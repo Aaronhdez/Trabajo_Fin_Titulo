@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,15 +5,11 @@ using UnityEngine;
 namespace Mechanics.Slots {
     public class SlotsManager {
 
-        private int slotsAvailable;
+        private readonly int slotsAvailable;
         private List<GameObject> slots;
 
         public SlotsManager(int slotsNumber) {
             this.slotsAvailable = slotsNumber;
-        }
-
-        public void Start() {
-            slots = new List<GameObject>(slotsAvailable);
         }
 
         public bool IsFull() {
