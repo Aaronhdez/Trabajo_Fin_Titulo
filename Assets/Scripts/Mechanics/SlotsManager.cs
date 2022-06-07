@@ -27,7 +27,7 @@ namespace Mechanics.Slots {
         }
 
         public void Reset() {
-
+            slots.Clear();
         }
     }
 }

@@ -48,6 +48,8 @@ namespace Tests.Mechanics {
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
             slotsController.TakeSlot(new GameObject());
+            slotsController.TakeSlot(new GameObject());
+            slotsController.TakeSlot(new GameObject());
             var statusBefore = slotsController.IsFull();
             slotsController.Reset();
             var statusAfter = slotsController.IsFull();
