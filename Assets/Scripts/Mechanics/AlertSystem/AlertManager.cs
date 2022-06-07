@@ -1,3 +1,5 @@
+using Mechanics.Slots;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +37,13 @@ namespace Mechanics {
         public static void SetLastAlertPosition(Vector3 triggerPosition) {
             GetInstance();
             lastAlertPosition = triggerPosition;
+        }
+
+        public static void ResetPositions() {
+            var slotsControllers = GameObject.FindObjectsOfType<SlotsController>();
+            foreach (SlotsController slotsController in slotsControllers) {
+                slotsController.ResetSlots();
+            }
         }
 
         public static void SetLastZoneReported(List<Vector3> lastZone) {

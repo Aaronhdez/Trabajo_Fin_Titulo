@@ -23,6 +23,7 @@ namespace Mechanics {
             var currentTriggertime = Time.time;
             if (!AlertManager.AlertHasBeenTriggered()) {
                 _lastTriggertime = currentTriggertime;
+                AlertManager.ResetPositions();
                 AlertManager.SetActiveStatusTo(true);
                 AlertManager.SetLastAlertPosition(transform.position);
                 TriangulatePlayerPosition(transform.position);
