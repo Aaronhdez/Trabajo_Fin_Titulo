@@ -7,17 +7,19 @@ using UnityEngine;
 namespace Mechanics.Slots {
     public class SlotsManager {
 
-        private int slotsNumber;
+        private int slotsAvailable;
         private List<GameObject> slots;
 
-        public int SlotsNumber { get => slotsNumber; set => slotsNumber = value; }
+        public SlotsManager(int slotsNumber) {
+            this.slotsAvailable = slotsNumber;
+        }
 
         public void Start() {
-            slots = new List<GameObject>(slotsNumber);
+            slots = new List<GameObject>(slotsAvailable);
         }
 
         public bool IsFull() {
-            return (slots.Count() == slotsNumber);
+            return (slots.Count() == slotsAvailable);
         }
 
         public void TakeSlot(GameObject gameObject) {

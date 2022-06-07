@@ -9,8 +9,7 @@ namespace Tests.Mechanics {
 
         [SetUp]
         public void SetUp() {
-            slotsController = new SlotsManager();
-            slotsController.SlotsNumber = 5;
+            slotsController = new SlotsManager(5);
             slotsController.Start();
         }
 
