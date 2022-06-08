@@ -35,20 +35,19 @@ public class EnemiesGenerator : MonoBehaviour
 
     private List<GameObject> LoadHardMode() {
         var list = new List<GameObject>();
-        list.Add(enemiesAvailable[3]); //Dummy V2
+        list.Add(enemiesAvailable[1]); //Dummy V2
         list.Add(enemiesAvailable[4]);
         return list;
     }
 
     private List<GameObject> LoadVeryHardMode() {
         var list = new List<GameObject>();
-        list.Add(enemiesAvailable[5]); //Dummy V3 (Slots)
+        list.Add(enemiesAvailable[3]); //Dummy V3 (Slots)
         list.Add(enemiesAvailable[4]);
         return list;
     }
 
     public List<GameObject> GetEnemiesList(string index) {
-        Debug.Log(index);
         if (enemiesCombinations == null) {
             LoadEnemyCombinations();
         }
