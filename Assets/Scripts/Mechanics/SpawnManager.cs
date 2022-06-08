@@ -48,7 +48,6 @@ public class SpawnManager : MonoBehaviour {
         }
     }
 
-
     private void SpawnVeryHardMode() {
         var availablePoints = GetAvailablePoints();
         for (int i = 0; i < 20; i++) {
@@ -156,5 +155,19 @@ public class SpawnManager : MonoBehaviour {
             }
         }
         return availablePoints;
+    }
+
+    internal void PauseEnemies() {
+        foreach (GameObject enemy in enemiesCreated) {
+            var eAnimator = enemy.GetComponent<Animator>();
+            eAnimator.enabled = false;
+        }
+    }
+
+    internal void UnpauseEnemies() {
+        foreach (GameObject enemy in enemiesCreated) {
+            var eAnimator = enemy.GetComponent<Animator>();
+            eAnimator.enabled = true;
+        }
     }
 }

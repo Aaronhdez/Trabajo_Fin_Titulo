@@ -168,12 +168,14 @@ public class RoundManager : MonoBehaviour {
 
     public void PauseRound() {
         playerController.Lock();
+        spawnManager.GetComponent<SpawnManager>().PauseEnemies();
         playingCanvas.SetActive(false);
         pauseCanvas.SetActive(true);
     }
 
     public void ResumeRound() {
         playerController.Unlock();
+        spawnManager.GetComponent<SpawnManager>().UnpauseEnemies();
         playingCanvas.SetActive(true);
         pauseCanvas.SetActive(false);
     }
