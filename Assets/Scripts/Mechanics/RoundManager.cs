@@ -15,7 +15,6 @@ public class RoundManager : MonoBehaviour {
 
     public GameObject playerHUD;
     public GameObject roundText;
-    public GameObject roundCounter;
     public GameObject enemiesHUD;
 
     [Header("Round Parameters")]
@@ -25,9 +24,15 @@ public class RoundManager : MonoBehaviour {
     public int roundsPlayed = 0; 
 
     [Header("Text Fields")]
+    [SerializeField] private TextMeshProUGUI roundCounter;
     [SerializeField] private TextMeshProUGUI enemiesText;
     [SerializeField] private TextMeshProUGUI roundPlayedText;
     [SerializeField] private TextMeshProUGUI counterTextValue;
+
+    [Header("Canvas")]
+    [SerializeField] private GameObject playingCanvas;
+    [SerializeField] private GameObject deathCanvas;
+    [SerializeField] private GameObject pauseCanvas;
 
     public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
     public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
@@ -35,9 +40,13 @@ public class RoundManager : MonoBehaviour {
 
     void Start() {
         enemiesText = GameObject.Find("EnemiesText").GetComponent<TextMeshProUGUI>();
+        counterTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        counterTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
+        LoadNewRound();
+    }
+
+    private void LoadNewRound() {
         RespawnPlayer();
         ResetRoundComponents();
         ResetCounterText();
@@ -48,8 +57,10 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void ResetRoundComponents() {
+        playingCanvas.SetActive(true);
         playerHUD.SetActive(false);
         roundText.SetActive(true);
+        deathCanvas.SetActive(false);
         playerController.Lock();
     }
 
@@ -94,6 +105,8 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void StartRound() {
+        roundsPlayed += 1;
+        roundCounter.SetText("Round: " + roundsPlayed);
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(
             enemyLifePoints,
             enemyDamage,
@@ -147,4 +160,22 @@ public class RoundManager : MonoBehaviour {
         roundsPlayed++;
         PlayingRound = false;
     }
+
+    public void FinishGame() {
+        playingCanvas.SetActive(false);
+        deathCanvas.SetActive(true);
+    }
+
+    public void PauseRound() {
+        playerController.Lock();
+        playingCanvas.SetActive(false);
+        pauseCanvas.SetActive(true);
+    }
+
+    public void ResumeRound() {
+        playerController.Unlock();
+        playingCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
+    }
+
 }
