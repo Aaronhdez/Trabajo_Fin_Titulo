@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
     public bool IsLocked { get => isLocked; set => isLocked = value; }
 
     void Start() {
+        gameManager = FindObjectOfType<GameManager>();
         mainCamera = GetComponentInChildren<Camera>();
         playerCC = GetComponent<CharacterController>();
         currentWeaponController = weaponManager.CurrentWeapon;
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour {
             Shoot();
             Reload();
             currentWeaponController = weaponManager.CurrentWeapon;
+        }
+        if (healthController.IsDead) {
+            Lock();
+            Cursor.lockState = CursorLockMode.None;
+            gameManager.FinishGame();
         }
     }
 
@@ -125,10 +131,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Lock() {
+        mainCamera.GetComponent<CameraController>().enabled = false;
+        playerCC.enabled = false;
         IsLocked = true;
     }
 
     public void Unlock() {
+        mainCamera.GetComponent<CameraController>().enabled = true;
+        playerCC.enabled = true;
         IsLocked = false;
     }
 }
