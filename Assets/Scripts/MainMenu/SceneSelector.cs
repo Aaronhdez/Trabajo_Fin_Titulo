@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,9 +15,14 @@ public class SceneSelector : MonoBehaviour
     private GameObject volumeScrollbar;
     private GameObject mouseScrollbar;
     private Vector3 nextPosition;
-    private float step = 10f;
 
     public void Start() {
+        if (SceneManager.GetActiveScene().name.Equals("MainMenu")) { 
+            LoadMainSceneElements();
+        }
+    }
+
+    private void LoadMainSceneElements() {
         mainCanvas = GameObject.Find("Elements").GetComponent<Elements>().mainCanvas;
         optionsCanvas = GameObject.Find("Elements").GetComponent<Elements>().optionsCanvas;
         mainCamera = GameObject.Find("Elements").GetComponent<Elements>().camera;
@@ -26,6 +32,10 @@ public class SceneSelector : MonoBehaviour
         volumeScrollbar = GameObject.Find("Elements").GetComponent<Elements>().volumeScrollbar;
         mouseScrollbar = GameObject.Find("Elements").GetComponent<Elements>().mouseScrollbar;
         nextPosition = optionsPosition.transform.position;
+    }
+
+    public void GoToMainMenu() {
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void PlayGame() {
