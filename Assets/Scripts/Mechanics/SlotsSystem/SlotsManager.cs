@@ -5,11 +5,12 @@ using UnityEngine;
 namespace Mechanics.Slots {
     public class SlotsManager {
 
-        private readonly int slotsAvailable;
+        private int slotsAvailable;
         private List<GameObject> slots;
 
         public SlotsManager(int slotsNumber) {
-            this.slotsAvailable = slotsNumber;
+            slotsAvailable = slotsNumber;
+            slots = new List<GameObject>(slotsAvailable);
         }
 
         public bool IsFull() {
