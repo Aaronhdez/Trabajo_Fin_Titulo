@@ -18,15 +18,11 @@ namespace BehaviorTree {
         public override NodeState Evaluate() {
             ClearData("nextSlot");
             var lastAlertZone = AlertManager.GetLastZoneReportedInNodes();
-            //Si el jugador puede ser perseguido directamente verificar y asignar
-
-
-            //Si no puede, verificar slots en lugares adyacentes
             foreach (GameObject gameObject in lastAlertZone) {
                 var slotsController = gameObject.GetComponent<SlotsController>();
                 if (!slotsController.IsFull()) {
                     slotsController.TakeSlot(agent);
-                    _parent.SetData("nextSlot", slotsController.transform.position);
+                    _parent.SetData("nextSlot", slotsController.gameObject);
                     state = NodeState.SUCCESS;
                     return state;
                 }

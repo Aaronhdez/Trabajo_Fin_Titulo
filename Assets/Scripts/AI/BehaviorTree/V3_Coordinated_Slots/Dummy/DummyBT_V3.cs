@@ -29,14 +29,14 @@ namespace BehaviorTree {
                 }),
                 new Selector(new List<Node>() {
                     new Sequence(new List<Node>() {
-                        new CheckTargetIsInFOVRange(_agent),
-                        new Chase(_agent)
-                    }),
-                    new Sequence(new List<Node>() {
                         new CheckIfAlertIsTriggered(_agent),
                         new CheckIfAgentCanBeAlerted(_agent),
-                        //Check if there are slots available
-                        new ChaseOnAlert(_agent) //Refactorizado
+                        new CheckIfThereAreSlotsAvailable(_agent),
+                        new ChaseOnAlert(_agent)
+                    }),
+                    new Sequence(new List<Node>() {
+                        new CheckTargetIsInFOVRange(_agent),
+                        new Chase(_agent)
                     }),
                 }),
                 new WanderAround(_agent)

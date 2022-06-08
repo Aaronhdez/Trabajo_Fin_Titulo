@@ -5,7 +5,6 @@ namespace BehaviorTree {
     public class Dead : Node {
         private GameObject _agent;
         private EnemyController_BT enemyController;
-        private Rigidbody agentRb;
 
         public Dead() {
         }

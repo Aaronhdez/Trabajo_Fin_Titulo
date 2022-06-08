@@ -10,7 +10,7 @@ namespace BehaviorTree {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private float rotationSpeed = 7f;
         [SerializeField] private float runSpeed = 7f;
-        private AlertController_FurthestNodes alertController;
+        private Mechanics.AlertController alertController;
         private EnemyController_BT enemyController;
 
         public Alert() {
@@ -21,7 +21,7 @@ namespace BehaviorTree {
             target = GameObject.FindGameObjectWithTag("Player");
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
-            alertController = target.GetComponent<AlertController_FurthestNodes>();
+            alertController = target.GetComponent<Mechanics.AlertController>();
             enemyController = agent.GetComponent<EnemyController_BT>();
             navMeshAgent.updateRotation = false;
         }

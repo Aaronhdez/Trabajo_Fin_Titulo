@@ -40,7 +40,7 @@ namespace BehaviorTree {
         private Vector3 SelectBestDestinationPoint() {
             //Cambio insertado para el sistema de slots
             if (GetData("nextSlot") != null) {
-                return ((GameObject)GetData("nextSlot")).transform.position;
+                return ((GameObject) GetData("nextSlot")).transform.position;
             }
 
             //Sin slots
