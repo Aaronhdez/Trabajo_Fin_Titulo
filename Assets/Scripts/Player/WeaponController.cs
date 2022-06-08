@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour {
     public int maxAmountInMagazine;
     public int amountInMagazine;
     public int amountOfBullets;
-    public float fireRate = 0.01f;
+    public float fireRate = 0.5f;
     public float lastShot = 0.0f;
 
     [Header("Weapon Status")]
@@ -47,21 +47,21 @@ public class WeaponController : MonoBehaviour {
     }
 
     private void UpdateGunHUD() {
-        gunText.SetText(amountInMagazine + "/" + amountOfBullets);
-        if (mustReplenish) {
-            gunImage.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
-            gunText.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
-        } else {
-            gunImage.color = new Color(1f, 1f, 1f, 0.6f);
-            gunText.color = new Color(1f, 1f, 1f, 0.6f);
+        if(gunText != null) { 
+            gunText.SetText(amountInMagazine + "/" + amountOfBullets);
+            if (mustReplenish) {
+                gunImage.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+                gunText.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+            } else {
+                gunImage.color = new Color(1f, 1f, 1f, 0.6f);
+                gunText.color = new Color(1f, 1f, 1f, 0.6f);
+            }
         }
     }
 
     public void Shoot() {
         if (amountInMagazine > 0) {
             Fire();
-            RaycastShot();
-            shotSound.Play();
             if (amountInMagazine == 0) {
                 mustReload = true;
                 if (amountOfBullets == 0) {
@@ -75,6 +75,7 @@ public class WeaponController : MonoBehaviour {
         if(Time.time > fireRate + lastShot) {
             amountInMagazine -= 1;
             lastShot = Time.time;
+            RaycastShot();
         }
     }
 
@@ -87,10 +88,11 @@ public class WeaponController : MonoBehaviour {
 
             if (impactInfo.collider.tag.Equals("Enemy")) {
                 PlayShootAnimation();
-                ApplyDamageOnTarget(impactInfo);
             } else {
                 PlayImpactAnimation();
             }
+            shotSound.Play();
+            ApplyDamageOnTarget(impactInfo);
         }
     }
 
@@ -100,7 +102,9 @@ public class WeaponController : MonoBehaviour {
 
     private void ApplyDamageOnTarget(RaycastHit impactInfo) {
         Instantiate(bloodEffect, impactInfo.point, Quaternion.LookRotation(impactInfo.normal));
-        impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
+        if (impactInfo.collider.GetComponent<EnemyController>() != null) { 
+            impactInfo.collider.GetComponent<EnemyController>().ApplyDamage(weaponDamage);
+        }
     }
 
     private void PlayImpactAnimation() {
