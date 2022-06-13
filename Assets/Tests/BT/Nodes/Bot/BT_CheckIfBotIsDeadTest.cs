@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 namespace Tests.BehaviourTrees.Nodes.Bot {
-    public class BT_CheckIfBotIsDeadTest : MonoBehaviour {
+    public class BT_CheckIfBotIsDeadTest {
         private GameObject dummyBot;
 
         [Test]

@@ -62,8 +62,8 @@ public class BotController : MonoBehaviour
         }
     }
 
-    internal bool LowHealth() {
-        throw new NotImplementedException();
+    public bool LowHealth() {
+        return health < 25;
     }
 
     private IEnumerator PlayDeadSequence() {
