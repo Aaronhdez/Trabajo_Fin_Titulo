@@ -1841,8 +1841,8 @@ MonoBehaviour:
   deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
   animator: {fileID: 878207136870925474}
   navMeshAgent: {fileID: 1998342835347118697}
-  maxDistanceToBeAlerted: 40
-  distanceToSpreadAlert: 40
+  maxDistanceToBeAlerted: 60
+  distanceToSpreadAlert: 50
   timeToRespawnAlert: 5
   hasAlreadyAlerted: 0
   treeToLoad: BarkerBT_V2
