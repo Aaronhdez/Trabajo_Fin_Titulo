@@ -21,6 +21,10 @@ namespace BehaviorTree {
                     new CheckIfBotIsDead(_agent),
                     new BotDead(_agent)
                 }),
+                new Sequence(new List<Node>(){ 
+                    new CheckIfBotHealthIsLow(_agent),
+                    new ReachHealthPoint(_agent),
+                }),
                 new FindEnemies(_agent)
             });
 
