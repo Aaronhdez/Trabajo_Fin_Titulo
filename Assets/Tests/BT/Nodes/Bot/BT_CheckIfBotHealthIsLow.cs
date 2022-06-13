@@ -19,5 +19,17 @@ namespace Tests.BehaviourTrees.Nodes.Bot {
 
             Assert.AreEqual(NodeState.SUCCESS, deadStatus);
         }
+
+        [Test]
+        public void Returns_failure_if_bot_health_is_high() {
+            dummyBot = new GameObject();
+            dummyBot.AddComponent(typeof(BotController));
+            dummyBot.GetComponent<BotController>().health = 30;
+            var node = new CheckIfBotHealthIsLow(dummyBot);
+
+            var deadStatus = node.Evaluate();
+
+            Assert.AreEqual(NodeState.FAILURE, deadStatus);
+        }
     }
 }
