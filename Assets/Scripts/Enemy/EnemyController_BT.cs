@@ -48,8 +48,6 @@ public class EnemyController_BT : EnemyController {
             StartCoroutine(PlayDeadSequence());
         }
         if (HasAlreadyAlerted) {
-            navMeshAgent.speed = 0f;
-            Debug.Log(gameObject + "agente ha alertado");
             StartCoroutine(PlayAlertSequence());
         }
         tree.UpdateNodes();
@@ -70,12 +68,15 @@ public class EnemyController_BT : EnemyController {
     private IEnumerator PlayDeadSequence() {
         animator.Play("Z_FallingBack");
         navMeshAgent.speed = 0f;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSecondsRealtime(3f);
         mustBeKilled = false;
         gameObject.SetActive(false);
     }
 
     private IEnumerator PlayAlertSequence() {
+        navMeshAgent.speed = 0f;
+        animator.Play("Z_Attack");
         yield return new WaitForSecondsRealtime(timeToRespawnAlert);
         HasAlreadyAlerted = false;
     }
