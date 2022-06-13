@@ -1,4 +1,5 @@
 using BehaviorTree;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,6 +60,10 @@ public class BotController : MonoBehaviour
         if (health == 0) {
             isDead = true;
         }
+    }
+
+    internal bool LowHealth() {
+        throw new NotImplementedException();
     }
 
     private IEnumerator PlayDeadSequence() {
