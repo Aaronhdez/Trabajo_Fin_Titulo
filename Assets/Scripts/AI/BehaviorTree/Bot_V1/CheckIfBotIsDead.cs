@@ -14,6 +14,10 @@ namespace BehaviorTree {
         }
 
         public override NodeState Evaluate() {
+            if (botController.IsDead) {
+                state = NodeState.SUCCESS;
+                return state;
+            }
             state = NodeState.FAILURE;
             return state;
         }
