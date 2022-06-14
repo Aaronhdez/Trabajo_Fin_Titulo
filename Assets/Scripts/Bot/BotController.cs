@@ -15,6 +15,7 @@ public class BotController : MonoBehaviour
     [SerializeField] protected bool isDead;
     [SerializeField] protected float fovRange;
     [SerializeField] protected float attackRange;
+    [SerializeField] protected float fireRate;
 
     [Header("Game Instances")]
     [SerializeField] protected NavMeshAgent navMeshAgent;
@@ -25,7 +26,8 @@ public class BotController : MonoBehaviour
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
     public int AttackDamage { get => attackDamage; set => attackDamage = value; }
- 
+
+
     public float AttackRange {
         get => attackRange; set => attackRange = value;
     }
@@ -34,6 +36,9 @@ public class BotController : MonoBehaviour
     }
     public bool Kill {
         get => mustBeKilled; set => mustBeKilled = value;
+    }
+    public float FireRate { 
+        get => fireRate; set => fireRate = value; 
     }
 
     public void Start() {
@@ -65,6 +70,9 @@ public class BotController : MonoBehaviour
     public bool LowHealth() {
         return health < 25;
     }
+    public void RestoreHealth() {
+        health = 100;
+    }
 
     private IEnumerator PlayDeadSequence() {
         navMeshAgent.speed = 0f;
@@ -73,4 +81,5 @@ public class BotController : MonoBehaviour
         mustBeKilled = false;
         gameObject.SetActive(false);
     }
+
 }

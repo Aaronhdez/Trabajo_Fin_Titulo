@@ -15,7 +15,7 @@ namespace BehaviorTree {
         public override NodeState Evaluate() {
             TargetEnemy(layerMask);
             RotateTowardsTarget();
-            RayCastShot();
+            ShotToEnemy(layerMask);
 
             state = NodeState.RUNNING;
             return state;
