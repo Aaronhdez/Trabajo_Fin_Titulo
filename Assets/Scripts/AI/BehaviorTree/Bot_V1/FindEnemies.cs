@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -45,11 +47,14 @@ namespace BehaviorTree {
         }
 
         private void SetNewDestination() {
-            Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
-            randomDirection += agent.transform.position;
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
-            Vector3 finalPosition = hit.position;
+            var layermask = 1 << 16;
+            var nodes = Physics.OverlapSphere(agent.transform.position, 40f, layermask);
+            var listNodes = new List<Collider>(nodes);
+            var orderedListNodes = listNodes.OrderByDescending(
+                s => Vector3.Distance(s.transform.position, agent.transform.position));
+            var finalPosition = orderedListNodes.First().transform.position;
+            ClearData("destination");
+            SetData("destination", finalPosition);
             navMeshAgent.SetDestination(finalPosition);
         }
     }
