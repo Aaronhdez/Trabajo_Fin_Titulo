@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 namespace Tests.BehaviourTrees.Nodes.Bot {
-    public class BT_CheckIfThereAreDummiesNearby {
+    public class BT_CheckIfThereAreDummiesNearbyTest {
         private GameObject agent;
         private CheckIfThereAreDummiesNearby node;
         private GameObject dummyZombie;
