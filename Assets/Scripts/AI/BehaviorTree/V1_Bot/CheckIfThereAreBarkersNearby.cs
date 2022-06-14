@@ -3,9 +3,11 @@
 namespace BehaviorTree {
     public class CheckIfThereAreBarkersNearby : Node {
         private GameObject agent;
+        private BotController botController;
 
         public CheckIfThereAreBarkersNearby(GameObject agent) {
             this.agent = agent;
+            botController = agent.GetComponent<BotController>();
         }
 
         public override NodeState Evaluate() {
