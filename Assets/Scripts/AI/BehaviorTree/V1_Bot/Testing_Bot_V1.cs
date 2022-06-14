@@ -28,11 +28,11 @@ namespace BehaviorTree {
                 new Selector(new List<Node>(){ 
                     new Sequence(new List<Node>(){
                         new CheckIfThereAreBarkersNearby(_agent),
-                        new BotAttack(_agent)
+                        new BotAttackBarkers(_agent)
                     }),
                     new Sequence(new List<Node>(){
                         new CheckIfThereAreDummiesNearby(_agent),
-                        new BotAttack(_agent)
+                        new BotAttackDummies(_agent)
                     }),
                 }),
                 new FindEnemies(_agent)
