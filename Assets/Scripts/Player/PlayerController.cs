@@ -1,3 +1,4 @@
+using Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -68,6 +69,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             Cursor.lockState = CursorLockMode.None;
             gameManager.FinishGame();
         }
+    }
+
+    public void ResetAlertSystem() {
+        gameObject.GetComponent<AlertController>().ResetAlertSystem();
     }
 
     private void ResetVelocityIfNeeded() {

@@ -6,10 +6,7 @@ using UnityEngine.AI;
 public class EnemyController_BT : EnemyController {
 
     [Header("Barker Properties")]
-    [SerializeField] private float maxDistanceToBeAlerted;
-    [SerializeField] private float distanceToSpreadAlert;
     [SerializeField] private float timeToRespawnAlert;
-    public bool hasAlreadyAlerted;
 
     [Header("Tree Properties")]
     [SerializeField] public string treeToLoad;

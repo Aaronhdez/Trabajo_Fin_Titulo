@@ -47,10 +47,12 @@ namespace Mechanics {
         }
 
         public static void SetLastZoneReported(List<Vector3> lastZone) {
+            GetInstance();
             lastZoneReported = lastZone;
         }
 
         public static void SetLastZoneReportedInNode(List<GameObject> lastZone) {
+            GetInstance();
             lastZoneReportedNodes = lastZone;
         }
 
@@ -60,6 +62,10 @@ namespace Mechanics {
 
         public static List<GameObject> GetLastZoneReportedInNodes() {
             return new List<GameObject>(lastZoneReportedNodes);
+        }
+
+        public static void ResetAlertManager() {
+            _instance = null;
         }
     }
 }

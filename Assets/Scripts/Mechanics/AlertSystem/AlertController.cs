@@ -63,5 +63,11 @@ namespace Mechanics {
             AlertManager.SetLastZoneReported(lastZone);
             AlertManager.SetLastZoneReportedInNode(lastZoneInNodes);
         }
+
+        public void ResetAlertSystem() {
+            _lastTriggertime = 0f;
+            _AlertTriggered = false;
+            AlertManager.ResetAlertManager();
+        }
     }
 }

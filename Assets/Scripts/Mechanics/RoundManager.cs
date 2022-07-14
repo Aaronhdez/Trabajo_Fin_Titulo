@@ -47,6 +47,8 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void LoadNewRound() {
+        roundsPlayed += 1;
+        roundCounter.SetText("Round: " + roundsPlayed);
         RespawnPlayer();
         ResetRoundComponents();
         ResetCounterText();
@@ -61,6 +63,7 @@ public class RoundManager : MonoBehaviour {
         playerHUD.SetActive(false);
         roundText.SetActive(true);
         deathCanvas.SetActive(false);
+        playerController.ResetAlertSystem();
         playerController.Lock();
     }
 
@@ -105,8 +108,6 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void StartRound() {
-        roundsPlayed += 1;
-        roundCounter.SetText("Round: " + roundsPlayed);
         spawnManager.GetComponent<SpawnManager>().RespawnEnemies(
             enemyLifePoints,
             enemyDamage,
@@ -155,9 +156,10 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void EndRound() {
+        roundsPlayed += 1;
+        roundCounter.SetText("Round: " + roundsPlayed);
         ResetRoundComponents();
         RespawnPlayer();
-        roundsPlayed++;
         PlayingRound = false;
     }
 
