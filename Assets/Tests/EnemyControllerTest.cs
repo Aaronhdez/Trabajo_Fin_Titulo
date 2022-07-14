@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Tests {
+namespace Tests.Character {
     public class EnemyControllerTest : MonoBehaviour {
         private GameObject enemy;
         private EnemyController enemyController;
