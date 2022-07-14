@@ -16,6 +16,8 @@ namespace BehaviorTree {
         [SerializeField] private int resetDestinationTime = 5;
         private float currentTime = 0;
         private float wanderSpeed;
+        private GameObject[] defaultAlertPoints;
+        private GameObject[] alertPoints;
         private float walkRadius = 50f;
 
         public FindEnemies() { }
@@ -28,27 +30,59 @@ namespace BehaviorTree {
             character = agent.GetComponent<ThirdPersonCharacter>();
             navMeshAgent.updateRotation = false;
             wanderSpeed = agent.GetComponent<BotController>().WanderSpeed;
-            SetNewDestination();
+            defaultAlertPoints = GameObject.FindGameObjectsWithTag("AlertPoint");
         }
 
         public override NodeState Evaluate() {
             navMeshAgent.speed = wanderSpeed;
-            if (Time.time - currentTime > resetDestinationTime) {
-                currentTime = Time.time;
-                SetNewDestination();
+            if (GetData("destination") == null) {
+                SetNewRandomDestination();
             } else {
-                if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
-                    character.Move(navMeshAgent.desiredVelocity, false, false);
-                }
+                character.Move(navMeshAgent.desiredVelocity, false, false);
             }
+            float dist = navMeshAgent.remainingDistance;
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending) {
+                SetNewRandomDestination();
+            }
+            character.Move(navMeshAgent.desiredVelocity, false, false);
+
 
             state = NodeState.RUNNING;
             return state;
         }
 
+        private void SetNewRandomDestination() {
+            alertPoints = GameObject.FindGameObjectsWithTag("AlertPoint");
+            if (GetData("lastAlertPoint") != null) {
+                ClearOldDestination();
+            }
+            var index = Random.Range(0, alertPoints.Length);
+            var nextDestination = alertPoints[index];
+            Debug.Log(index);
+            SetData("lastAlertPoint", nextDestination);
+            SetData("destination", nextDestination.transform.position);
+            navMeshAgent.SetDestination(nextDestination.transform.position);
+        }
+
+        private void ClearOldDestination() {
+            if (alertPoints.Length < 2) {
+                EnableAllAlertPoints();
+            }
+            GameObject lastAlertPoint = (GameObject)GetData("lastAlertPoint");
+            lastAlertPoint.SetActive(false);
+            ClearData("lastAlertPoint");
+            ClearData("destination");
+        }
+
+        private void EnableAllAlertPoints() {
+            foreach (GameObject point in defaultAlertPoints) {
+                point.SetActive(true);
+            }
+        }
+
         private void SetNewDestination() {
             var layermask = 1 << 16;
-            var nodes = Physics.OverlapSphere(agent.transform.position, 40f, layermask);
+            var nodes = Physics.OverlapSphere(agent.transform.position, 50f, layermask);
             var listNodes = new List<Collider>(nodes);
             var orderedListNodes = listNodes.OrderByDescending(
                 s => Vector3.Distance(s.transform.position, agent.transform.position));

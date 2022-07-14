@@ -46,13 +46,13 @@ namespace BehaviorTree {
         }
 
         private bool AgentIsNearFromSupplyBox() {
-            return Vector3.Distance(agent.transform.position, nearestSupplyBox) <= 2f;
+            return Vector3.Distance(agent.transform.position, nearestSupplyBox) <= 4f;
         }
 
         private Vector3 GetNearestHealthPoint() {
             var layermask = 1 << 15;
             var supplyBoxes = Physics.OverlapSphere(
-                agent.transform.position, 10f, layermask);
+                agent.transform.position, 100f, layermask);
 
             var boxesList = new List<Collider>(supplyBoxes);
             var orderedBosexList = boxesList.OrderBy(

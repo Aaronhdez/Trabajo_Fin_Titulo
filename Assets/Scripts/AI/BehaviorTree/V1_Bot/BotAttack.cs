@@ -62,9 +62,9 @@ namespace BehaviorTree {
         }
 
         private Vector3 SetRayDirection(GameObject target) {
-            var from = agent.transform.position + new Vector3(0, 1f, 0);
-            var to = target.transform.position + new Vector3(0, target.transform.localScale.y / 2, 0);
-            return -(from - to);
+            var from = agent.transform.position;
+            var to = target.transform.position;
+            return to-from;
         }
     }
 }
