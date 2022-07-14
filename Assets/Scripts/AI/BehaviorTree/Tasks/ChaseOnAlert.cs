@@ -22,9 +22,9 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
-            minimumDistanceToTarget = agent.GetComponent<EnemyController_BT>().MinimumDistanceToTarget;
-            maxDistanceToBeAlerted = agent.GetComponent<EnemyController_BT>().MaxDistanceToBeAlerted;
-            chaseSpeed = agent.GetComponent<EnemyController_BT>().ChaseSpeed;
+            minimumDistanceToTarget = agent.GetComponent<EnemyController>().MinimumDistanceToTarget;
+            maxDistanceToBeAlerted = agent.GetComponent<EnemyController>().MaxDistanceToBeAlerted;
+            chaseSpeed = agent.GetComponent<EnemyController>().ChaseSpeed;
             navMeshAgent.updateRotation = false;
         }
 

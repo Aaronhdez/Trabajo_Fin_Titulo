@@ -19,7 +19,7 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
-            chaseSpeed = agent.GetComponent<EnemyController_BT>().ChaseSpeed;
+            chaseSpeed = agent.GetComponent<EnemyController>().ChaseSpeed;
             navMeshAgent.updateRotation = false;
         }
 

@@ -11,7 +11,7 @@ namespace BehaviorTree {
 
         public CheckTargetIsInAttackRange(GameObject agent) {
             this.agent = agent;
-            _attackRange = agent.GetComponent<EnemyController_BT>().AttackRange;
+            _attackRange = agent.GetComponent<EnemyController>().AttackRange;
         }
 
         public override NodeState Evaluate() {

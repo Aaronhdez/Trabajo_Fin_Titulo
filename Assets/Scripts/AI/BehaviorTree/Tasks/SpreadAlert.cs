@@ -9,7 +9,7 @@ namespace BehaviorTree {
         private Animator animator;
         private NavMeshAgent navMeshAgent;
         private AlertController alertController;
-        private EnemyController_BT enemyController;
+        private EnemyController enemyController;
 
         public SpreadAlert() {
         }
@@ -20,7 +20,7 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             alertController = target.GetComponent<AlertController>();
-            enemyController = agent.GetComponent<EnemyController_BT>();
+            enemyController = agent.GetComponent<EnemyController>();
             navMeshAgent.updateRotation = false;
         }
 

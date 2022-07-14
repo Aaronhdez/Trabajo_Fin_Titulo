@@ -13,7 +13,7 @@ namespace BehaviorTree {
 
         public CheckTargetIsInFOVRange(GameObject agent) {
             this.agent = agent;
-            _fovRange = agent.GetComponent<EnemyController_BT>().FovRange;
+            _fovRange = agent.GetComponent<EnemyController>().FovRange;
         }
 
         public override NodeState Evaluate() {
