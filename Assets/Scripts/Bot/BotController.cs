@@ -2,11 +2,14 @@ using BehaviorTree;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
-public class BotController : MonoBehaviour
+public class BotController : MonoBehaviour, IPlayerController
 {
+    public string SceneName = "";
     [Header("General Properties")]
     [SerializeField] protected float wanderSpeed;
     [SerializeField] protected float chaseSpeed;
@@ -21,6 +24,12 @@ public class BotController : MonoBehaviour
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] protected ITree botBT;
     private bool mustBeKilled;
+
+    //TestResults
+    private int impacts = 0;
+    private int damageReceived = 0;
+    private int enemiesDefeated = 0;
+    private int timesHealed = 0;
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
@@ -50,14 +59,23 @@ public class BotController : MonoBehaviour
     }
 
     public void Update() {
-        if (mustBeKilled) {
-            StartCoroutine(PlayDeadSequence());
+        if (FindObjectsOfType<EnemyController>().Length == 0) {
+            SceneManager.LoadScene(SceneName);
+            enemiesDefeated = 30;
+            SaveTestData("victory");
+        }
+        if (isDead) {
+            enemiesDefeated = 30 - FindObjectsOfType<EnemyController>().Length;
+            SaveTestData("defeat");
+            SceneManager.LoadScene(SceneName);
         }
         botBT.UpdateNodes();
     }
 
-    public void ApplyDamage(int damagedReceived) {
-        health -= (health - damagedReceived > 0) ? damagedReceived : health;
+    public void ApplyDamage(int damage) {
+        health -= (health - damage > 0) ? damage : health;
+        impacts += 1;
+        damageReceived += damage;
         CheckHealthStatus();
     }
 
@@ -68,18 +86,34 @@ public class BotController : MonoBehaviour
     }
 
     public bool LowHealth() {
-        return health < 25;
+        return health < 50;
     }
     public void RestoreHealth() {
+        timesHealed += 1;
         health = 100;
     }
 
-    private IEnumerator PlayDeadSequence() {
-        navMeshAgent.speed = 0f;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        yield return new WaitForSecondsRealtime(3f);
-        mustBeKilled = false;
-        gameObject.SetActive(false);
+    private void SaveTestData(string result) {
+        string testFileName = @"TestsResults_"+ SceneName + ".txt";
+        if (!File.Exists(testFileName)) {
+            File.Create(testFileName);
+            using (StreamWriter sw = new StreamWriter(testFileName, append: true)) {
+                sw.WriteLine("Result; Impacts; Damage Received; Enemies Defated; Times Healed;");
+            }
+
+        }
+
+        var testResults =
+            result + "; "
+            + impacts + "; "
+            + damageReceived + "; "
+            + enemiesDefeated + "; "
+            + timesHealed + "; ";
+
+        using (StreamWriter sw = new StreamWriter(testFileName, append: true)) {
+            sw.WriteLine(testResults);
+        }
+
     }
 
 }
