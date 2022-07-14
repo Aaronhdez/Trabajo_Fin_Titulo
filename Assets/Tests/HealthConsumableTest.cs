@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Tests {
+namespace Tests.Character {
     public class HealthConsumableTest {
         private GameObject medKit;
         private GameObject player;

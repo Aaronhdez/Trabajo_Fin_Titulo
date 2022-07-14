@@ -11,11 +11,14 @@ TagManager:
   - HUDAmmoEntity
   - Enemy
   - FxTemporaire
+  - MainCanvas
+  - OptionsCanvas
+  - AlertPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - IgnoreNavMesh
@@ -25,10 +28,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Testing_Dummies
+  - Testing_Barkers
+  - Supply
+  - AlertPoints
   - 
   - 
   - 

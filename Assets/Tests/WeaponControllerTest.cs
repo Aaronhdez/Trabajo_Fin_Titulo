@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tests {
+namespace Tests.Character {
     public class WeaponControllerTest {
         private GameObject weapon;
         private WeaponController weaponController;

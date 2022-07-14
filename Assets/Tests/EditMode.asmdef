@@ -1,5 +1,5 @@
 {
-    "name": "Tests",
+    "name": "CodeTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
@@ -17,7 +17,8 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll"
+        "nunit.framework.dll",
+        "Moq.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
