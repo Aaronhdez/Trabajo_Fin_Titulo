@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2879034739681349056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ce77f0633418e43a50768fbd41f2c9, type: 3}
   m_Name: 
@@ -1204,18 +1204,23 @@ MonoBehaviour:
   wanderSpeed: 1
   chaseSpeed: 5
   health: 350
+  attackDamage: 10
   isDead: 0
   fovRange: 10
   attackRange: 6
   attackSpeed: 0
-  attackDamage: 35
   minimumDistanceToTarget: 6
-  maxDistanceToBeAlerted: 15
-  distanceToSpreadAlert: 0
-  timeToRespawnAlert: 0
   gameManager: {fileID: 0}
   soundController: {fileID: 0}
   deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
+  animator: {fileID: 9161791477778813609}
+  navMeshAgent: {fileID: 6112950132592210791}
+  maxDistanceToBeAlerted: 15
+  distanceToSpreadAlert: 0
+  timeToRespawnAlert: 0
+  hasAlreadyAlerted: 0
+  treeToLoad: DummyBT_V1
+  agent: {fileID: 2879034739681349056}
 --- !u!1 &3057490153788911036
 GameObject:
   m_ObjectHideFlags: 0

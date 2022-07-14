@@ -4,15 +4,14 @@ using UnityEngine.AI;
 namespace BehaviorTree {
     public class Dead : Node {
         private GameObject _agent;
-        private EnemyController_BT enemyController;
-        private Rigidbody agentRb;
+        private EnemyController enemyController;
 
         public Dead() {
         }
 
         public Dead(GameObject agent) {
             _agent = agent;
-            enemyController = agent.GetComponent<EnemyController_BT>();
+            enemyController = agent.GetComponent<EnemyController>();
         }
 
         public override NodeState Evaluate() {

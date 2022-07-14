@@ -12,6 +12,8 @@ namespace Tests.BehaviourTrees.Nodes {
         [SetUp]
         public void SetUp() {
             dummyAgent = new GameObject();
+            dummyAgent.AddComponent(typeof(EnemyController_BT));
+            dummyAgent.GetComponent<EnemyController_BT>().MaxDistanceToBeAlerted = 1f;
             node = new CheckIfAgentCanBeAlerted(dummyAgent);
         }
 

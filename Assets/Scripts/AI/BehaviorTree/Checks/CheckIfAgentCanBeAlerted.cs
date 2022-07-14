@@ -13,12 +13,13 @@ namespace BehaviorTree {
 
         public CheckIfAgentCanBeAlerted(GameObject agent) {
             this.agent = agent;
-            maxDistanceToBeAlerted = agent.GetComponent<EnemyController_BT>().MaxDistanceToBeAlerted;
+            maxDistanceToBeAlerted = agent.GetComponent<EnemyController>().MaxDistanceToBeAlerted;
         }
 
         public override NodeState Evaluate() {
             var lastAlertPosition = AlertManager.GetLastAlertPosition();
-            if (Vector3.Distance(agent.transform.position, lastAlertPosition) < maxDistanceToBeAlerted) {
+            var distance = Vector3.Distance(agent.transform.position, lastAlertPosition);
+            if (distance <= maxDistanceToBeAlerted) {
                 state = NodeState.SUCCESS;
                 return state;
             }

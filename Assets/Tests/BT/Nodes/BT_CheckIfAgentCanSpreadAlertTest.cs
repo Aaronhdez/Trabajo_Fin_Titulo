@@ -1,8 +1,6 @@
 using BehaviorTree;
 using Mechanics;
 using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tests.BehaviourTrees.Nodes {
@@ -13,6 +11,8 @@ namespace Tests.BehaviourTrees.Nodes {
         [SetUp]
         public void SetUp() {
             dummyAgent = new GameObject();
+            dummyAgent.AddComponent(typeof(EnemyController_BT));
+            dummyAgent.GetComponent<EnemyController_BT>().DistanceToSpreadAlert = 1f;
             node = new CheckIfAgentCanSpreadAlert(dummyAgent);
         }
 

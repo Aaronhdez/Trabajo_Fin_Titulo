@@ -8,7 +8,7 @@ namespace BehaviorTree {
         public Selector(List<Node> children) : base(children) { }
 
         public override NodeState Evaluate() {
-            foreach (Node child in children) {
+            foreach (Node child in _children) {
                 switch (child.Evaluate()) {
                     case NodeState.SUCCESS:
                         state = NodeState.SUCCESS;

@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace BehaviorTree {
     public class Chase : Node {
-        private GameObject agent;
+        private readonly GameObject agent;
         private GameObject target;
-        private Animator animator;
-        private NavMeshAgent navMeshAgent;
-        private ThirdPersonCharacter character;
-        private float chaseSpeed;
+        private readonly Animator animator;
+        private readonly NavMeshAgent navMeshAgent;
+        private readonly ThirdPersonCharacter character;
+        private readonly float chaseSpeed;
 
         public Chase() {
         }
@@ -21,7 +19,7 @@ namespace BehaviorTree {
             animator = agent.GetComponent<Animator>();
             navMeshAgent = agent.GetComponent<NavMeshAgent>();
             character = agent.GetComponent<ThirdPersonCharacter>();
-            chaseSpeed = agent.GetComponent<EnemyController_BT>().ChaseSpeed;
+            chaseSpeed = agent.GetComponent<EnemyController>().ChaseSpeed;
             navMeshAgent.updateRotation = false;
         }
 
@@ -35,7 +33,7 @@ namespace BehaviorTree {
         }
 
         private void ChaseTarget() {
-            Debug.Log(navMeshAgent.speed);
+            ClearData("nextSlot");
             navMeshAgent.SetDestination(target.transform.position);
             if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) {
                 character.Move(navMeshAgent.desiredVelocity, false, false);

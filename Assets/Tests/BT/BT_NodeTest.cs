@@ -19,7 +19,7 @@ namespace Tests.BehaviourTrees.Architecture {
             children.Add(node);
             Node parent = new Node(children);
 
-            Assert.IsTrue(parent.children.ToArray().Length != 0);
+            Assert.IsTrue(parent._children.ToArray().Length != 0);
         }
 
         [Test]

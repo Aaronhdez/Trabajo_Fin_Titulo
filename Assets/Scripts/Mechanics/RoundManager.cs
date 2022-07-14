@@ -1,3 +1,4 @@
+using Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,26 +7,32 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour {
 
     [Header("Round Elements")]
-    [SerializeField] public GameObject spawnManager;
-    [SerializeField] public GameObject player;
-    [SerializeField] public PlayerController playerController;
+    public GameObject spawnManager;
+    public GameObject player;
+    public PlayerController playerController;
+    [SerializeField] private int enemyLifePoints;
+    [SerializeField] private int enemyDamage;
 
-    [SerializeField] public GameObject playerHUD;
-    [SerializeField] public GameObject roundText;
-    [SerializeField] public GameObject enemiesHUD;
+    public GameObject playerHUD;
+    public GameObject roundText;
+    public GameObject enemiesHUD;
 
     [Header("Round Parameters")]
     [SerializeField] private bool roundStarted = false;
     [SerializeField] private bool roundFinished = false;
-    [SerializeField] public int enemiesAlive = 0;
-    [SerializeField] public int roundsPlayed = 0; 
-
-    [Header("Enemies Prefabs")]
-    [SerializeField] private List<GameObject> enemies;
+    public int enemiesAlive = 0;
+    public int roundsPlayed = 0; 
 
     [Header("Text Fields")]
+    [SerializeField] private TextMeshProUGUI roundCounter;
     [SerializeField] private TextMeshProUGUI enemiesText;
+    [SerializeField] private TextMeshProUGUI roundPlayedText;
     [SerializeField] private TextMeshProUGUI counterTextValue;
+
+    [Header("Canvas")]
+    [SerializeField] private GameObject playingCanvas;
+    [SerializeField] private GameObject deathCanvas;
+    [SerializeField] private GameObject pauseCanvas;
 
     public bool PlayingRound { get => roundStarted; set => roundStarted = value; }
     public int EnemiesAlive { get => enemiesAlive; set => enemiesAlive = value; }
@@ -33,9 +40,15 @@ public class RoundManager : MonoBehaviour {
 
     void Start() {
         enemiesText = GameObject.Find("EnemiesText").GetComponent<TextMeshProUGUI>();
+        counterTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        counterTextValue = roundText.GetComponentInChildren<TextMeshProUGUI>();
+        LoadNewRound();
+    }
+
+    private void LoadNewRound() {
+        roundsPlayed += 1;
+        roundCounter.SetText("Round: " + roundsPlayed);
         RespawnPlayer();
         ResetRoundComponents();
         ResetCounterText();
@@ -46,8 +59,11 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void ResetRoundComponents() {
+        playingCanvas.SetActive(true);
         playerHUD.SetActive(false);
         roundText.SetActive(true);
+        deathCanvas.SetActive(false);
+        playerController.ResetAlertSystem();
         playerController.Lock();
     }
 
@@ -82,6 +98,7 @@ public class RoundManager : MonoBehaviour {
 
     private void CountDown() {
         if (counterTextValue.text.Equals("Survive the horde!")) {
+            AlertManager.SetActiveStatusTo(false);
             StartRound();
             enemiesText.SetText(enemiesAlive.ToString());
             return;
@@ -91,7 +108,10 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void StartRound() {
-        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(enemies);
+        spawnManager.GetComponent<SpawnManager>().RespawnEnemies(
+            enemyLifePoints,
+            enemyDamage,
+            roundsPlayed);
         enemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
         ActivateRoundComponents();
     }
@@ -136,9 +156,30 @@ public class RoundManager : MonoBehaviour {
     }
 
     public void EndRound() {
+        roundsPlayed += 1;
+        roundCounter.SetText("Round: " + roundsPlayed);
         ResetRoundComponents();
         RespawnPlayer();
-        roundsPlayed++;
         PlayingRound = false;
     }
+
+    public void FinishGame() {
+        playingCanvas.SetActive(false);
+        deathCanvas.SetActive(true);
+    }
+
+    public void PauseRound() {
+        playerController.Lock();
+        spawnManager.GetComponent<SpawnManager>().PauseEnemies();
+        playingCanvas.SetActive(false);
+        pauseCanvas.SetActive(true);
+    }
+
+    public void ResumeRound() {
+        playerController.Unlock();
+        spawnManager.GetComponent<SpawnManager>().UnpauseEnemies();
+        playingCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
+    }
+
 }

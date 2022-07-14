@@ -6,6 +6,16 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] public List<GameObject> spawnPoints;
     [SerializeField] private Vector3 playerSpawnPoint;
     [SerializeField] public List<GameObject> enemySpawnPoints;
+    private bool enemiesHaveBeenCreated = false;
+    private EnemiesGenerator enemiesGenerator;
+    private List<GameObject> enemiesToSpawn;
+    private List<GameObject> enemiesCreated;
+
+    private void Start() {
+        enemiesGenerator = GetComponent<EnemiesGenerator>();
+        enemiesToSpawn = enemiesGenerator.GetEnemiesList(PlayerPrefs.GetString("difficulty"));
+        enemiesCreated = new List<GameObject>();
+    }
 
     public void RespawnPlayer(GameObject player) {
         var randomPick = Random.Range(0, spawnPoints.Count);
@@ -14,13 +24,120 @@ public class SpawnManager : MonoBehaviour {
             playerSpawnPoint.y+1, playerSpawnPoint.z);
     }
 
-    public void RespawnEnemies(List<GameObject> enemies) {
+    public void RespawnEnemies(int enemyLifePoints, int enemyDamage, int roundsPlayed) {
+        if (!enemiesHaveBeenCreated) {
+            switch (PlayerPrefs.GetString("difficulty")) {
+                case "1":
+                    SpawnEasyMode();
+                    break;
+                case "2":
+                    SpawnMediumMode();
+                    break;
+                case "3":
+                    SpawnHardMode();
+                    break;
+                case "4":
+                    SpawnVeryHardMode();
+                    break;
+            }
+            enemiesHaveBeenCreated = true;
+            ActivateEnemies(enemyLifePoints, enemyDamage, roundsPlayed);
+        } else {
+            ReloadPositions();
+            ActivateEnemies(enemyLifePoints, enemyDamage, roundsPlayed);
+        }
+    }
+
+    private void SpawnVeryHardMode() {
         var availablePoints = GetAvailablePoints();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 20; i++) {
             var randomPick = Random.Range(0, availablePoints.Count);
             var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
             var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
-            Instantiate(enemies[0], nextEnemyPosition, nextEnemyRotation);
+            var newEnemy = Instantiate(enemiesToSpawn[0], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+        for (int i = 0; i < 10; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[1], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+    }
+
+    private void SpawnHardMode() {
+        var availablePoints = GetAvailablePoints();
+        for (int i = 0; i < 20; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[0], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+        for (int i = 0; i < 10; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[1], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+    }
+
+    private void SpawnMediumMode() {
+        var availablePoints = GetAvailablePoints();
+        for (int i = 0; i < 25; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[0], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+        for (int i = 0; i < 5; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[1], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+    }
+
+    private void SpawnEasyMode() {
+        var availablePoints = GetAvailablePoints();
+        for (int i = 0; i < 30; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var newEnemy = Instantiate(enemiesToSpawn[0], nextEnemyPosition, nextEnemyRotation);
+            enemiesCreated.Add(newEnemy);
+            newEnemy.SetActive(false);
+        }
+    }
+
+    private void ReloadPositions() {
+        var availablePoints = GetAvailablePoints();
+        for (int i = 0; i < 30; i++) {
+            var randomPick = Random.Range(0, availablePoints.Count);
+            var nextEnemyPosition = GetRandomPositionAround(enemySpawnPoints[randomPick].transform.position);
+            var nextEnemyRotation = enemySpawnPoints[randomPick].transform.rotation;
+            var enemyToApply = enemiesCreated[i];
+            enemyToApply.transform.SetPositionAndRotation(nextEnemyPosition, nextEnemyRotation);
+        }
+    }
+    internal void ActivateEnemies(int enemyLifePoints, int enemyDamage, int roundsPlayed) {
+        foreach (GameObject enemy in enemiesCreated) {
+            enemy.GetComponent<CapsuleCollider>().enabled = true;
+            var enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.IsDead = false;
+            enemyController.health = enemyLifePoints + (10 * roundsPlayed%3);
+            enemyController.attackDamage = enemyDamage + (10 * roundsPlayed%5);
+            enemy.SetActive(true);
         }
     }
 
@@ -38,5 +155,19 @@ public class SpawnManager : MonoBehaviour {
             }
         }
         return availablePoints;
+    }
+
+    internal void PauseEnemies() {
+        foreach (GameObject enemy in enemiesCreated) {
+            var eAnimator = enemy.GetComponent<Animator>();
+            eAnimator.enabled = false;
+        }
+    }
+
+    internal void UnpauseEnemies() {
+        foreach (GameObject enemy in enemiesCreated) {
+            var eAnimator = enemy.GetComponent<Animator>();
+            eAnimator.enabled = true;
+        }
     }
 }

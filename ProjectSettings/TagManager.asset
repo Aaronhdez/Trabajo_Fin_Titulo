@@ -11,6 +11,9 @@ TagManager:
   - HUDAmmoEntity
   - Enemy
   - FxTemporaire
+  - MainCanvas
+  - OptionsCanvas
+  - AlertPoint
   layers:
   - Default
   - TransparentFX
@@ -25,9 +28,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Testing_Dummies
+  - Testing_Barkers
+  - Supply
   - AlertPoints
   - 
   - 

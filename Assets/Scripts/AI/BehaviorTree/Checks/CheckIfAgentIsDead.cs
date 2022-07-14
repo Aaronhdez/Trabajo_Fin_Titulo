@@ -5,14 +5,14 @@ using UnityEngine;
 namespace BehaviorTree {
     public class CheckIfAgentIsDead : Node {
         private readonly GameObject agent;
-        private EnemyController_BT enemyController;
+        private EnemyController enemyController;
 
         public CheckIfAgentIsDead() {
         }
 
         public CheckIfAgentIsDead(GameObject agent) {
             this.agent = agent;
-            enemyController = agent.GetComponent<EnemyController_BT>();
+            enemyController = agent.GetComponent<EnemyController>();
         }
 
         public override NodeState Evaluate() {

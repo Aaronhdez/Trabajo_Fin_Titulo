@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6116273834693090251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ce77f0633418e43a50768fbd41f2c9, type: 3}
   m_Name: 
@@ -1830,18 +1830,23 @@ MonoBehaviour:
   wanderSpeed: 1
   chaseSpeed: 5
   health: 450
+  attackDamage: 25
   isDead: 0
   fovRange: 10
   attackRange: 6
   attackSpeed: 0
-  attackDamage: 25
   minimumDistanceToTarget: 6
-  maxDistanceToBeAlerted: 40
-  distanceToSpreadAlert: 20
-  timeToRespawnAlert: 10
   gameManager: {fileID: 0}
   soundController: {fileID: 0}
   deadEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
+  animator: {fileID: 878207136870925474}
+  navMeshAgent: {fileID: 1998342835347118697}
+  maxDistanceToBeAlerted: 60
+  distanceToSpreadAlert: 50
+  timeToRespawnAlert: 5
+  hasAlreadyAlerted: 0
+  treeToLoad: BarkerBT_V2
+  agent: {fileID: 6116273834693090251}
 --- !u!1 &6239782718885479258
 GameObject:
   m_ObjectHideFlags: 0

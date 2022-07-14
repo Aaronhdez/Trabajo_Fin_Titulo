@@ -6,14 +6,14 @@ namespace BehaviorTree {
     
     public class Node : INode {
         protected NodeState state;
-        public List<Node> children = new List<Node>();
-        public Node parent;
-        private Dictionary<string, object> _dataContext = new Dictionary<string, object>();
+        public List<INode> _children = new List<INode>();
+        public Node _parent;
+        private Dictionary<string, object> _blackboard = new Dictionary<string, object>();
 
 
         //Constructor vacío para el nodo padre del grafo
         public Node() {
-            parent = null;
+            _parent = null;
         }
 
         //Constructor vacío para el nodos hijos
@@ -24,30 +24,30 @@ namespace BehaviorTree {
         }
 
         private void _Attach(Node node) {
-            node.parent = this;
-            children.Add(node);
+            node._parent = this;
+            _children.Add(node);
         }
         public virtual NodeState Evaluate() => NodeState.FAILURE;
 
         public void SetData(string key, object value) {
-            _dataContext.Add(key, value);
+            _blackboard.Add(key, value);
         }
 
         public object GetData(string key) {
             //Intenamos obtener el valor en el nodo actual.
             object value = null;
-            if (_dataContext.TryGetValue(key, out value)) {
+            if (_blackboard.TryGetValue(key, out value)) {
                 return value;
             }
 
-            //Si no lo obtenemos, exploramos hacia arriba
-            Node node = parent;
+            //Si no lo obtenemos, backtracking hacia arriba
+            Node node = _parent;
             while (node != null) {
                 value = node.GetData(key);
                 if (value != null) {
                     return value;
                 }
-                node = node.parent;
+                node = node._parent;
             }
 
             //Si no está, retornamos null
@@ -56,19 +56,19 @@ namespace BehaviorTree {
 
         public bool ClearData(string key) {
             //Intenamos borrar el valor en el nodo actual.
-            if (_dataContext.ContainsKey(key)) {
-                _dataContext.Remove(key);
+            if (_blackboard.ContainsKey(key)) {
+                _blackboard.Remove(key);
                 return true;
             }
 
-            //Si no lo obtenemos, exploramos hacia arriba hasta borrarlo
-            Node node = parent;
+            //Si no lo obtenemos, backtracking hacia arriba hasta borrarlo
+            Node node = _parent;
             while (node != null) {
                 bool cleared = node.ClearData(key);
                 if (cleared) {
                     return true;
                 }
-                node = node.parent;
+                node = node._parent;
             }
 
             //Si no está, retornamos falso

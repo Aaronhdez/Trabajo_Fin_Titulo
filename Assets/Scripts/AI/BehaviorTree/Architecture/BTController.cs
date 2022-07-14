@@ -6,7 +6,7 @@ namespace BehaviorTree {
     public class BTController : MonoBehaviour {
         [SerializeField] public string treeToLoad;
         [SerializeField] public GameObject agent;
-        private Tree tree;
+        private ITree tree;
 
         public void Start() {
             tree = new TreeGenerator(agent).ConstructTreeFor(treeToLoad);
