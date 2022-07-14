@@ -20,6 +20,12 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected ParticleSystem deadEffect;
     [SerializeField] protected Animator animator;
     [SerializeField] protected NavMeshAgent navMeshAgent;
+    
+    [Header("Enemy Properties")]
+    [SerializeField] protected bool mustBeKilled;
+    [SerializeField] protected float maxDistanceToBeAlerted;
+    [SerializeField] protected float distanceToSpreadAlert;
+    [SerializeField] protected bool hasAlreadyAlerted;
 
     public float ChaseSpeed { get => chaseSpeed; set => chaseSpeed = value; }
     public float WanderSpeed { get => wanderSpeed; set => wanderSpeed = value; }
@@ -34,6 +40,22 @@ public abstract class EnemyController : MonoBehaviour
     public float FovRange {
         get => fovRange; set => fovRange = value;
     }
+    public bool Kill { 
+        get => mustBeKilled; set => mustBeKilled = value; }
+
+    public float MinimumDistanceToTarget { 
+        get => minimumDistanceToTarget; 
+        set => minimumDistanceToTarget = value; }
+
+    public float MaxDistanceToBeAlerted { 
+        get => maxDistanceToBeAlerted; 
+        set => maxDistanceToBeAlerted = value; }
+
+    public float DistanceToSpreadAlert { 
+        get => distanceToSpreadAlert; 
+        set => distanceToSpreadAlert = value; }
+
+    public bool HasAlreadyAlerted { get => hasAlreadyAlerted; set => hasAlreadyAlerted = value; }
 
     void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

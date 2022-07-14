@@ -1,15 +1,10 @@
 using BehaviorTree;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController_BT : EnemyController {
-
-    [Header("Barker Properties")]
-    [SerializeField] private float maxDistanceToBeAlerted;
-    [SerializeField] private float distanceToSpreadAlert;
-    [SerializeField] private float timeToRespawnAlert;
-    public bool hasAlreadyAlerted;
+public class EnemyController_BT_Testing : EnemyController {
 
     [Header("Tree Properties")]
     [SerializeField] public string treeToLoad;
@@ -17,8 +12,6 @@ public class EnemyController_BT : EnemyController {
     private ITree tree;
 
     public void Start() {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         tree = new TreeGenerator(agent).ConstructTreeFor(treeToLoad);
         tree.InitTree();
@@ -27,8 +20,8 @@ public class EnemyController_BT : EnemyController {
     }
 
     public void Update() {
-        if (Kill) {
-            StartCoroutine(PlayDeadSequence());
+        if (isDead) {
+            Destroy(gameObject);
         }
         if (HasAlreadyAlerted) {
             StartCoroutine(PlayAlertSequence());
@@ -43,25 +36,13 @@ public class EnemyController_BT : EnemyController {
 
     protected override void CheckHealthStatus() {
         if (health == 0) {
-            Instantiate(deadEffect, transform.position, Quaternion.LookRotation(Vector3.up));
             isDead = true;
         }
     }
 
-    private IEnumerator PlayDeadSequence() {
-        animator.Play("Z_FallingBack");
-        navMeshAgent.speed = 0f;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        yield return new WaitForSecondsRealtime(3f);
-        Kill = false;
-        gameObject.SetActive(false);
-    }
-
     private IEnumerator PlayAlertSequence() {
         navMeshAgent.speed = 0f;
-        animator.Play("Z_Attack");
-        yield return new WaitForSecondsRealtime(timeToRespawnAlert);
+        yield return new WaitForSecondsRealtime(10);
         HasAlreadyAlerted = false;
     }
-
 }
