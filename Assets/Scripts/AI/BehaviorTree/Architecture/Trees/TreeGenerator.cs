@@ -20,7 +20,7 @@ namespace BehaviorTree {
 
             //V3
             treesAvaliable.Add("DummyBT_V3", new DummyBT_V3(null, agent));
-            treesAvaliable.Add("BarkerBT_V3", new BarkerBT_V2(null, agent));
+            treesAvaliable.Add("BarkerBT_V3", new BarkerBT_V3(null, agent));
         }
 
         public ITree ConstructTreeFor(string treeToLoad) {

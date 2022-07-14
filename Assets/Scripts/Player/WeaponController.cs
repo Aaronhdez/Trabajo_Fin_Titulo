@@ -22,8 +22,8 @@ public class WeaponController : MonoBehaviour {
     public GameObject hudElementAssociated;
     public TextMeshProUGUI gunText;
     public Image gunImage;
-    //public ParticleSystem muzzleFlash;
-    //public GameObject muzzleFlashObject;
+    public ParticleSystem muzzleFlash;
+    public GameObject muzzleFlashObject;
     public ParticleSystem impactEffect;
     public ParticleSystem bloodEffect;
 
@@ -39,7 +39,8 @@ public class WeaponController : MonoBehaviour {
     void Start() {
         amountOfBullets = maxAmountOfBullets;
         amountInMagazine = maxAmountInMagazine;
-        //muzzleFlash.Stop();
+        muzzleFlash = muzzleFlashObject.GetComponent<ParticleSystem>();
+        muzzleFlash.Stop();
     }
 
     private void LateUpdate() {
@@ -73,9 +74,11 @@ public class WeaponController : MonoBehaviour {
 
     public void Fire() {
         if(Time.time > fireRate + lastShot) {
+            muzzleFlash.Play();
             amountInMagazine -= 1;
             lastShot = Time.time;
             RaycastShot();
+            muzzleFlash.Stop();
         }
     }
 
@@ -86,19 +89,12 @@ public class WeaponController : MonoBehaviour {
             Ray ray = new Ray(pointingCamera.position, pointingCamera.forward);
             Debug.DrawLine(ray.origin, impactInfo.point, Color.red, 0.45f);
 
-            if (impactInfo.collider.tag.Equals("Enemy")) {
-                PlayShootAnimation();
-            } else {
-                PlayImpactAnimation();
-            }
+            PlayImpactAnimation();
             shotSound.Play();
             ApplyDamageOnTarget(impactInfo);
         }
     }
 
-    private void PlayShootAnimation() {
-        //muzzleFlash.Play();
-    }
 
     private void ApplyDamageOnTarget(RaycastHit impactInfo) {
         Instantiate(bloodEffect, impactInfo.point, Quaternion.LookRotation(impactInfo.normal));

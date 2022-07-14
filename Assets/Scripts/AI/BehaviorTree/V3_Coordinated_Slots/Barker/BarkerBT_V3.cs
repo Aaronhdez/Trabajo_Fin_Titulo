@@ -24,13 +24,13 @@ namespace BehaviorTree {
                 }),
                 new Selector(new List<Node>() {
                     new Sequence(new List<Node>(){
-                        new CheckIfAlertIsNotTriggered(),
+                        new CheckIfAlertIsNotTriggered(_agent),
                         new CheckIfAgentCanSpreadAlert(_agent),
                         new CheckTargetIsInFOVRange(_agent),
                         new Alert(_agent)
                     }),
                     new Sequence(new List<Node>(){
-                        new CheckIfAlertIsTriggered(),
+                        new CheckIfAlertIsTriggered(_agent),
                         new Selector(new List<Node>() {
                             new Sequence(new List<Node>(){
                                 new CheckTargetIsInFOVRange(_agent),
